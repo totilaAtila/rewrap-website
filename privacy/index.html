@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rewrap — Privacy Policy</title>
-<meta name="description" content="Rewrap collects no data. No cloud, no account, no network permissions — everything stays on your device." />
+<meta name="description" content="Rewrap has no account, no server and no advertising. Your books and your notes stay on your device." />
 <style>
   :root{ --bg:#0d1117; --bg2:#111a24; --card:rgba(255,255,255,.055); --stroke:rgba(255,255,255,.12);
     --ink:#eef3f8; --muted:#9db0c2; --accent:#5fb1ff; }
@@ -34,12 +34,12 @@
     <p class="updated">Rewrap · last updated 26 July 2026</p>
 
     <div class="card">
-      <p class="tl"><strong>Short version: Rewrap collects nothing.</strong> There is no account, no analytics, no advertising, and the app has no internet permission. Everything you read and every note you make stays on your device.</p>
+      <p class="tl"><strong>Short version: your books stay on your phone.</strong> Reading works with no internet connection at all — open a scanned book in airplane mode and it is still recognized and re-laid out on the device. There is no account and no advertising, we run no server, and nothing you read, write or highlight is ever uploaded. The app does include Google's text-recognition library, and that library sends Google anonymous diagnostics about itself — never your pages and never your text.</p>
     </div>
 
     <div class="card">
       <h2>What we collect</h2>
-      <p><strong>Nothing.</strong> Rewrap does not collect, transmit, sell or share any personal or usage data. We operate no server and run no third-party tracking or advertising SDKs.</p>
+      <p><strong>Nothing.</strong> We operate no server, we have no account system, and we add no analytics or advertising. We never receive your documents, your notes, or anything about how you use the app. One thing does leave your phone, and it is not ours — see <em>Google's ML Kit</em> below.</p>
     </div>
 
     <div class="card">
@@ -59,17 +59,20 @@
 
     <div class="card">
       <h2>Permissions</h2>
-      <p>Rewrap requests no internet permission. The permissions it does use are only for on-device features: a foreground service and wake lock so Read Aloud can continue with the screen off, and notifications for the lock-screen playback controls. None of these collect or send data.</p>
+      <p>Rewrap uses a foreground service and a wake lock so Read Aloud can keep going with the screen off, notifications for the lock-screen playback controls, and the billing permission for the one-time purchase, which the Play Store handles. Rewrap asks for no storage permission: files are opened only through Android's document picker.</p>
+      <p>The app also lists the internet and network-state permissions. We did not add them, and our own code never opens a network connection. They belong to Google's ML Kit library, which uses them for the diagnostics described below and to fetch the camera-scanner module from Google Play services the first time you use it. We have no server to send anything to.</p>
+      <p>Reading itself needs no connection: text recognition runs from models built into the app, so a scanned book opens and is recognized in airplane mode. Only two things involve the network — the camera scanner's one-time module download, and the Play Store purchase — and neither is reading.</p>
     </div>
 
     <div class="card">
-      <h2>Text recognition (scans)</h2>
-      <p>Scanned pages are recognized entirely on your device using on-device machine-learning models bundled in the app. Page images are never uploaded.</p>
+      <h2>Google's ML Kit</h2>
+      <p>Rewrap uses Google's ML Kit to recognize scanned pages, to detect a book's language, and for the camera scanner. It runs on your device: <strong>page images and the recognized text are never sent to Google.</strong> Google states this in its own <a href="https://developers.google.com/ml-kit/terms">ML Kit terms</a>.</p>
+      <p>The library does send Google diagnostics about itself: your device model and Android version, the app's name and version, an installation identifier, how long recognition took, error codes, and — when a book's language is detected — which language that was. It is sent over HTTPS and Google does not pass it to third parties. There is no setting to switch it off; if that matters to you, it is the one thing to weigh before installing. Google describes it on its <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit data disclosure page</a>.</p>
     </div>
 
     <div class="card">
       <h2>Children</h2>
-      <p>Rewrap is safe for all ages: it collects no data from anyone, including children.</p>
+      <p>Rewrap is safe for all ages. We collect nothing from anyone, including children, and there is no account, no advertising and no user-to-user content. The only data leaving the device is Google's technical diagnostics described above, which contains nothing personal about the reader.</p>
     </div>
 
     <div class="card">
