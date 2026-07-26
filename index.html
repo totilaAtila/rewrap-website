@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rewrap — read PDFs the way small screens deserve</title>
+<meta name="description" content="Rewrap is a native Android e-book reader for PDFs on small screens. The page never grows wider than your display — text is enlarged and rewrapped in place. 100% on your phone: no cloud, no account, no AI, no network." />
+<style>
+  :root{
+    --bg:#0d1117; --bg2:#111a24; --card:rgba(255,255,255,.055); --stroke:rgba(255,255,255,.12);
+    --ink:#eef3f8; --muted:#9db0c2; --accent:#5fb1ff; --accent2:#8ad;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#eef2f6; --bg2:#e3ebf3; --card:rgba(255,255,255,.7); --stroke:rgba(20,40,60,.12);
+      --ink:#16222e; --muted:#4a5a68; --accent:#1f6feb; --accent2:#2f7; }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(95,177,255,.16), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(120,220,180,.10), transparent 55%),
+      linear-gradient(160deg,var(--bg),var(--bg2));
+    background-attachment:fixed; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header{padding:70px 0 30px;text-align:center}
+  .badge{display:inline-block;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--stroke);border-radius:999px;padding:6px 14px;margin-bottom:22px;
+    background:var(--card)}
+  h1{font-size:clamp(30px,6vw,52px);line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+  h1 .g{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .brand{font-weight:800;font-size:22px;letter-spacing:-.01em;margin-bottom:20px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:720px;margin:0 auto}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0 6px}
+  .pill{font-size:13.5px;color:var(--ink);background:var(--card);border:1px solid var(--stroke);
+    border-radius:999px;padding:8px 15px;backdrop-filter:blur(8px)}
+  section{padding:34px 0}
+  h2{font-size:clamp(21px,3.2vw,28px);margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 26px;max-width:720px}
+  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .big{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:24px;backdrop-filter:blur(10px)}
+  .big h3{margin:0 0 8px;font-size:19px}
+  .big p{margin:0;color:var(--muted);font-size:15px}
+  .k{font-size:26px;margin-bottom:10px;display:block}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px)}
+  .card h4{margin:0 0 6px;font-size:16px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .privacy{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:26px;text-align:center;backdrop-filter:blur(10px)}
+  .privacy strong{color:var(--ink)}
+  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:13.5px}
+  footer a{color:var(--accent);text-decoration:none}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="brand">Rewrap</div>
+      <span class="badge">In development · coming to Google Play</span>
+      <h1>Read PDFs the way<br><span class="g">small screens deserve</span></h1>
+      <p class="lead">A native Android e-book reader specialized for PDFs. The page never grows wider than your display — text is <strong>enlarged and re-laid out in place</strong>, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
+      <div class="pills">
+        <span class="pill">No cloud</span>
+        <span class="pill">No account</span>
+        <span class="pill">No network permissions</span>
+        <span class="pill">One-time purchase</span>
+      </div>
+    </header>
+
+    <section>
+      <div class="three">
+        <div class="big">
+          <span class="k">📐</span>
+          <h3>Reflow without breaking the page</h3>
+          <p>Not classic zoom (which forces sideways scrolling) and not full reflow (which destroys the layout). Text grows and rewraps in place; images, tables and figures stay where they belong and scale with the font.</p>
+        </div>
+        <div class="big">
+          <span class="k">🔍</span>
+          <h3>Scans read on the phone</h3>
+          <p>Scanned PDFs and photos of pages are recognized right on the device — no upload. Angled photos are straightened, faint scans enhanced, and the app repairs recognition errors it can prove from the book itself.</p>
+        </div>
+        <div class="big">
+          <span class="k">🔒</span>
+          <h3>Truly private</h3>
+          <p>Zero cloud, zero account, zero network permissions. Your books, your notes and your reading positions never leave your phone. A one-time purchase — no subscription.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Everything it does</h2>
+      <p class="sub">Built feature by feature, measured on real books and real devices.</p>
+      <div class="grid">
+        <div class="card"><h4>Faithful text</h4><p>Digital PDFs read exactly from the file's text layer — any language. Scans go through on-device recognition with evidence-based repairs (broken fonts, lost diacritics, phantom accents, end-of-line hyphens). Fix any word by tapping it.</p></div>
+        <div class="card"><h4>Formats</h4><p>PDF, EPUB, TXT and photos — a single photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera, split double-page scans, straighten angled shots.</p></div>
+        <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language — choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off, from the lock screen or your headphones.</p></div>
+        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages in every format (they stay anchored even when you change the font), then export your notes as text, Markdown, Anki cards or PDF — one tap, straight to the share sheet.</p></div>
+        <div class="card"><h4>Navigate</h4><p>Full-text search (accents don't matter), bookmarks, a table of contents (the book's own or one built from headings), tap-to-define with your offline dictionary, and a remembered position per book.</p></div>
+        <div class="card"><h4>Export &amp; convert</h4><p>Turn any book into EPUB, TXT, DOCX or PDF — real chapters, cover and cleaned text. Convert a TXT into a proper EPUB, or bind photos into a single PDF.</p></div>
+        <div class="card"><h4>Comfort</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line/letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books — because the text is re-typeset.</p></div>
+        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, optional cloud backup you control, portable export/import of your reading data, and one-tap restore — plus the original page is always a long-press away.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="privacy">
+        <h2>The reader that does the hard part locally</h2>
+        <p class="sub" style="margin:8px auto 0">Reflowing a scanned book, recognizing its text, repairing it, reading it aloud and exporting it — <strong>all on your phone</strong>, the things other readers send to the cloud or simply refuse to do.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>Rewrap — a native Android app.</div>
+      <div class="note">Coming to Google Play. This page describes an app in active development; features and availability may change.</div>
+    </footer>
+
+  </div>
+</body>
+</html>
