@@ -51,6 +51,21 @@
   .card p{margin:0;color:var(--muted);font-size:14px}
   .privacy{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:26px;text-align:center;backdrop-filter:blur(10px)}
   .privacy strong{color:var(--ink)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0 4px}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15.5px;border-radius:14px;
+    padding:14px 22px;border:1px solid var(--stroke);transition:transform .12s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#08121c}
+  .btn-secondary{background:var(--card);color:var(--ink);backdrop-filter:blur(8px)}
+  .cta-note{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
+  details.qa{background:var(--card);border:1px solid var(--stroke);border-radius:14px;
+    padding:0;margin-bottom:10px;backdrop-filter:blur(10px);overflow:hidden}
+  details.qa summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:15.5px;
+    display:flex;align-items:center;gap:10px}
+  details.qa summary::-webkit-details-marker{display:none}
+  details.qa summary::before{content:"▸";color:var(--accent);flex:0 0 auto;transition:transform .15s ease}
+  details.qa[open] summary::before{transform:rotate(90deg)}
+  details.qa .a{padding:0 18px 15px 40px;color:var(--muted);font-size:14.5px}
   footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:13.5px}
   footer a{color:var(--accent);text-decoration:none}
   .note{font-size:12.5px;color:var(--muted);margin-top:10px}
@@ -61,7 +76,7 @@
 
     <header>
       <div class="brand">Rewrap</div>
-      <span class="badge">In development · coming to Google Play</span>
+      <span class="badge">Open testing on Google Play</span>
       <h1>Read PDFs the way<br><span class="g">small screens deserve</span></h1>
       <p class="lead">A native Android e-book reader specialized for PDFs. The page never grows wider than your display — text is <strong>enlarged and re-laid out in place</strong>, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
       <div class="pills">
@@ -70,6 +85,11 @@
         <span class="pill">Works offline</span>
         <span class="pill">One-time purchase</span>
       </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.rewrap.app">Get it on Google Play</a>
+        <a class="btn btn-secondary" href="https://play.google.com/apps/testing/com.rewrap.app">Join the test on the web</a>
+      </div>
+      <div class="cta-note">Rewrap is in open testing — both links take you to the test programme on Google Play.</div>
     </header>
 
     <section>
@@ -96,28 +116,71 @@
       <h2>Everything it does</h2>
       <p class="sub">Built feature by feature, measured on real books and real devices.</p>
       <div class="grid">
-        <div class="card"><h4>Faithful text</h4><p>Digital PDFs read exactly from the file's text layer — any language. Scans go through on-device recognition with evidence-based repairs (broken fonts, lost diacritics, phantom accents, end-of-line hyphens). Fix any word by tapping it.</p></div>
-        <div class="card"><h4>Formats</h4><p>PDF, EPUB, TXT and photos — a single photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera, split double-page scans, straighten angled shots.</p></div>
+        <div class="card"><h4>Faithful text</h4><p>Digital PDFs read exactly from the file's text layer — any language. Scans go through on-device recognition with evidence-based repairs (broken fonts, lost diacritics, phantom accents, end-of-line hyphens). Fix any word yourself — select it with drag handles, correct it, and the fix becomes a durable rule applied to every occurrence in the book, kept even through re-processing.</p></div>
+        <div class="card"><h4>Formats</h4><p>PDF, EPUB, TXT and photos — a single photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera, split double-page scans, straighten angled shots. Rewrap also appears in other apps' "Open with" menu — you choose which file types, in Settings.</p></div>
         <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language — choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off, from the lock screen or your headphones.</p></div>
-        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages in every format (they stay anchored even when you change the font), then export your notes as text, Markdown, Anki cards or PDF — one tap, saved wherever you choose.</p></div>
-        <div class="card"><h4>Navigate</h4><p>Full-text search (accents don't matter), bookmarks, a table of contents (the book's own or one built from headings), tap-to-define with your offline dictionary, and a remembered position per book.</p></div>
-        <div class="card"><h4>Export &amp; convert</h4><p>Turn any book into EPUB, TXT or DOCX — real chapters, cover and cleaned text — or save a paged document as a PDF of its pages, with your highlights baked in. Convert a TXT into a proper EPUB, or bind photos into a single PDF.</p></div>
+        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages and write your own notes: tap a paragraph, type your thought, and a small mark stays in the margin — tap it any time to reread or edit. Both anchor to the text (they hold when you change the font) and both export as text, Markdown, Anki cards or PDF.</p></div>
+        <div class="card"><h4>Navigate</h4><p>Full-text search (accents don't matter), bookmarks, a table of contents (the book's own or one built from headings), tap-to-define with your offline dictionary, a built-in quick guide, and a remembered position per book.</p></div>
+        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX — real chapters, cover and cleaned text — or a PDF with your highlights baked in. The Rewrap package puts the book and ALL your work on it — position, bookmarks, highlights, notes, corrections — into one file that opens identically on another phone (and is a plain ZIP without Rewrap).</p></div>
         <div class="card"><h4>Comfort</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line/letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books — because the text is re-typeset.</p></div>
-        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, optional cloud backup you control, portable export/import of your reading data, and one-tap restore — plus the original page is always a long-press away.</p></div>
+        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, optional cloud backup you control, portable export/import of your reading data, one-tap restore, and an issue reporter that attaches nothing technical without your explicit consent — plus the original page is always a long-press away.</p></div>
       </div>
+    </section>
+
+    <section id="guide">
+      <h2>Quick guide</h2>
+      <p class="sub">The same questions the in-app guide answers — tap one to see the answer.</p>
+
+      <details class="qa"><summary>How do I start and stop the automatic scrolling?</summary>
+        <div class="a">Tap the page (or the big ▶ button) to start scrolling; tap again to pause. The scrolling speed is in the gear settings, on the Reading tab. While it scrolls, only the small bar with the title and page number stays on screen.</div>
+      </details>
+      <details class="qa"><summary>How do I turn pages like in a printed book?</summary>
+        <div class="a">Open the right-hand drawer (the ≡ button on the right) and choose the horizontal arrows under "Turn pages". Then swipe left/right or tap the left/right edge of the screen to turn pages. The vertical arrow brings back continuous scrolling. In page-turning mode the action bar tucks itself away — bring it back with the arrow at the left end of the bottom bar, or swipe up from the bottom.</div>
+      </details>
+      <details class="qa"><summary>How do I make the text bigger or smaller?</summary>
+        <div class="a">Pinch with two fingers directly on the page, or use the − + buttons in the right-hand drawer. The size is remembered separately for each book, and the app caps it so lines never get too short to read.</div>
+      </details>
+      <details class="qa"><summary>Where is the menu while I'm reading?</summary>
+        <div class="a">The slim bar at the bottom is always there: title, page, percent, search — and an arrow at its left end. Tap the arrow to reveal the action bar, the ✕ that closes the book and the two ≡ buttons that open the side drawers; tap it again to tuck everything away. A tap on the page itself only pauses or resumes the reading.</div>
+      </details>
+      <details class="qa"><summary>How do I see the ORIGINAL page?</summary>
+        <div class="a">Double-tap (or long-press) anywhere: the original page opens full-screen with pinch-zoom — useful for tables, figures or checking the text. Closing it returns exactly where you were.</div>
+      </details>
+      <details class="qa"><summary>How do I listen to the book being read aloud?</summary>
+        <div class="a">Tap the microphone in the action bar. The voice keeps reading with the screen off, with controls on the lock screen and your headphones. The voice, its speed and the engine are in the gear settings, on the Voice tab.</div>
+      </details>
+      <details class="qa"><summary>How do I highlight passages and export them?</summary>
+        <div class="a">Tap the pencil to enter marking mode, then tap paragraphs to highlight them; tap the pencil again to finish. The list lives in the left drawer under "Highlights", where you can jump to each passage, delete it, or export everything as TXT, Markdown, Anki or PDF.</div>
+      </details>
+      <details class="qa"><summary>A word from a scan looks wrong — what can I do?</summary>
+        <div class="a">Tap the "Aa✓" icon in the action bar, then tap the word: a selection box appears with handles you can drag over neighbouring characters; tap the selection to correct it. The fix is saved as a durable rule for the whole book. If a whole scanned book reads badly, turn on "Forced OCR" (right-hand drawer or gear settings, Document tab).</div>
+      </details>
+      <details class="qa"><summary>What is there for dyslexic readers?</summary>
+        <div class="a">In the gear settings, on the Text tab: a dyslexia-friendly font (OpenDyslexic) that works even on scanned books, bold word-beginnings for easier focus, a reading ruler that dims everything except the current lines, and wider letter and line spacing (also in the right-hand drawer). Read-aloud can help too.</div>
+      </details>
+      <details class="qa"><summary>How do I move my reading data to another phone?</summary>
+        <div class="a">In Settings, use "Export reading data" to save positions, bookmarks, highlights, notes and corrections to a file, then import it on the other phone. Or pack ONE book together with everything on it via "Export as → Rewrap package" — opened in Rewrap on the other phone, the book comes back exactly as you left it.</div>
+      </details>
+      <details class="qa"><summary>Why does the first opening of a book take longer?</summary>
+        <div class="a">On first opening, the app extracts and repairs the text of the whole book (this is when scanned pages are recognized) — with a real progress bar. It happens once — afterwards pages open instantly from the cache.</div>
+      </details>
     </section>
 
     <section>
       <div class="privacy">
         <h2>The reader that does the hard part locally</h2>
         <p class="sub" style="margin:8px auto 0">Reflowing a scanned book, recognizing its text, repairing it, reading it aloud and exporting it — <strong>all on your phone</strong>, the things other readers send to the cloud or simply refuse to do.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.rewrap.app">Get it on Google Play</a>
+          <a class="btn btn-secondary" href="https://play.google.com/apps/testing/com.rewrap.app">Join the test on the web</a>
+        </div>
       </div>
     </section>
 
     <footer>
       <div>Rewrap — a native Android app.</div>
       <div class="note" style="margin-top:6px"><a href="/privacy" style="color:var(--accent);text-decoration:none">Privacy Policy</a></div>
-      <div class="note">Coming to Google Play. This page describes an app in active development; features and availability may change.</div>
+      <div class="note">In open testing on <a href="https://play.google.com/store/apps/details?id=com.rewrap.app">Google Play</a> — features and availability may change until the stable release.</div>
     </footer>
 
   </div>
