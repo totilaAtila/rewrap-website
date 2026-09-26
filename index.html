@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rewrap — read PDFs the way small screens deserve</title>
-<meta name="description" content="Rewrap is a native Android e-book reader for PDFs on small screens. The page never grows wider than your display — text is enlarged and rewrapped in place. 100% on your phone: no cloud, no account, no AI. Reading works offline." />
+<meta name="description" content="Rewrap is a PDF reader for Android and iPhone, made for small screens. The page never grows wider than your display — text is enlarged and rewrapped in place. 100% on your phone: no cloud, no account, no AI. Reading works offline." />
 <style>
   :root{
     --bg:#0d1117; --bg2:#111a24; --card:rgba(255,255,255,.055); --stroke:rgba(255,255,255,.12);
@@ -51,7 +51,10 @@
   .card p{margin:0;color:var(--muted);font-size:14px}
   .privacy{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:26px;text-align:center;backdrop-filter:blur(10px)}
   .privacy strong{color:var(--ink)}
-  .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0 4px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:28px 0 4px}
+  .play-badge{display:inline-block;line-height:0;transition:transform .12s ease}
+  .play-badge:hover{transform:translateY(-1px)}
+  .play-badge img{height:74px;width:auto;margin:-10px -8px}
   .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15.5px;border-radius:14px;
     padding:14px 22px;border:1px solid var(--stroke);transition:transform .12s ease}
   .btn:hover{transform:translateY(-1px)}
@@ -76,9 +79,9 @@
 
     <header>
       <div class="brand">Rewrap</div>
-      <span class="badge">In closed testing on Google Play</span>
+      <span class="badge">Now on Google Play</span>
       <h1>Read PDFs the way<br><span class="g">small screens deserve</span></h1>
-      <p class="lead">A native Android e-book reader specialized for PDFs. The page never grows wider than your display — text is <strong>enlarged and re-laid out in place</strong>, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
+      <p class="lead">A PDF reader for Android and iPhone. The page never grows wider than your display — text is <strong>enlarged and re-laid out in place</strong>, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
       <div class="pills">
         <span class="pill">No cloud</span>
         <span class="pill">No account</span>
@@ -86,17 +89,11 @@
         <span class="pill">Free to read · one-time unlock</span>
       </div>
       <div class="cta">
-        <a class="btn btn-primary" href="https://groups.google.com/g/rewrap/about">Join the tester group</a>
-        <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.rewrap.app">Join on Android</a>
-        <a class="btn btn-secondary" href="https://play.google.com/apps/testing/com.rewrap.app">Join on the web</a>
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.rewrap.app"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a>
+        <a class="btn btn-secondary" href="https://testflight.apple.com/join/gjBkjxd3">Try it on iPhone (TestFlight beta)</a>
       </div>
-      <div class="cta-note">Rewrap is in <strong>closed testing</strong>, so access goes through a tester group — <strong>start with the first button</strong>. Join the group with the Google account you use on your phone; that is what grants access, and nothing else is asked of you. Then the two green buttons work: <strong>on Android</strong> opens the app in Google Play on your phone, <strong>on the web</strong> works from any browser.</div>
-      <div class="cta-note" style="margin-top:6px">One favour, and it is the whole point of a closed test: <strong>please keep it installed for two weeks</strong>, even on days you do not read. Google counts testers who stay — if the app is removed, the count starts over.</div>
-      <div class="cta-note" style="margin-top:6px">On iPhone? Rewrap for iOS is already running.</div>
-      <div class="cta" style="margin-top:10px">
-        <a class="btn btn-secondary" href="https://testflight.apple.com/join/gjBkjxd3">Join on iPhone (TestFlight)</a>
-      </div>
-      <div class="cta-note" style="margin-top:6px">Something not working, or a question first? Write to <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span> — subject <em>Rewrap tester access</em> — and I will add you by hand.</div>
+      <div class="cta-note">iPhone version in public beta via Apple TestFlight.</div>
+      <div class="cta-note" style="margin-top:6px">Something not working, or an idea? Write to <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span> — subject <em>Rewrap feedback</em>.</div>
     </header>
 
     <section>
@@ -119,6 +116,21 @@
       </div>
     </section>
 
+    <section id="new">
+      <h2>New in Rewrap</h2>
+      <p class="sub">Shipped since this page was first written.</p>
+      <div class="grid">
+        <div class="card"><h4>Original | Reflow, one switch</h4><p>A book opens instantly as the original page; one tap shows the reflowed text, on the same page. Both views share the same controls, auto-scroll included.</p></div>
+        <div class="card"><h4>Themes on the original page too</h4><p>Sepia and Night recolour the real page, while photos keep their colours. Each book can keep its own theme — or its original colours.</p></div>
+        <div class="card"><h4>Covers as printed</h4><p>Covers are shown as in the original, automatically.</p></div>
+        <div class="card"><h4>PDF with highlights</h4><p>Keeps your book as it is and adds your highlights and notes as real PDF annotations, readable in any PDF app. Small file, text still searchable.</p></div>
+        <div class="card"><h4>Screen rotation</h4><p>Read in landscape and your place is kept. Prefer portrait? Lock it in Settings.</p></div>
+        <div class="card"><h4>Smarter text</h4><p>Hyphens across line breaks joined correctly, photo captions kept separate from the text, and bold and italic from the original preserved.</p></div>
+        <div class="card"><h4>Faster preparation</h4><p>Blank pages are skipped, and books reopen without being scanned again.</p></div>
+        <div class="card"><h4>17 interface languages</h4><p>The interface is available in 17 languages.</p></div>
+      </div>
+    </section>
+
     <section>
       <h2>Everything it does</h2>
       <p class="sub">Built feature by feature, measured on real books and real devices.</p>
@@ -128,7 +140,7 @@
         <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language — choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off, from the lock screen or your headphones.</p></div>
         <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages and write your own notes: tap a paragraph, type your thought, and a small mark stays in the margin — tap it any time to reread or edit. Both anchor to the text (they hold when you change the font) and both export as text, Markdown, Anki cards or PDF.</p></div>
         <div class="card"><h4>Navigate</h4><p>Full-text search that ignores accents — in Latin, Greek and Cyrillic alike, bookmarks, a table of contents (the book's own or one built from headings), tap-to-define with your offline dictionary, a built-in quick guide, and a remembered position per book.</p></div>
-        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX — real chapters, cover and cleaned text — or a PDF with your highlights baked in. The Rewrap package puts the book and ALL your work on it — position, bookmarks, highlights, notes, corrections — into one file that opens identically on another phone (and is a plain ZIP without Rewrap).</p></div>
+        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX — real chapters, cover and cleaned text — or a PDF with your highlights and notes added as real annotations. The Rewrap package puts the book and ALL your work on it — position, bookmarks, highlights, notes, corrections — into one file that opens identically on another phone (and is a plain ZIP without Rewrap).</p></div>
         <div class="card"><h4>Comfort</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line/letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books — because the text is re-typeset.</p></div>
         <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, optional cloud backup you control, portable export/import of your reading data, one-tap restore, and an issue reporter that attaches nothing technical without your explicit consent — plus the "View as classic PDF" pill, one tap away, showing any page exactly as printed.</p></div>
       </div>
@@ -180,8 +192,8 @@
       <h2>What's free, and what the unlock adds</h2>
       <p class="sub">Reading stays free forever. One purchase, once — no subscription, no ads, no account.</p>
       <div class="grid">
-        <div class="card"><h4>Free, always</h4><p>Reading itself: digital PDFs, EPUB and TXT, reflowed and enlarged; all themes, spacing, the dyslexia font, the reading ruler; search, bookmarks, the table of contents and your position in every book; highlighting passages, writing your own notes, correcting words, and exporting your own reading data. No page limit, no book limit, no time limit.</p></div>
-        <div class="card"><h4>One-time unlock</h4><p>The heavy work: recognizing scanned books and photographed pages, the camera scanner and perspective correction, read-aloud, converting to EPUB/TXT/DOCX/PDF and exporting notes, and clean reading. Every scanned book gets its first pages recognized for free, so you can see the result on your own book before deciding.</p></div>
+        <div class="card"><h4>Free, always</h4><p>Reading itself: digital PDFs, EPUB and TXT, reflowed and enlarged; all themes, spacing, the dyslexia font, the reading ruler; search, bookmarks, the table of contents and your position in every book; highlighting passages, writing your own notes, correcting words, and exporting your own highlights, notes and reading data. No page limit, no book limit, no time limit.</p></div>
+        <div class="card"><h4>One-time unlock</h4><p>The heavy work: recognizing scanned books and photographed pages, the camera scanner and perspective correction, read-aloud, converting to EPUB/TXT/DOCX/PDF, and clean reading. Every scanned book gets its first pages recognized for free, so you can see the result on your own book before deciding.</p></div>
       </div>
       <p class="sub" style="margin-top:14px">New installs start with a 14-day trial of everything, and the app tells you before it ends.</p>
     </section>
@@ -191,21 +203,17 @@
         <h2>The reader that does the hard part locally</h2>
         <p class="sub" style="margin:8px auto 0">Reflowing a scanned book, recognizing its text, repairing it, reading it aloud and exporting it — <strong>all on your phone</strong>, the things other readers send to the cloud or simply refuse to do.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="https://groups.google.com/g/rewrap/about">Join the tester group</a>
-          <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.rewrap.app">Join on Android</a>
-        <a class="btn btn-secondary" href="https://play.google.com/apps/testing/com.rewrap.app">Join on the web</a>
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.rewrap.app"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a>
+          <a class="btn btn-secondary" href="https://testflight.apple.com/join/gjBkjxd3">Try it on iPhone (TestFlight beta)</a>
         </div>
-        <div class="cta-note" style="margin-top:14px">Join the tester group first — that is what opens the two green buttons. Please keep the app installed for two weeks; Google counts testers who stay. Questions: <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span>.</div>
-        <div class="cta" style="margin-top:14px">
-          <a class="btn btn-secondary" href="https://testflight.apple.com/join/gjBkjxd3">Join on iPhone (TestFlight)</a>
-        </div>
+        <div class="cta-note" style="margin-top:14px">iPhone version in public beta via Apple TestFlight. Questions or feedback: <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span>.</div>
       </div>
     </section>
 
     <footer>
-      <div>Rewrap — a native Android app.</div>
+      <div>Rewrap — a PDF reader for Android and iPhone.</div>
       <div class="note" style="margin-top:6px"><a href="/privacy" style="color:var(--accent);text-decoration:none">Privacy Policy</a></div>
-      <div class="note">In closed testing on Google Play — features and availability may change until the stable release. The public Play listing appears once testing is complete. On iPhone, join the <a href="https://testflight.apple.com/join/gjBkjxd3">TestFlight</a> beta.</div>
+      <div class="note">Google Play and the Google Play logo are trademarks of Google LLC.</div>
     </footer>
 
   </div>

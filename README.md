@@ -1,7 +1,7 @@
 # rewrap-website
 
-Landing page and privacy policy for **Rewrap**, a native Android e-book reader
-specialised for PDFs — the page never grows wider than your screen; text is
+Landing page and privacy policy for **Rewrap**, a PDF reader for Android and iPhone
+— the page never grows wider than your screen; text is
 enlarged and re-laid out in place.
 
 Live at **https://rewrap-pdf.vercel.app**
