@@ -52,6 +52,14 @@
   .gal figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
   .gal figcaption strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
   @media(min-width:1020px){.gal{justify-content:center;overflow:visible}.gal figure{flex-basis:18%}}
+  .trial{margin-top:16px;background:var(--card);border:1px solid var(--stroke);border-left:3px solid var(--accent);
+    border-radius:14px;padding:14px 18px;color:var(--muted);font-size:14.5px;backdrop-filter:blur(10px)}
+  .trial strong{color:var(--ink)}
+  nav.top{position:sticky;top:0;z-index:5;display:flex;gap:6px;justify-content:center;padding:10px 12px;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--stroke)}
+  nav.top a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px}
+  nav.top a:hover{color:var(--ink);background:var(--card)}
+  html{scroll-behavior:smooth} section[id]{scroll-margin-top:60px}
   section{padding:34px 0}
   h2{font-size:clamp(21px,3.2vw,28px);margin:0 0 8px;letter-spacing:-.01em}
   .sub{color:var(--muted);margin:0 0 26px;max-width:720px}
@@ -90,6 +98,7 @@
 </style>
 </head>
 <body>
+  <nav class="top" aria-label="Sections"><a href="#gallery">Screens</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#guide">Questions</a></nav>
   <div class="wrap">
 
     <header>
@@ -118,58 +127,55 @@
       <div class="gal"><figure><img src="shots/original.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Original"><figcaption><strong>Original</strong>The PDF exactly as printed — two columns, tiny type.</figcaption></figure><figure><img src="shots/reflow.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Reflow"><figcaption><strong>Reflow</strong>Same page width, text enlarged and re-laid out in place.</figcaption></figure><figure><img src="shots/sepia.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Sepia"><figcaption><strong>Sepia</strong>Themes that follow your eyes: light, sepia, night, AMOLED.</figcaption></figure><figure><img src="shots/night.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Night"><figcaption><strong>Night</strong>Comfortable in the dark, with your own text size and spacing.</figcaption></figure><figure><img src="shots/scan.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Scanned books"><figcaption><strong>Scanned books</strong>Photos and scans are recognized on the device — no upload.</figcaption></figure></div>
     </section>
 
-    <section>
+    <section id="why">
       <div class="three">
         <div class="big">
           <span class="k">📐</span>
           <h3>Reflow without breaking the page</h3>
-          <p>Not classic zoom (which forces sideways scrolling) and not full reflow (which destroys the layout). Text grows and rewraps in place; images, tables and figures stay where they belong and scale with the font.</p>
+          <p>Not classic zoom, which forces sideways scrolling — and not full reflow, which destroys the layout. Text grows and rewraps in place; images, tables and figures stay where they belong and scale with the font.</p>
         </div>
         <div class="big">
           <span class="k">🔍</span>
           <h3>Scans read on the phone</h3>
-          <p>Scanned PDFs and photos of pages are recognized right on the device — no upload. Angled photos are straightened, faint scans enhanced, and the app repairs recognition errors it can prove from the book itself.</p>
+          <p>Scanned PDFs and photographed pages are recognized right on the device. Angled photos are straightened, faint scans enhanced, and recognition errors repaired from evidence in the book itself.</p>
         </div>
         <div class="big">
           <span class="k">🔒</span>
           <h3>Truly private</h3>
-          <p>No cloud, no account, no server of ours. Your books never leave your phone — and neither do your notes and reading positions, unless you switch on the optional cloud backup yourself. Reading works with the connection off: a scanned book is recognized in airplane mode. Reading is free; the heavy work is <a href="#pricing">a single one-time unlock</a>, never a subscription. <a href="/privacy/">What leaves the device, exactly</a>.</p>
+          <p>No cloud, no account, no server of ours. Your books, notes and reading positions stay on your phone — and everything works in airplane mode. <a href="/privacy/">What leaves the device, exactly</a>.</p>
         </div>
       </div>
     </section>
 
-    <section id="new">
-      <h2>New in Rewrap</h2>
-      <p class="sub">Shipped since this page was first written.</p>
-      <div class="grid">
-        <div class="card"><h4>Original | Reflow, one switch</h4><p>A book opens instantly as the original page; one tap shows the reflowed text, on the same page. Both views share the same controls, auto-scroll included.</p></div>
-        <div class="card"><h4>Themes on the original page too</h4><p>Sepia and Night recolour the real page, while photos keep their colours. Each book can keep its own theme — or its original colours.</p></div>
-        <div class="card"><h4>Covers as printed</h4><p>Covers are shown as in the original, automatically.</p></div>
-        <div class="card"><h4>PDF with highlights</h4><p>Keeps your book as it is and adds your highlights and notes as real PDF annotations, readable in any PDF app. Small file, text still searchable.</p></div>
-        <div class="card"><h4>Screen rotation</h4><p>Read in landscape and your place is kept. Prefer portrait? Lock it in Settings.</p></div>
-        <div class="card"><h4>Smarter text</h4><p>Hyphens across line breaks joined correctly, photo captions kept separate from the text, and bold and italic from the original preserved.</p></div>
-        <div class="card"><h4>Faster preparation</h4><p>Blank pages are skipped, and books reopen without being scanned again.</p></div>
-        <div class="card"><h4>17 interface languages</h4><p>The interface is available in 17 languages.</p></div>
-      </div>
-    </section>
-
-    <section>
+    <section id="features">
       <h2>Everything it does</h2>
       <p class="sub">Built feature by feature, measured on real books and real devices.</p>
       <div class="grid">
-        <div class="card"><h4>Faithful text</h4><p>Digital PDFs read exactly from the file's text layer — any language. Scans go through on-device recognition with evidence-based repairs (broken fonts, lost diacritics, phantom accents, end-of-line hyphens). Fix any word yourself — select it with drag handles, correct it, and the fix becomes a durable rule applied to every occurrence in the book, kept even through re-processing.</p></div>
-        <div class="card"><h4>Formats</h4><p>PDF, EPUB, TXT and photos — a single photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera — one session can save several separate documents, numbered automatically — split double-page scans, straighten angled shots. Rewrap also appears in other apps' "Open with" menu — you choose which file types, in Settings.</p></div>
-        <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language — choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off, from the lock screen or your headphones.</p></div>
-        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages and write your own notes: tap a paragraph, type your thought, and a small mark stays in the margin — tap it any time to reread or edit. Both anchor to the text (they hold when you change the font) and both export as text, Markdown, Anki cards or PDF.</p></div>
-        <div class="card"><h4>Navigate</h4><p>Full-text search that ignores accents — in Latin, Greek and Cyrillic alike, bookmarks, a table of contents (the book's own or one built from headings), tap-to-define with your offline dictionary, a built-in quick guide, and a remembered position per book.</p></div>
-        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX — real chapters, cover and cleaned text — or a PDF with your highlights and notes added as real annotations. The Rewrap package puts the book and ALL your work on it — position, bookmarks, highlights, notes, corrections — into one file that opens identically on another phone (and is a plain ZIP without Rewrap).</p></div>
-        <div class="card"><h4>Comfort</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line/letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books — because the text is re-typeset.</p></div>
-        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, optional cloud backup you control, portable export/import of your reading data, one-tap restore, and an issue reporter that attaches nothing technical without your explicit consent — plus the "View as classic PDF" pill, one tap away, showing any page exactly as printed.</p></div>
+        <div class="card"><h4>Original | Reflow, one switch</h4><p>A book opens instantly as the original page; one tap shows the reflowed text on the same page. Both views share the same controls, auto-scroll included — and Sepia or Night recolour the real page too, while photos keep their colours.</p></div>
+        <div class="card"><h4>Faithful text</h4><p>Digital PDFs are read exactly from the file's text layer, in any language. Scans get on-device recognition with evidence-based repairs: broken fonts, lost diacritics, end-of-line hyphens, bold and italic from the original. Fix any word yourself, and the fix becomes a rule for every occurrence in the book.</p></div>
+        <div class="card"><h4>Formats &amp; camera</h4><p>PDF, EPUB, TXT and photos — one photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera, split double-page scans, straighten angled shots. Rewrap also shows up in other apps' "Open with" menu.</p></div>
+        <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language: choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off — from the lock screen or your headphones.</p></div>
+        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages and write your own notes; a small mark stays in the margin. Both hold when you change the font, and both export as text, Markdown, Anki cards, or a PDF with real annotations.</p></div>
+        <div class="card"><h4>Navigate</h4><p>Accent-insensitive full-text search (Latin, Greek and Cyrillic), bookmarks, a table of contents — the book's own or one built from headings — tap-to-define with your offline dictionary, and a remembered position per book. Covers are shown as printed.</p></div>
+        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX with real chapters and cleaned text. The Rewrap package carries the book and all your work — position, bookmarks, highlights, notes, corrections — to another phone in one file (a plain ZIP without Rewrap).</p></div>
+        <div class="card"><h4>Comfort &amp; accessibility</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line and letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books, because the text is re-typeset. Portrait or landscape, in 17 interface languages.</p></div>
+        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, an optional cloud backup you control, portable export and import of your reading data, and an issue reporter that attaches nothing technical without your explicit consent. Any page can be shown exactly as printed, one tap away.</p></div>
       </div>
     </section>
 
+    <section id="pricing">
+      <h2>What's free, and what the unlock adds</h2>
+      <p class="sub">Reading stays free forever. One purchase, once — no subscription, no ads, no account.</p>
+      <div class="grid">
+        <div class="card"><h4>Free, always</h4><p>Reading itself: digital PDFs, EPUB and TXT, reflowed and enlarged; all themes, spacing, the dyslexia font, the reading ruler; search, bookmarks, the table of contents and your position in every book; highlighting passages, writing your own notes, correcting words, and exporting your own highlights, notes and reading data. No page limit, no book limit, no time limit.</p></div>
+        <div class="card"><h4>One-time unlock</h4><p>The heavy work: recognizing scanned books and photographed pages, the camera scanner and perspective correction, read-aloud, converting to EPUB/TXT/DOCX/PDF, and clean reading. Everything you already recognized or converted stays readable.</p></div>
+      </div>
+      <div class="trial"><strong>14 days, everything unlocked.</strong> New installs start with a full-access trial — try it on your own books — and the app tells you a few days before it ends. After that, reading stays free.</div>
+    </section>
+
+
     <section id="guide">
-      <h2>Quick guide</h2>
+      <h2>Questions &amp; quick guide</h2>
       <p class="sub">The same questions the in-app guide answers — tap one to see the answer.</p>
 
       <details class="qa"><summary>How do I start and stop the automatic scrolling?</summary>
@@ -208,16 +214,6 @@
       <details class="qa"><summary>Why does the first opening of a book take longer?</summary>
         <div class="a">On first opening, the app extracts and repairs the text of the whole book (this is when scanned pages are recognized) — with a real progress bar. It happens once — afterwards pages open instantly from the cache.</div>
       </details>
-    </section>
-
-    <section id="pricing">
-      <h2>What's free, and what the unlock adds</h2>
-      <p class="sub">Reading stays free forever. One purchase, once — no subscription, no ads, no account.</p>
-      <div class="grid">
-        <div class="card"><h4>Free, always</h4><p>Reading itself: digital PDFs, EPUB and TXT, reflowed and enlarged; all themes, spacing, the dyslexia font, the reading ruler; search, bookmarks, the table of contents and your position in every book; highlighting passages, writing your own notes, correcting words, and exporting your own highlights, notes and reading data. No page limit, no book limit, no time limit.</p></div>
-        <div class="card"><h4>One-time unlock</h4><p>The heavy work: recognizing scanned books and photographed pages, the camera scanner and perspective correction, read-aloud, converting to EPUB/TXT/DOCX/PDF, and clean reading. Everything you already recognized or converted stays readable.</p></div>
-      </div>
-      <p class="sub" style="margin-top:14px">New installs start with a 14-day trial with full access to everything — try it on your own books — and the app tells you a few days before it ends.</p>
     </section>
 
     <section>
