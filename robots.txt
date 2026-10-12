@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rewrap-pdf.vercel.app/sitemap.xml
