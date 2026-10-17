@@ -12,7 +12,7 @@ const CONFIG = {
 };
 
 const GALLERY_SRCS = [
-  '/assets/screenshots/original.webp', '/assets/screenshots/reflow.webp',
+  '/assets/screenshots/original-gs.webp', '/assets/screenshots/reflow-gs.webp',
   '/assets/screenshots/scan.webp', '/assets/screenshots/sepia.webp',
   '/assets/screenshots/night.webp',
 ];
