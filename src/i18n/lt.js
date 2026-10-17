@@ -1,0 +1,147 @@
+// Rewrap — tekstai lietuvių kalba. Struktūra turi atitikti en.js.
+// Visa privatumo politika (pp_sections) lieka anglų kalba: tai galiojanti versija.
+export default {
+    meta_title: 'Rewrap — skaitykite PDF taip, kaip nusipelnė maži ekranai',
+    meta_desc: 'Rewrap yra PDF skaitytuvas „Android“ ir „iPhone“, sukurtas mažiems ekranams. Tekstas didinamas ir perdėliojamas vietoje, niekada į šoną. 100 % jūsų telefone: be debesies, be paskyros, be generatyvinio DI. Skaitymas veikia neprisijungus.',
+
+    nav_features: 'Funkcijos', nav_gallery: 'Ekranai', nav_pricing: 'Kaina', nav_privacy: 'Privatumas', nav_faq: 'Klausimai',
+    nav_home: 'Pradžia', nav_policy: 'Politika', nav_contact: 'Kontaktai',
+    theme_dark: 'Naktis', theme_sepia: 'Sepija', theme_light: 'Šviesi',
+
+    hero_pill: 'PDF skaitytuvas „Android“ ir „iPhone“',
+    hero_title_a: 'Skaitykite PDF taip, kaip ', hero_title_b: 'nusipelnė maži ekranai.',
+    hero_sub: 'Puslapis niekada netampa platesnis už jūsų ekraną — tekstas didinamas ir perdėliojamas vietoje, todėl niekas nebeslenka į šoną. Viskas veikia 100 % jūsų telefone.',
+    cta_play: 'Atsisiųsti iš „Google Play“', cta_ios: 'Prisijungti prie „iPhone“ beta (TestFlight)',
+    hero_note: 'Skaityti visada nemokama. Veikia visiškai neprisijungus. „iPhone“ Rewrap yra viešoje beta versijoje per „Apple“ programėlę „TestFlight“.',
+    qp_reflow: 'Perdėliojimas vietoje', qp_scan: 'Skenavimai skaitomi telefone', qp_offline: 'Veikia neprisijungus', qp_privacy: 'Be debesies, be paskyros',
+
+    why_eyebrow: 'Apžvalga', why_title: 'Sukurta mažiems ekranams.', why_sub: 'Ne įprastas didinimas ir ne visiškas reflow — kažkas geresnio per vidurį.',
+    why: [
+          ['columns', 'Reflow nesugadinant puslapio', 'Tekstas auga ir persidėlioja vietoje. Paveikslėliai, lentelės ir iliustracijos lieka savo vietose ir keičia dydį kartu su šriftu — niekas neslenka į šoną.'],
+          ['scan', 'Skenavimai skaitomi telefone', 'Nuskenuoti PDF ir nufotografuoti puslapiai atpažįstami tiesiai įrenginyje. Pakreiptos nuotraukos ištiesinamos, blyškūs skenavimai pagerinami, klaidos taisomos pagal įrodymus iš pačios knygos.'],
+          ['type', 'Spausdintos raidės išsaugotos', 'Seni šriftai, akcentai ir ypatingos raidės lieka tokie, kokie atspausdinti — iškirpti iš puslapio ir iš naujo ryškiai nupiešti, o ne pakeisti telefono šriftu.'],
+          ['lock', 'Tikrai privatu', 'Be debesies, be paskyros, be mūsų serverio. Jūsų knygos, užrašai ir skaitymo vietos lieka telefone, o viskas veikia lėktuvo režimu.'],
+        ],
+
+    cmp_eyebrow: 'Skirtumas', cmp_title: 'Tas pats puslapis. Įskaitomas.',
+    cmp_sub: 'Kairėje — originalus puslapis dviem stulpeliais. Dešinėje — tas pats puslapis po reflow: didesnis tekstas, iliustracija liko savo vietoje.',
+    cmp_alt: 'Rewrap du kartus rodo tą patį akademinį PDF „iPhone“: originalų puslapį dviem stulpeliais ir perdėliotą puslapį su didesniu tekstu ir iliustracija savo vietoje.',
+
+    gallery_eyebrow: 'Ekranai', gallery_title: 'Pažiūrėkite į tikrą knygą.', gallery_sub: 'Programėlės ekrano nuotraukos tikrame telefone.',
+    themes_eyebrow: 'Temos', themes_title: 'Šviesi, Sepija, Naktis — ir grynai juoda.', themes_sub: 'Temos perspalvina ir tikrąjį puslapį, o nuotraukos išlaiko savo spalvas. Jei norite, susikurkite savo.',
+    gallery_prev: 'Atgal', gallery_next: 'Pirmyn',
+    shots: [
+          ['Originalas', 'PDF tiksliai toks, kaip atspausdintas — du stulpeliai, smulkus šriftas.'],
+          ['Reflow', 'Tas pats puslapio plotis, tekstas padidintas ir perdėliotas vietoje.'],
+          ['Nuskenuotos knygos', 'Nuotraukos ir skenavimai atpažįstami įrenginyje — be įkėlimo.'],
+          ['Sepija', 'Temos, kurios seka jūsų akis: šviesi, sepija, naktis, AMOLED.'],
+          ['Naktis', 'Patogu tamsoje, su jūsų pasirinktu teksto dydžiu ir tarpais.'],
+        ],
+
+    features_eyebrow: 'Funkcijos', features_title: 'Viskas, ką ji gali.', features_sub: 'Kurta funkcija po funkcijos, tikrinta su tikromis knygomis ir įrenginiais.',
+    groups: [
+          ['Skaitymas, perdėliotas', [
+                  ['columns', 'Originalas | Reflow, vienas jungiklis', 'Knyga atsidaro iškart kaip originalus puslapis; vienas palietimas parodo perdėliotą tekstą. Abu vaizdai turi tuos pačius valdiklius.'],
+                  ['bookOpen', 'Maketas, kuris išlaiko', 'Paveikslėliai, lentelės ir iliustracijos išlaiko savo vietą ir keičia dydį kartu su šriftu.'],
+                  ['type', 'Spausdintos raidės išsaugotos', 'Naudokite pačios knygos raides vietoj modernaus šrifto — seni šriftai, akcentai ir ypatingos raidės lieka tokie, kokie atspausdinti, ryškūs bet kokio dydžio. Išjungti galima bet kada.'],
+                  ['palette', 'Perspalvintas puslapis', 'Sepija ir Naktis perspalvina ir tikrąjį puslapį, o nuotraukos išlaiko savo spalvas.'],
+                  ['chevronsDown', 'Automatinis slinkimas', 'Palieskite puslapį, kad pradėtumėte, dar kartą — kad pristabdytumėte. Greitį nustatote patys, abiejuose vaizduose.'],
+                  ['fileText', 'Slinkti arba versti puslapius', 'Nuolatinis slinkimas arba puslapis po puslapio. Bet kuris atskiras puslapis gali likti tiksliai toks, kaip atspausdintas.'],
+                ]],
+          ['Skenavimai ir nuotraukos', [
+                  ['scan', 'Skenavimai skaitomi įrenginyje', 'Nuskenuotos knygos ir nufotografuoti puslapiai atpažįstami vietoje — be įkėlimo, nelaukiant serverio.'],
+                  ['sparkles', 'Taisymai pagal įrodymus', 'Sugadinti šriftai, dingę diakritiniai ženklai, eilutės pabaigos brūkšneliai, pusjuodis ir kursyvas iš originalo.'],
+                  ['globe', 'Rašmenys, kuriuos kiti praleidžia', 'Graikų, kirilica (rusų, ukrainiečių, bulgarų, serbų) ir vengrų kalba su teisingomis ő ir ű — neprisijungus.'],
+                  ['camera', 'Kameros skeneris', 'Skenuokite puslapius kamera, skirkite dviejų puslapių skenavimus, ištiesinkite pakreiptas nuotraukas.'],
+                  ['pencil', 'Pataisykite žodį vieną kartą', 'Pataisykite bet kurį žodį patys, ir pataisymas taps taisykle kiekvienam jo pasikartojimui knygoje.'],
+                  ['image', 'Formatai', 'PDF, EPUB, TXT ir nuotraukos — viena nuotrauka, ištisas aplankas kaip viena knyga arba kelios, sujungtos į PDF. Rewrap atsiranda ir kitų programėlių meniu „Atidaryti naudojant“.'],
+                ]],
+          ['Klausykite ir mokykitės', [
+                  ['volume', 'Skaitymas balsu', 'Natūralus teksto vertimas į kalbą knygos kalba. Pasirinkite balsą ir greitį („Android“ — ir kalbos variklį), sekite tariamą žodį, klausykite toliau išjungtu ekranu.'],
+                  ['pencil', 'Užrašai ir paryškinimai', 'Paryškinkite ištraukas ir rašykite savo užrašus; paraštėje lieka mažas ženklas, o abu išlieka pakeitus šriftą.'],
+                  ['search', 'Paieška visoje knygoje', 'Nuo akcentų nepriklausoma paieška lotynų, graikų ir kirilicos rašmenimis randa žodžius visoje knygoje iškart, net dar neparuoštuose puslapiuose.'],
+                  ['bookmark', 'Žymės ir vieta', 'Žymės ir įsimenama vieta kiekvienai knygai.'],
+                  ['list', 'Turinys', 'Pačios knygos arba sudarytas iš antraščių. Viršeliai rodomi tokie, kokie atspausdinti.'],
+                  ['info', 'Palieskite, kad pamatytumėte reikšmę', 'Susiraskite žodį savo neprisijungus veikiančiame žodyne.'],
+                ]],
+          ['Patogumas ir prieinamumas', [
+                  ['palette', 'Temos', 'Šviesi, Sepija, Naktis, grynai juoda AMOLED ir savos temos.'],
+                  ['type', 'Dydis ir tarpai', 'Teksto dydis įsimenamas kiekvienai knygai atskirai, su reguliuojamais eilučių ir raidžių tarpais.'],
+                  ['ruler', 'Skaitymo liniuotė', 'Pritemdo viską, išskyrus eilutes, kurias skaitote.'],
+                  ['eye', 'Tinka disleksijai', 'Disleksijai tinkamas šriftas ir bioninis pusjuodis, veikiantys net su nuskenuotomis knygomis, nes tekstas surenkamas iš naujo.'],
+                  ['globe', 'Jūsų kalba', '17 sąsajos kalbų, stačiu ar gulsčiu ekranu.'],
+                ]],
+          ['Eksportas, konvertavimas ir perkėlimas', [
+                  ['share', 'Konvertavimas', 'Paverskite bet kurią knygą EPUB, TXT ar DOCX su tikrais skyriais ir išvalytu tekstu — arba išsaugokite kaip PDF su savo paryškinimais ir užrašais kaip tikromis anotacijomis.'],
+                  ['fileText', 'Jūsų užrašai, eksportuoti', 'Eksportuokite paryškinimus ir užrašus kaip TXT, Markdown, „Anki“ korteles ar PDF.'],
+                  ['package', 'Rewrap paketas', 'Vienas failas perneša knygą ir visą jūsų darbą — vietą, žymes, paryškinimus, užrašus, pataisymus — į kitą telefoną, „Android“ ar „iPhone“. Be Rewrap tai paprastas ZIP.'],
+                  ['rotate', 'Saugos tinklai', 'Automatinės atsarginės kopijos įrenginyje, jūsų valdoma pasirenkama kopija debesyje ir perkeliamas skaitymo duomenų eksportas bei importas.'],
+                  ['shield', 'Sąžiningi pranešimai apie klaidas', 'Pranešimo apie problemą funkcija nepriduria nieko techninio be jūsų aiškaus sutikimo.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Kaina', pricing_title: 'Skaityti nemokama. Vienas atrakinimas sunkiam darbui.', pricing_sub: 'Vienas pirkinys, vieną kartą — be prenumeratos, be reklamų, be paskyros.',
+    plans: [
+          ['bookOpen', 'Nemokama, visada', 'Pats skaitymas. Be puslapių, knygų ar laiko apribojimų.', [
+                  'Skaitmeniniai PDF, EPUB ir TXT, perdėlioti ir padidinti',
+                  'Visos temos, tarpai, disleksijai tinkamas šriftas ir skaitymo liniuotė',
+                  'Paieška, žymės, turinys, jūsų vieta kiekvienoje knygoje',
+                  'Paryškinimai, jūsų užrašai ir žodžių pataisymai',
+                  'Savo paryškinimų, užrašų ir skaitymo duomenų eksportas',
+                ]],
+          ['unlock', 'Vienkartinis atrakinimas', 'Sunkus darbas, atliekamas jūsų telefone.', [
+                  'Nuskenuotų knygų ir nufotografuotų puslapių atpažinimas',
+                  'Kameros skeneris ir perspektyvos korekcija',
+                  'Skaitymas balsu',
+                  'Konvertavimas į EPUB, TXT, DOCX ar PDF',
+                  'Švarus skaitymas',
+                  'Viskas, ką jau atpažinote ar konvertavote, lieka skaitoma',
+                ]],
+        ],
+    pricing_trial_a: '14 dienų, viskas atrakinta.', pricing_trial_b: 'Naujos „Android“ įdiegtys prasideda bandomuoju laikotarpiu su visa prieiga — išbandykite su savo knygomis. Programėlė praneša likus kelioms dienoms iki pabaigos; po to skaitymas lieka nemokamas.',
+    pricing_ios: '„iPhone“ Rewrap yra beta versijoje ir šiuo metu viskas atvira; vienkartinis atrakinimas atkeliaus kartu su „App Store“ išleidimu.',
+    pricing_store: 'Atrakinimas perkamas jūsų naudojamo telefono parduotuvėje. Rewrap neturi paskyros ir serverio, todėl „Android“ pirktas atrakinimas neperkeliamas į „iPhone“, ir atvirkščiai.',
+
+    privacy_eyebrow: 'Privatumas', privacy_title: 'Privatu pagal numatymą.', privacy_sub: 'Jūsų knygos niekada nepalieka telefono.',
+    privacy_btn: 'Skaityti privatumo politiką',
+    cards: [
+          ['database', 'Vietinė saugykla', 'Knygos, užrašai, paryškinimai ir skaitymo vietos laikomi tik jūsų įrenginyje.'],
+          ['wifiOff', 'Veikia neprisijungus', 'Skaitymui — įskaitant skenavimus — interneto nereikia.'],
+          ['eyeOff', 'Jokio sekimo', 'Be mūsų pačių analitikos ir reklamų, ir be generatyvinio DI.'],
+          ['lock', 'Be serverio, be paskyros', 'Mes nevaldome serverio, ir nėra kur registruotis.'],
+          ['shield', 'Sąžiningai apie išimtis', '„Android“ įrenginiuose „Google“ teksto atpažinimo biblioteka siunčia „Google“ anoniminę diagnostiką apie save — niekada ne jūsų puslapius ar tekstą. Politika tai išvardija visiškai.'],
+          ['fileText', 'Failai, kuriuos pasirenkate jūs', 'Rewrap atidaro tik tuos failus, kuriuos pasirenkate per sistemos dokumentų parinkiklį.'],
+        ],
+
+    faq_eyebrow: 'Klausimai', faq_title: 'Klausimai ir trumpas vadovas.', faq_sub: 'Tie patys klausimai, į kuriuos atsako programėlės vadovas — palieskite bet kurį, kad pamatytumėte atsakymą.',
+    faqs: [
+          ['Ar Rewrap nemokamas?', 'Skaitymas nemokamas visam laikui: skaitmeniniai PDF, EPUB ir TXT, perdėlioti ir padidinti, su visomis temomis, paieška, žymėmis, jūsų paryškinimais, užrašais ir pataisymais. Vienkartinis atrakinimas prideda sunkų darbą — skenavimų atpažinimą, kameros skenerį, skaitymą balsu, konvertavimą į kitus formatus ir švarų skaitymą. „Android“ naujos įdiegtys gauna 14 dienų bandomąjį laikotarpį su viskuo atvira; „iPhone“ beta metu viskas atvira.'],
+          ['Kur galiu atsisiųsti?', '„Android“ — iš „Google Play“. „iPhone“ Rewrap yra viešoje beta versijoje per „Apple“ programėlę „TestFlight“ — naudokite šio puslapio mygtuką „Prisijungti prie iPhone beta“.'],
+          ['Ar veikia neprisijungus?', 'Taip. Skaitymas — įskaitant nuskenuotų knygų atpažinimą — vyksta telefone, todėl veikia lėktuvo režimu.'],
+          ['Kokius duomenis renkate?', 'Nieko iš jūsų turinio: mes nevaldome serverio ir neturime paskyrų sistemos. Tikslios detalės, įskaitant vienintelę diagnostikos išimtį „Android“, yra privatumo politikoje.'],
+          ['Kokiomis kalbomis ji kalba?', 'Programėlė turi 17 sąsajos kalbų, o ši svetainė prieinama devyniomis iš jų. Teksto atpažinimas apima lotynų, graikų ir kirilicos rašmenis, taip pat vengrų kalbą su teisingomis ő ir ű.'],
+          ['Kaip pamatyti originalų puslapį?', 'Ekrano viršuje jungiklis Originalas | Reflow parenka, ką matote: puslapį tiksliai taip, kaip atspausdintas, arba padidintą ir perdėliotą tekstą. Abu vaizdai turi tuos pačius valdiklius. Originale suspauskite pirštais, kad priartintumėte lentelę ar iliustraciją. Jei atskirą puslapį geriau palikti nepaliestą — viršelį, intarpą, schemą — kairysis stalčius siūlo „Rodyti šį puslapį kaip originalą“: tas puslapis lieka toks, kaip atspausdintas, įsimenamas kitam kartui ir vis dar ieškomas.'],
+          ['Kaip pradėti ir sustabdyti automatinį slinkimą?', 'Palieskite puslapį (ar didelį ▶ mygtuką), kad pradėtumėte slinkimą; palieskite dar kartą, kad pristabdytumėte. Greitis yra krumpliaračio nustatymuose, skirtuke Skaitymas. Slenkant viskas pasislepia, išskyrus siaurą juostą su pavadinimu ir puslapio numeriu — ir viršuje esantį Originalas | Reflow jungiklį.'],
+          ['Kaip versti puslapius kaip spausdintoje knygoje?', 'Atidarykite dešinįjį stalčių ir skiltyje „Puslapių vertimas“ pasirinkite horizontalias rodykles. Tada braukite į kairę ar į dešinę arba palieskite kairįjį ar dešinįjį ekrano kraštą. Vertikali rodyklė grąžina nuolatinį slinkimą. Nustatymas galioja ir Originalui, ir Reflow.'],
+          ['Kaip klausytis knygos, skaitomos balsu?', 'Palieskite mikrofoną veiksmų juostoje. Balsas skaito toliau išjungtu ekranu, su valdikliais užrakto ekrane ir ausinėse. Balsas ir jo greitis („Android“ — ir variklis) yra krumpliaračio nustatymuose, skirtuke Balsas.'],
+          ['Žodis iš skenavimo atrodo neteisingai — ką daryti?', 'Palieskite taisymo piktogramą veiksmų juostoje („Android“ — klaviatūra, „iPhone“ — raidė A su teksto žymekliu), tada žodį: atsiranda pasirinkimo rėmelis su rankenėlėmis, kurias galite nutempti per gretimus simbolius; palieskite pasirinkimą, kad pataisytumėte. Pataisymas išsaugomas kaip taisyklė visai knygai. Jei visa nuskenuota knyga skaitoma prastai, įjunkite „Priverstinį OCR“ (dešinysis stalčius ar krumpliaračio nustatymai, skirtukas Dokumentas).'],
+          ['Kodėl tekstas atrodo kaip spausdinta knyga, o ne kaip telefono šriftas?', 'Reflow režimu Rewrap gali naudoti pačios knygos raides, iškirptas iš puslapio, o ne perpiešti tekstą moderniu šriftu. Seni šriftai, akcentai ir ypatingos raidės lieka tokie, kokie atspausdinti — net kai failo teksto sluoksnis jų neteko — o jų kontūrai glotniai perpiešiami, todėl lieka ryškūs bet kokio dydžio. Išjunkite per „Originalios raidės“ (skirtukas Tekstas ar dešinysis stalčius). Disleksijai tinkamas šriftas, paryškinta žodžių pradžia ir raidžių tarpai perjungia knygą į perpieštą tekstą, nes pakeičia atspausdintas raides.'],
+          ['Kodėl naujai knygai reikia akimirkos perdėlioti?', 'Nauja knyga atsidaro iškart, rodydama originalų puslapį. Tuo metu programėlė tyliai ruošia tekstą fone — nustato kalbą, o nuskenuotose knygose atpažįsta puslapius. Kai paliečiate Reflow, laukiate tik puslapio, kuriame esate; likusi dalis ruošiama toliau jums skaitant, su eigos pranešimu apatinėje juostoje. Anksčiau atidaryta knyga paruošta iškart.'],
+          ['Kaip perkelti savo skaitymą į kitą telefoną?', 'Nustatymuose naudokite „Eksportuoti skaitymo duomenis“, kad vietas, žymes, paryškinimus, užrašus ir pataisymus išsaugotumėte faile, tada importuokite jį kitame telefone. Arba supakuokite vieną knygą kartu su viskuo, kas su ja susiję, per „Eksportuoti kaip → Rewrap paketas“: atidaryta Rewrap kitame telefone — „Android“ ar „iPhone“ — knyga grįžta tiksliai tokia, kokią palikote.'],
+        ],
+
+    footer_tagline: 'PDF skaitytuvas „Android“ ir „iPhone“.',
+    footer_links: 'Naršyti', footer_contact: 'Kontaktai', footer_email: 'Atsiliepimai',
+    footer_feedback: 'Kažkas neveikia ar turite idėją? Rašykite mums — tema „Rewrap feedback“.',
+    footer_rights: 'Visos teisės saugomos.',
+    footer_marks: '„Google Play“ ir „Google Play“ logotipas yra „Google LLC“ prekių ženklai. „Apple“ ir „TestFlight“ yra „Apple Inc.“ prekių ženklai.',
+
+    pp_title: 'Privatumo politika',
+    pp_intro: 'Rewrap sukurtas taip, kad jūsų knygos liktų jūsų telefone. Ši politika paaiškina, ką tai reiškia praktiškai.',
+    pp_updated: 'Paskutinį kartą atnaujinta',
+    pp_note_en: 'Visa žemiau pateikta politika yra anglų kalba — tai galiojanti versija.',
+    pp_summary_title: 'Trumpai',
+    pp_summary1: 'Jūsų knygos lieka jūsų telefone. Skaitymas veikia be jokio interneto ryšio — atidarykite nuskenuotą knygą lėktuvo režimu, ir ji vis tiek bus atpažinta ir perdėliota įrenginyje. Nėra paskyros ir reklamų, mes nevaldome serverio, o niekas, ką skaitote, rašote ar paryškinate, niekada neįkeliama.',
+    pp_summary2: '„Android“ programėlėje yra „Google“ teksto atpažinimo biblioteka, ir ji siunčia „Google“ anoniminę diagnostiką apie save — niekada ne jūsų puslapius ir niekada ne jūsų tekstą. Išsamiau žemiau.',
+    pp_contact_title: 'Kontaktai', pp_contact_text: 'Klausimų apie privatumą? Rašykite adresu',
+};

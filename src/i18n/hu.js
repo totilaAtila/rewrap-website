@@ -1,0 +1,147 @@
+// Rewrap — magyar szövegek. A szerkezetnek meg kell egyeznie az en.js-ével.
+// A teljes adatvédelmi tájékoztató (pp_sections) angol marad: az az irányadó változat.
+export default {
+    meta_title: 'Rewrap — olvass PDF-eket úgy, ahogy a kis képernyők megérdemlik',
+    meta_desc: 'A Rewrap PDF-olvasó Androidra és iPhone-ra, kis képernyőkre tervezve. A szöveg nagyítva, a helyén tördelődik újra, soha nem oldalra. 100%-ban a telefonodon: felhő, fiók és generatív MI nélkül. Az olvasás offline is működik.',
+
+    nav_features: 'Funkciók', nav_gallery: 'Képernyők', nav_pricing: 'Ár', nav_privacy: 'Adatvédelem', nav_faq: 'Kérdések',
+    nav_home: 'Kezdőlap', nav_policy: 'Tájékoztató', nav_contact: 'Kapcsolat',
+    theme_dark: 'Éjszaka', theme_sepia: 'Szépia', theme_light: 'Világos',
+
+    hero_pill: 'PDF-olvasó Androidra és iPhone-ra',
+    hero_title_a: 'Olvass PDF-eket úgy, ahogy ', hero_title_b: 'a kis képernyők megérdemlik.',
+    hero_sub: 'Az oldal sosem lesz szélesebb a kijelződnél — a szöveg nagyítva, a helyén tördelődik újra, így semmi sem görög oldalra. Minden 100%-ban a telefonodon fut.',
+    cta_play: 'Letöltés a Google Playről', cta_ios: 'Csatlakozás az iPhone-bétához (TestFlight)',
+    hero_note: 'Az olvasás mindig ingyenes. Teljesen offline működik. iPhone-on a Rewrap nyilvános bétában van az Apple TestFlight alkalmazásán keresztül.',
+    qp_reflow: 'Újratördelés a helyén', qp_scan: 'Szkennelések a telefonon olvasva', qp_offline: 'Offline működik', qp_privacy: 'Felhő és fiók nélkül',
+
+    why_eyebrow: 'Áttekintés', why_title: 'Kis képernyőkre tervezve.', why_sub: 'Nem klasszikus nagyítás, nem teljes reflow — valami jobb a kettő között.',
+    why: [
+          ['columns', 'Reflow az oldal tönkretétele nélkül', 'A szöveg nő és a helyén tördelődik újra. A képek, táblázatok és ábrák ott maradnak, ahová valók, és a betűmérettel együtt skálázódnak — semmi sem görög oldalra.'],
+          ['scan', 'Szkennelések a telefonon olvasva', 'A beszkennelt PDF-eket és a lefényképezett oldalakat közvetlenül az eszközön ismeri fel. A ferdén fotózott képeket kiegyenesíti, a halvány szkenneléseket javítja, a hibákat magából a könyvből vett bizonyítékok alapján kijavítja.'],
+          ['type', 'A nyomtatott betűk megőrizve', 'A régi betűtípusok, ékezetek és különleges betűk pontosan úgy maradnak, ahogy nyomtatták őket — kivágva az oldalról és élesen újrarajzolva, nem telefonos betűtípussal helyettesítve.'],
+          ['lock', 'Igazán privát', 'Nincs felhő, nincs fiók, nincs saját szerverünk. A könyveid, jegyzeteid és olvasási pozícióid a telefonodon maradnak, és minden működik repülő üzemmódban is.'],
+        ],
+
+    cmp_eyebrow: 'A különbség', cmp_title: 'Ugyanaz az oldal. Olvasható.',
+    cmp_sub: 'Balra az eredeti kétoszlopos oldal. Jobbra ugyanaz az oldal reflow után: nagyobb szöveg, az ábra a helyén marad.',
+    cmp_alt: 'A Rewrap kétszer mutatja ugyanazt a tudományos PDF-et egy iPhone-on: az eredeti kétoszlopos oldalt, és az újratördelt oldalt nagyobb szöveggel, az ábrával a helyén.',
+
+    gallery_eyebrow: 'Képernyők', gallery_title: 'Lásd egy igazi könyvön.', gallery_sub: 'Képernyőképek az alkalmazásból, igazi telefonon.',
+    themes_eyebrow: 'Témák', themes_title: 'Világos, Szépia, Éjszaka — és tiszta fekete.', themes_sub: 'A témák az igazi oldalt is átszínezik, a fotók pedig megtartják a színüket. Készíthetsz sajátot is.',
+    gallery_prev: 'Előző', gallery_next: 'Következő',
+    shots: [
+          ['Eredeti', 'A PDF pontosan úgy, ahogy nyomtatták — két oszlop, apró betűk.'],
+          ['Reflow', 'Ugyanaz az oldalszélesség, a szöveg nagyítva és a helyén újratördelve.'],
+          ['Beszkennelt könyvek', 'A fotókat és szkenneléseket az eszközön ismeri fel — feltöltés nélkül.'],
+          ['Szépia', 'Témák, amelyek követik a szemedet: világos, szépia, éjszaka, AMOLED.'],
+          ['Éjszaka', 'Kényelmes sötétben, a saját betűméreteddel és térközeiddel.'],
+        ],
+
+    features_eyebrow: 'Funkciók', features_title: 'Minden, amit tud.', features_sub: 'Funkcióról funkcióra építve, igazi könyveken és eszközökön mérve.',
+    groups: [
+          ['Olvasás, újratördelve', [
+                  ['columns', 'Eredeti | Reflow, egyetlen kapcsoló', 'A könyv azonnal eredeti oldalként nyílik meg; egy érintés megmutatja az újratördelt szöveget. Mindkét nézet ugyanazokat a vezérlőket használja.'],
+                  ['bookOpen', 'Elrendezés, amely megáll', 'A képek, táblázatok és ábrák megtartják a helyüket, és a betűmérettel együtt skálázódnak.'],
+                  ['type', 'A nyomtatott betűk megőrizve', 'A könyv saját betűit használja modern betűtípus helyett — a régi betűtípusok, ékezetek és különleges betűk úgy maradnak, ahogy nyomtatták őket, minden méretben élesen. Bármikor kikapcsolható.'],
+                  ['palette', 'Átszínezett oldal', 'A Szépia és az Éjszaka az igazi oldalt is átszínezi, a fotók pedig megtartják a színüket.'],
+                  ['chevronsDown', 'Automatikus görgetés', 'Érintsd meg az oldalt az indításhoz, még egyszer a szüneteltetéshez. A sebességet te állítod be, mindkét nézetben.'],
+                  ['fileText', 'Görgetés vagy lapozás', 'Folyamatos görgetés vagy oldalanként. Bármelyik oldal maradhat pontosan úgy, ahogy nyomtatták.'],
+                ]],
+          ['Szkennelések és fotók', [
+                  ['scan', 'Szkennelések az eszközön olvasva', 'A beszkennelt könyveket és a lefényképezett oldalakat helyben ismeri fel — feltöltés nélkül, szerverre várás nélkül.'],
+                  ['sparkles', 'Bizonyítékokon alapuló javítások', 'Törött betűtípusok, elveszett ékezetek, sorvégi kötőjelek, félkövér és dőlt az eredetiből.'],
+                  ['globe', 'Írásrendszerek, amelyeket mások kihagynak', 'Görög, cirill (orosz, ukrán, bolgár, szerb) és magyar helyes ő és ű betűkkel — offline.'],
+                  ['camera', 'Kamerás szkenner', 'Szkenneld az oldalakat a kamerával, szedd szét a kétoldalas szkenneléseket, egyenesítsd ki a ferde felvételeket.'],
+                  ['pencil', 'Egyszer javíts ki egy szót', 'Javíts ki bármely szót magad, és a javítás szabállyá válik a könyv minden előfordulására.'],
+                  ['image', 'Formátumok', 'PDF, EPUB, TXT és fotók — egy fotó, egy egész mappa egyetlen könyvként, vagy több fotó PDF-be kötve. A Rewrap más alkalmazások „Megnyitás ezzel” menüjében is megjelenik.'],
+                ]],
+          ['Hallgass és tanulj', [
+                  ['volume', 'Felolvasás', 'Természetes beszédszintézis a könyv saját nyelvén. Választhatsz hangot és sebességet (Androidon beszédmotort is), követheted a kimondott szót, és kikapcsolt képernyővel is hallgathatod.'],
+                  ['pencil', 'Jegyzetek és kiemelések', 'Emelj ki részeket és írj saját jegyzeteket; egy apró jel marad a margón, és mindkettő megmarad, ha betűtípust váltasz.'],
+                  ['search', 'Keresés az egész könyvben', 'Ékezetfüggetlen keresés latin, görög és cirill írásban, amely az egész könyvben egyszerre talál szavakat, még a még fel nem készített oldalakon is.'],
+                  ['bookmark', 'Könyvjelzők és pozíció', 'Könyvjelzők, és minden könyvhöz megjegyzett pozíció.'],
+                  ['list', 'Tartalomjegyzék', 'A könyv saját tartalomjegyzéke, vagy a címsorokból épített. A borítók nyomtatott formájukban látszanak.'],
+                  ['info', 'Érintsd meg a meghatározáshoz', 'Keress meg egy szót az offline szótáradban.'],
+                ]],
+          ['Kényelem és akadálymentesség', [
+                  ['palette', 'Témák', 'Világos, Szépia, Éjszaka, tiszta fekete AMOLED és saját témák.'],
+                  ['type', 'Méret és térköz', 'Betűméret könyvenként megjegyezve, állítható sor- és betűközzel.'],
+                  ['ruler', 'Olvasóvonalzó', 'Elhalványít mindent, kivéve az éppen olvasott sorokat.'],
+                  ['eye', 'Diszlexiabarát', 'Diszlexiabarát betűtípus és bionikus félkövér, amelyek még beszkennelt könyveken is működnek, mert a szöveg újra van szedve.'],
+                  ['globe', 'A te nyelved', '17 kezelőfelületi nyelv, álló vagy fekvő tájolásban.'],
+                ]],
+          ['Exportálás, átalakítás és költöztetés', [
+                  ['share', 'Átalakítás', 'Alakíts át bármely könyvet EPUB-, TXT- vagy DOCX-fájllá valódi fejezetekkel és megtisztított szöveggel — vagy mentsd PDF-ként, a kiemeléseiddel és jegyzeteiddel valódi megjegyzésként.'],
+                  ['fileText', 'A jegyzeteid exportálva', 'Exportáld a kiemeléseket és jegyzeteket TXT, Markdown, Anki-kártyák vagy PDF formában.'],
+                  ['package', 'Rewrap-csomag', 'Egyetlen fájl viszi a könyvet és minden munkádat — pozíciót, könyvjelzőket, kiemeléseket, jegyzeteket, javításokat — egy másik telefonra, Androidra vagy iPhone-ra. Rewrap nélkül sima ZIP.'],
+                  ['rotate', 'Biztonsági hálók', 'Automatikus eszközön tárolt mentések, egy általad irányított opcionális felhőmentés, valamint az olvasási adataid hordozható exportja és importja.'],
+                  ['shield', 'Őszinte hibajelentések', 'A hibabejelentő semmi technikait nem csatol a kifejezett beleegyezésed nélkül.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Ár', pricing_title: 'Az olvasás ingyenes. Egy feloldás a nehéz munkához.', pricing_sub: 'Egy vásárlás, egyszer — előfizetés, hirdetés és fiók nélkül.',
+    plans: [
+          ['bookOpen', 'Ingyenes, mindig', 'Maga az olvasás. Oldal-, könyv- és időkorlát nélkül.', [
+                  'Digitális PDF-ek, EPUB és TXT, újratördelve és nagyítva',
+                  'Minden téma, térköz, a diszlexiabarát betűtípus és az olvasóvonalzó',
+                  'Keresés, könyvjelzők, tartalomjegyzék, a pozíciód minden könyvben',
+                  'Kiemelések, saját jegyzetek és szójavítások',
+                  'A saját kiemeléseid, jegyzeteid és olvasási adataid exportja',
+                ]],
+          ['unlock', 'Egyszeri feloldás', 'A nehéz munka, a telefonodon elvégezve.', [
+                  'Beszkennelt könyvek és lefényképezett oldalak felismerése',
+                  'A kamerás szkenner és a perspektívajavítás',
+                  'Felolvasás',
+                  'Átalakítás EPUB, TXT, DOCX vagy PDF formátumba',
+                  'Tiszta olvasás',
+                  'Minden, amit már felismertél vagy átalakítottál, olvasható marad',
+                ]],
+        ],
+    pricing_trial_a: '14 nap, minden feloldva.', pricing_trial_b: 'Az új Android-telepítések teljes hozzáférésű próbával indulnak — próbáld ki a saját könyveiden. Az alkalmazás néhány nappal a lejárat előtt szól; utána az olvasás ingyenes marad.',
+    pricing_ios: 'iPhone-on a Rewrap bétában van, és jelenleg minden nyitott; az egyszeri feloldás az App Store-os megjelenéssel érkezik.',
+    pricing_store: 'A feloldást annak a telefonnak az áruházában veszed meg, amelyet használsz. A Rewrapnak nincs fiókja és szervere, így az Androidon vásárolt feloldás nem vihető át iPhone-ra, és fordítva sem.',
+
+    privacy_eyebrow: 'Adatvédelem', privacy_title: 'Alapból privát.', privacy_sub: 'A könyveid sosem hagyják el a telefonodat.',
+    privacy_btn: 'Az adatvédelmi tájékoztató elolvasása',
+    cards: [
+          ['database', 'Helyi tárolás', 'A könyvek, jegyzetek, kiemelések és olvasási pozíciók csak az eszközödön vannak.'],
+          ['wifiOff', 'Offline működik', 'Az olvasáshoz — a szkenneléseket is beleértve — nem kell internet.'],
+          ['eyeOff', 'Nincs követés', 'Saját analitika és hirdetés nélkül, és generatív MI nélkül.'],
+          ['lock', 'Nincs szerver, nincs fiók', 'Nem üzemeltetünk szervert, és nincs mire regisztrálni.'],
+          ['shield', 'Őszinte a kivételekről', 'Androidon a Google szövegfelismerő könyvtára névtelen diagnosztikai adatokat küld a Google-nek önmagáról — soha nem az oldalaidat vagy a szövegedet. A tájékoztató teljes egészében felsorolja.'],
+          ['fileText', 'A te választott fájljaid', 'A Rewrap csak azokat a fájlokat nyitja meg, amelyeket a rendszer dokumentumválasztóján keresztül kiválasztasz.'],
+        ],
+
+    faq_eyebrow: 'Kérdések', faq_title: 'Kérdések és gyors útmutató.', faq_sub: 'Ugyanazok a kérdések, amelyekre az alkalmazásbeli útmutató is válaszol — érints meg egyet a válaszhoz.',
+    faqs: [
+          ['Ingyenes a Rewrap?', 'Az olvasás örökre ingyenes: digitális PDF-ek, EPUB és TXT, újratördelve és nagyítva, minden témával, kereséssel, könyvjelzővel, a kiemeléseiddel, saját jegyzeteiddel és javításaiddal. Egy egyszeri feloldás hozzáadja a nehéz munkát — a szkennelések felismerését, a kamerás szkennert, a felolvasást, a más formátumokba való átalakítást és a tiszta olvasást. Androidon az új telepítések 14 napos próbát kapnak mindennel nyitva; iPhone-on a béta alatt minden nyitott.'],
+          ['Hol tölthetem le?', 'Androidon a Google Playről. iPhone-on a Rewrap nyilvános bétában van az Apple TestFlight alkalmazásán keresztül — használd az oldalon lévő „Csatlakozás az iPhone-bétához” gombot.'],
+          ['Működik offline?', 'Igen. Az olvasás — a beszkennelt könyvek felismerését is beleértve — a telefonon fut, ezért repülő üzemmódban is működik.'],
+          ['Milyen adatokat gyűjtötök?', 'A tartalmaidból semmit: nem üzemeltetünk szervert, és nincs fiókrendszerünk. A pontos részletek, az Androidon az egyetlen diagnosztikai kivételt is beleértve, az adatvédelmi tájékoztatóban vannak.'],
+          ['Milyen nyelveken beszél?', 'Az alkalmazásnak 17 kezelőfelületi nyelve van, ez az oldal pedig kilencen érhető el. A szövegfelismerés lefedi a latin, görög és cirill írást, valamint a magyart helyes ő és ű betűkkel.'],
+          ['Hogyan látom az eredeti oldalt?', 'A képernyő tetején az Eredeti | Reflow kapcsoló választja ki, mit látsz: az oldalt pontosan úgy, ahogy nyomtatták, vagy a nagyított, újratördelt szöveget. Mindkét nézet ugyanazokat a vezérlőket használja. Az Eredetiben csípéssel nagyíthatsz egy táblázatra vagy ábrára. Ha egy-egy oldalt jobb érintetlenül hagyni — borító, melléklapra nyomott kép, diagram —, a bal oldali fiók felkínálja a „Az oldal megjelenítése eredetiként” lehetőséget: az az oldal úgy marad, ahogy nyomtatták, megjegyezve a következő alkalomra, és továbbra is kereshető.'],
+          ['Hogyan indítom és állítom le az automatikus görgetést?', 'Érintsd meg az oldalt (vagy a nagy ▶ gombot) a görgetés indításához; érintsd meg újra a szüneteltetéshez. A sebesség a fogaskerék beállításokban van, az Olvasás lapon. Görgetés közben minden elrejtőzik, kivéve a címet és az oldalszámot mutató vékony sávot — és a felső Eredeti | Reflow kapcsolót.'],
+          ['Hogyan lapozok, mint egy nyomtatott könyvben?', 'Nyisd meg a jobb oldali fiókot, és válaszd a vízszintes nyilakat a „Lapozás” alatt. Ezután húzd az ujjad balra vagy jobbra, vagy érintsd meg a képernyő bal vagy jobb szélét. A függőleges nyíl visszahozza a folyamatos görgetést. A beállítás az Eredetire és a Reflow-ra is vonatkozik.'],
+          ['Hogyan hallgathatom a könyvet felolvasva?', 'Érintsd meg a mikrofont a műveleti sávban. A hang kikapcsolt képernyővel is tovább olvas, vezérlőkkel a zárolási képernyőn és a fülhallgatón. A hang és sebessége (Androidon a motor is) a fogaskerék beállításokban van, a Hang lapon.'],
+          ['Egy szkennelt szó rosszul néz ki — mit tehetek?', 'Érintsd meg a javítás ikont a műveleti sávban (Androidon billentyűzet, iPhone-on A szövegkurzorral), majd a szót: kijelölőkeret jelenik meg fogantyúkkal, amelyeket a szomszédos karakterekre húzhatsz; érintsd meg a kijelölést a javításhoz. A javítás szabályként mentődik az egész könyvre. Ha egy egész beszkennelt könyv rosszul olvasható, kapcsold be a „Kényszerített OCR”-t (jobb oldali fiók vagy fogaskerék beállítások, Dokumentum lap).'],
+          ['Miért néz ki a szöveg úgy, mint a nyomtatott könyv, és nem mint egy telefonos betűtípus?', 'Reflow-ban a Rewrap a könyv saját, az oldalból kivágott betűit használhatja fel ahelyett, hogy modern betűtípussal rajzolná újra a szöveget. A régi betűtípusok, ékezetek és különleges betűk úgy maradnak, ahogy nyomtatták őket — akkor is, ha a fájl szövegrétege elvesztette őket —, a körvonalaikat pedig simán rajzolja újra, így minden méretben élesek maradnak. Az „Eredeti betűk” opcióval kapcsolhatod ki (Szöveg lap vagy jobb oldali fiók). A diszlexiabarát betűtípus, a félkövér szókezdetek és a betűköz az újrarajzolt szövegre váltják a könyvet, mivel kicserélik a nyomtatott betűket.'],
+          ['Miért tart egy pillanatig egy új könyv újratördelése?', 'Az új könyv azonnal megnyílik, az eredeti oldalt mutatva. Közben az alkalmazás csendben előkészíti a szöveget a háttérben — felismeri a nyelvet, a beszkennelt könyveknél pedig az oldalakat. Amikor a Reflow-ra érintesz, csak arra az oldalra vársz, amelyen vagy; a többi olvasás közben készül elő tovább, egy folyamatjelzéssel az alsó sávban. Egy korábban már megnyitott könyv azonnal kész.'],
+          ['Hogyan viszem át az olvasmányomat egy másik telefonra?', 'A Beállításokban használd az „Olvasási adatok exportálása” lehetőséget, hogy a pozíciókat, könyvjelzőket, kiemeléseket, jegyzeteket és javításokat fájlba mentsd, majd importáld a másik telefonon. Vagy csomagolj össze egy könyvet mindennel, ami hozzá tartozik, az „Exportálás mint → Rewrap-csomag” menüponttal: egy másik telefonon — Androidon vagy iPhone-on — Rewrapban megnyitva a könyv pontosan úgy tér vissza, ahogy otthagytad.'],
+        ],
+
+    footer_tagline: 'PDF-olvasó Androidra és iPhone-ra.',
+    footer_links: 'Felfedezés', footer_contact: 'Kapcsolat', footer_email: 'Visszajelzés',
+    footer_feedback: 'Valami nem működik, vagy van egy ötleted? Írj nekünk — a tárgy „Rewrap feedback”.',
+    footer_rights: 'Minden jog fenntartva.',
+    footer_marks: 'A Google Play és a Google Play logó a Google LLC védjegye. Az Apple és a TestFlight az Apple Inc. védjegye.',
+
+    pp_title: 'Adatvédelmi tájékoztató',
+    pp_intro: 'A Rewrapot úgy építettük, hogy a könyveid a telefonodon maradjanak. Ez a tájékoztató elmagyarázza, mit jelent ez a gyakorlatban.',
+    pp_updated: 'Utolsó frissítés',
+    pp_note_en: 'Az alábbi teljes tájékoztató angol nyelvű, az az irányadó változat.',
+    pp_summary_title: 'Röviden',
+    pp_summary1: 'A könyveid a telefonodon maradnak. Az olvasás internetkapcsolat nélkül is működik — nyiss meg egy beszkennelt könyvet repülő üzemmódban, és az akkor is felismerésre kerül és újratördelődik az eszközön. Nincs fiók és nincs hirdetés, nem üzemeltetünk szervert, és semmi, amit olvasol, írsz vagy kiemelsz, sosem kerül feltöltésre.',
+    pp_summary2: 'Androidon az alkalmazás tartalmazza a Google szövegfelismerő könyvtárát, és ez névtelen diagnosztikai adatokat küld a Google-nek önmagáról — soha nem az oldalaidat és nem a szövegedet. A részletek alább.',
+    pp_contact_title: 'Kapcsolat', pp_contact_text: 'Kérdésed van az adatvédelemről? Írj ide:',
+};

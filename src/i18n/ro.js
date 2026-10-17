@@ -1,0 +1,147 @@
+// Rewrap — copy în română. Structura trebuie să rămână identică cu en.js.
+// Politica de confidențialitate completă (pp_sections) rămâne în engleză: e versiunea de referință.
+export default {
+    meta_title: 'Rewrap — citește PDF-uri așa cum merită ecranele mici',
+    meta_desc: 'Rewrap este un cititor de PDF pentru Android și iPhone, făcut pentru ecrane mici. Textul este mărit și reașezat pe loc, niciodată în lateral. 100% pe telefonul tău: fără cloud, fără cont, fără IA generativă. Citirea merge offline.',
+
+    nav_features: 'Funcții', nav_gallery: 'Ecrane', nav_pricing: 'Preț', nav_privacy: 'Confidențialitate', nav_faq: 'Întrebări',
+    nav_home: 'Acasă', nav_policy: 'Politica', nav_contact: 'Contact',
+    theme_dark: 'Noapte', theme_sepia: 'Sepia', theme_light: 'Luminos',
+
+    hero_pill: 'Cititor de PDF pentru Android și iPhone',
+    hero_title_a: 'Citește PDF-uri așa cum ', hero_title_b: 'merită ecranele mici.',
+    hero_sub: 'Pagina nu devine niciodată mai lată decât ecranul tău — textul este mărit și reașezat pe loc, așa că nimic nu mai derulează în lateral. Totul rulează 100% pe telefonul tău.',
+    cta_play: 'Descarcă din Google Play', cta_ios: 'Intră în beta pentru iPhone (TestFlight)',
+    hero_note: 'Citirea e gratuită, mereu. Funcționează complet offline. Pe iPhone, Rewrap este în beta publică prin aplicația Apple TestFlight.',
+    qp_reflow: 'Reașezare pe loc', qp_scan: 'Scanuri citite pe telefon', qp_offline: 'Funcționează offline', qp_privacy: 'Fără cloud, fără cont',
+
+    why_eyebrow: 'Prezentare', why_title: 'Făcut pentru ecrane mici.', why_sub: 'Nu zoom clasic, nu reașezare completă — ceva mai bun între ele.',
+    why: [
+          ['columns', 'Reașezare fără să strice pagina', 'Textul crește și se reașază pe loc. Imaginile, tabelele și figurile rămân unde le e locul și cresc odată cu fontul — nimic nu derulează în lateral.'],
+          ['scan', 'Scanuri citite pe telefon', 'PDF-urile scanate și paginile fotografiate sunt recunoscute chiar pe dispozitiv. Pozele făcute din unghi sunt îndreptate, scanurile șterse sunt îmbunătățite, erorile sunt reparate pe baza dovezilor din cartea însăși.'],
+          ['type', 'Literele tipărite, păstrate', 'Fonturile vechi, accentele și literele speciale rămân exact ca în tipar — decupate din pagină și redesenate clar, nu înlocuite cu un font de telefon.'],
+          ['lock', 'Cu adevărat privat', 'Fără cloud, fără cont, fără serverul nostru. Cărțile, notițele și pozițiile de citire rămân pe telefonul tău, iar totul merge în modul avion.'],
+        ],
+
+    cmp_eyebrow: 'Diferența', cmp_title: 'Aceeași pagină. Lizibilă.',
+    cmp_sub: 'În stânga, pagina originală pe două coloane. În dreapta, aceeași pagină reașezată: text mai mare, figura rămasă la locul ei.',
+    cmp_alt: 'Rewrap arătând același PDF academic de două ori pe un iPhone: pagina originală pe două coloane și pagina reașezată, cu text mai mare și figura la locul ei.',
+
+    gallery_eyebrow: 'Ecrane', gallery_title: 'Vezi-l pe o carte adevărată.', gallery_sub: 'Capturi din aplicație, pe un telefon real.',
+    themes_eyebrow: 'Teme', themes_title: 'Luminos, Sepia, Noapte — și negru pur.', themes_sub: 'Temele recolorează și pagina reală, iar fotografiile își păstrează culorile. Poți să-ți faci propria temă.',
+    gallery_prev: 'Înapoi', gallery_next: 'Înainte',
+    shots: [
+          ['Original', 'PDF-ul exact ca în tipar — două coloane, litere mici.'],
+          ['Reflow', 'Aceeași lățime de pagină, text mărit și reașezat pe loc.'],
+          ['Cărți scanate', 'Fotografiile și scanurile sunt recunoscute pe dispozitiv — fără încărcare.'],
+          ['Sepia', 'Teme care îți ascultă ochii: luminos, sepia, noapte, AMOLED.'],
+          ['Noapte', 'Confortabil pe întuneric, cu mărimea și spațierea textului alese de tine.'],
+        ],
+
+    features_eyebrow: 'Funcții', features_title: 'Tot ce poate.', features_sub: 'Construit funcție cu funcție, măsurat pe cărți și dispozitive reale.',
+    groups: [
+          ['Citire, reașezată', [
+                  ['columns', 'Original | Reflow, un singur comutator', 'O carte se deschide instant ca pagina originală; o atingere arată textul reașezat. Ambele moduri au aceleași comenzi.'],
+                  ['bookOpen', 'Pagină care ține', 'Imaginile, tabelele și figurile își păstrează locul și cresc odată cu fontul.'],
+                  ['type', 'Literele tipărite, păstrate', 'Refolosește literele cărții în loc de un font modern — fonturile vechi, accentele și literele speciale rămân ca în tipar, clare la orice mărime. Îl poți opri oricând.'],
+                  ['palette', 'Pagină recolorată', 'Sepia și Noapte recolorează și pagina reală, iar fotografiile își păstrează culorile.'],
+                  ['chevronsDown', 'Derulare automată', 'Atinge pagina ca să pornească, atinge din nou ca să stea. Viteza o alegi tu, în ambele moduri.'],
+                  ['fileText', 'Derulare sau întoarcere de pagini', 'Derulare continuă sau pagină cu pagină. Orice pagină poate rămâne exact ca în tipar.'],
+                ]],
+          ['Scanuri și fotografii', [
+                  ['scan', 'Scanuri citite pe dispozitiv', 'Cărțile scanate și paginile fotografiate sunt recunoscute local — fără încărcare, fără așteptat un server.'],
+                  ['sparkles', 'Reparații pe bază de dovezi', 'Fonturi stricate, diacritice pierdute, cratime de final de rând, bold și italic din original.'],
+                  ['globe', 'Scripturi pe care alții le sar', 'Greacă, chirilică (rusă, ucraineană, bulgară, sârbă) și maghiară cu ő și ű corecte — offline.'],
+                  ['camera', 'Scaner cu camera', 'Scanează pagini cu camera, împarte scanurile pe două pagini, îndreaptă pozele făcute din unghi.'],
+                  ['pencil', 'Repari un cuvânt o dată', 'Corectează singur orice cuvânt, iar corectura devine regulă pentru fiecare apariție din carte.'],
+                  ['image', 'Formate', 'PDF, EPUB, TXT și fotografii — o poză, un dosar întreg ca o singură carte sau mai multe legate într-un PDF. Rewrap apare și în meniul „Deschide cu” al altor aplicații.'],
+                ]],
+          ['Ascultă și învață', [
+                  ['volume', 'Citire cu voce tare', 'Sinteză vocală naturală în limba cărții. Alegi vocea și viteza (și motorul vocal, pe Android), urmărești cuvântul rostit, asculți mai departe cu ecranul stins.'],
+                  ['pencil', 'Notițe și evidențieri', 'Evidențiază pasaje și scrie-ți propriile notițe; un mic semn rămâne în margine, iar ambele se păstrează când schimbi fontul.'],
+                  ['search', 'Căutare în toată cartea', 'Căutare insensibilă la accente în latină, greacă și chirilică, care găsește cuvinte în toată cartea deodată, chiar și în paginile încă nepregătite.'],
+                  ['bookmark', 'Semne de carte și poziție', 'Semne de carte și o poziție reținută pentru fiecare carte.'],
+                  ['list', 'Cuprins', 'Cel al cărții sau unul construit din titluri. Copertele sunt afișate ca în tipar.'],
+                  ['info', 'Atinge pentru definiție', 'Caută un cuvânt în dicționarul tău offline.'],
+                ]],
+          ['Confort și accesibilitate', [
+                  ['palette', 'Teme', 'Luminos, Sepia, Noapte, AMOLED negru pur și teme proprii.'],
+                  ['type', 'Mărime și spațiere', 'Mărimea textului reținută separat pentru fiecare carte, cu spațiere între rânduri și litere pe care o poți regla.'],
+                  ['ruler', 'Riglă de citit', 'Estompează tot, în afară de rândurile pe care le citești.'],
+                  ['eye', 'Pentru dislexie', 'Un font prietenos cu dislexia și îngroșare bionică, care merg chiar și pe cărți scanate, pentru că textul este rescris.'],
+                  ['globe', 'Limba ta', '17 limbi de interfață, pe portret sau pe peisaj.'],
+                ]],
+          ['Export, conversie și mutare', [
+                  ['share', 'Conversie', 'Transformă orice carte în EPUB, TXT sau DOCX cu capitole reale și text curățat — sau salveaz-o ca PDF cu evidențierile și notițele tale ca adnotări reale.'],
+                  ['fileText', 'Notițele tale, exportate', 'Exportă evidențierile și notițele ca TXT, Markdown, carduri Anki sau PDF.'],
+                  ['package', 'Pachet Rewrap', 'Un singur fișier duce cartea și toată munca ta — poziție, semne de carte, evidențieri, notițe, corecturi — pe alt telefon, Android sau iPhone. Un ZIP obișnuit fără Rewrap.'],
+                  ['rotate', 'Plase de siguranță', 'Copii de siguranță automate pe dispozitiv, o copie în cloud opțională pe care o controlezi tu, plus export și import portabil al datelor de citire.'],
+                  ['shield', 'Rapoarte de erori cinstite', 'Raportorul de probleme nu atașează nimic tehnic fără acordul tău explicit.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Preț', pricing_title: 'Citirea e gratuită. O singură deblocare pentru munca grea.', pricing_sub: 'O singură achiziție, o dată — fără abonament, fără reclame, fără cont.',
+    plans: [
+          ['bookOpen', 'Gratuit, mereu', 'Citirea în sine. Fără limită de pagini, de cărți sau de timp.', [
+                  'PDF-uri digitale, EPUB și TXT, reașezate și mărite',
+                  'Toate temele, spațierea, fontul pentru dislexie și rigla de citit',
+                  'Căutare, semne de carte, cuprins, poziția ta în fiecare carte',
+                  'Evidențieri, propriile notițe și corectarea cuvintelor',
+                  'Exportul propriilor evidențieri, notițe și date de citire',
+                ]],
+          ['unlock', 'Deblocare o singură dată', 'Munca grea, făcută pe telefonul tău.', [
+                  'Recunoașterea cărților scanate și a paginilor fotografiate',
+                  'Scanerul cu camera și corecția de perspectivă',
+                  'Citirea cu voce tare',
+                  'Conversia în EPUB, TXT, DOCX sau PDF',
+                  'Citirea curată',
+                  'Tot ce ai recunoscut sau convertit deja rămâne lizibil',
+                ]],
+        ],
+    pricing_trial_a: '14 zile, totul deblocat.', pricing_trial_b: 'Instalările noi pe Android încep cu o probă cu acces complet — încearc-o pe cărțile tale. Aplicația te anunță cu câteva zile înainte să se termine; după aceea, citirea rămâne gratuită.',
+    pricing_ios: 'Pe iPhone, Rewrap este în beta și totul este deschis acum; deblocarea unică va veni odată cu lansarea pe App Store.',
+    pricing_store: 'Deblocarea se cumpără în magazinul telefonului pe care îl folosești. Rewrap nu are cont și nu are server, așa că o deblocare cumpărată pe Android nu se transferă pe iPhone, și nici invers.',
+
+    privacy_eyebrow: 'Confidențialitate', privacy_title: 'Privat din start.', privacy_sub: 'Cărțile tale nu părăsesc telefonul.',
+    privacy_btn: 'Citește politica de confidențialitate',
+    cards: [
+          ['database', 'Stocare locală', 'Cărțile, notițele, evidențierile și pozițiile de citire rămân numai pe dispozitivul tău.'],
+          ['wifiOff', 'Funcționează offline', 'Citirea — scanurile incluse — nu are nevoie de internet.'],
+          ['eyeOff', 'Fără urmărire', 'Fără analitice și fără reclame proprii, și fără IA generativă.'],
+          ['lock', 'Fără server, fără cont', 'Nu avem server și nu trebuie să te înscrii nicăieri.'],
+          ['shield', 'Sinceri despre excepții', 'Pe Android, biblioteca Google de recunoaștere a textului trimite către Google diagnostice anonime despre ea însăși — niciodată paginile sau textul tău. Politica le listează complet.'],
+          ['fileText', 'Fișiere alese de tine', 'Rewrap deschide doar fișierele pe care le alegi prin selectorul de documente al sistemului.'],
+        ],
+
+    faq_eyebrow: 'Întrebări', faq_title: 'Întrebări și ghid rapid.', faq_sub: 'Aceleași întrebări la care răspunde ghidul din aplicație — atinge una ca să vezi răspunsul.',
+    faqs: [
+          ['Este Rewrap gratuit?', 'Citirea e gratuită pentru totdeauna: PDF-uri digitale, EPUB și TXT, reașezate și mărite, cu toate temele, căutarea, semnele de carte, evidențierile, propriile notițe și corecturile. O deblocare unică adaugă munca grea — recunoașterea scanurilor, scanerul cu camera, citirea cu voce tare, conversia în alte formate și citirea curată. Pe Android, instalările noi primesc o probă de 14 zile cu totul deschis; pe iPhone, totul e deschis pe durata beta.'],
+          ['De unde îl pot descărca?', 'Pe Android, din Google Play. Pe iPhone, Rewrap este în beta publică prin aplicația Apple TestFlight — folosește butonul „Intră în beta pentru iPhone” de pe această pagină.'],
+          ['Funcționează offline?', 'Da. Citirea — inclusiv recunoașterea cărților scanate — rulează pe telefon, deci merge în modul avion.'],
+          ['Ce date colectați?', 'Nimic din conținutul tău: nu avem server și nu avem sistem de conturi. În politica de confidențialitate găsești detaliile exacte, inclusiv singura excepție de diagnostic de pe Android.'],
+          ['În ce limbi vorbește?', 'Aplicația are 17 limbi de interfață, iar acest site este disponibil în nouă dintre ele. Recunoașterea textului acoperă scripturile latin, grec și chirilic, plus maghiara cu ő și ű corecte.'],
+          ['Cum văd pagina originală?', 'Sus pe ecran, comutatorul Original | Reflow alege ce vezi: pagina exact ca în tipar sau textul mărit și reașezat. Ambele moduri au aceleași comenzi. În Original, ciupește cu două degete ca să mărești un tabel sau o figură. Dacă o singură pagină e mai bine lăsată ca în tipar — o copertă, o planșă, o diagramă — sertarul din stânga oferă „Arată această pagină ca originalul”: pagina rămâne ca în tipar, reținută pentru data viitoare, și rămâne căutabilă.'],
+          ['Cum pornesc și opresc derularea automată?', 'Atinge pagina (sau butonul mare ▶) ca să înceapă derularea; atinge din nou ca să o pui pe pauză. Viteza e în setările cu roata dințată, pe fila Citire. În timpul derulării, totul se retrage, în afară de bara subțire cu titlul și numărul paginii — și comutatorul Original | Reflow de sus.'],
+          ['Cum întorc paginile ca într-o carte tipărită?', 'Deschide sertarul din dreapta și alege săgețile orizontale de la „Întoarce paginile”. Apoi trage cu degetul la stânga sau la dreapta, sau atinge marginea din stânga ori din dreapta a ecranului. Săgeata verticală readuce derularea continuă. Setarea se aplică și în Original, și în Reflow.'],
+          ['Cum ascult cartea citită cu voce tare?', 'Atinge microfonul din bara de acțiuni. Vocea continuă să citească cu ecranul stins, cu comenzi pe ecranul de blocare și în căști. Vocea și viteza ei (și, pe Android, motorul) sunt în setările cu roata dințată, pe fila Voce.'],
+          ['Un cuvânt dintr-un scan arată greșit — ce pot face?', 'Atinge iconița de corectare din bara de acțiuni (o tastatură pe Android, un A cu cursor de text pe iPhone), apoi atinge cuvântul: apare o casetă de selecție cu mânere pe care le poți trage peste caracterele vecine; atinge selecția ca să corectezi. Corectura se salvează ca regulă pentru toată cartea. Dacă o carte scanată se citește prost în întregime, pornește „OCR forțat” (sertarul din dreapta sau setările cu roata dințată, fila Document).'],
+          ['De ce arată textul ca o carte tipărită, nu ca un font de telefon?', 'În Reflow, Rewrap poate refolosi literele cărții, decupate din pagină, în loc să redeseneze textul într-un font modern. Fonturile vechi, accentele și literele speciale rămân ca în tipar — chiar și când stratul de text al fișierului le-a pierdut — iar conturul lor este redesenat neted, așa că rămân clare la orice mărime. Îl oprești din „Litere originale” (fila Text sau sertarul din dreapta). Fontul pentru dislexie, îngroșarea începutului de cuvânt și spațierea literelor trec cartea pe text redesenat, fiindcă înlocuiesc literele tipărite.'],
+          ['De ce îi ia o clipă unei cărți noi să se reașeze?', 'O carte nouă se deschide instant, pe pagina originală. Între timp, aplicația pregătește discret textul în fundal — detectează limba și, la cărțile scanate, recunoaște paginile. Când atingi Reflow, aștepți doar pagina pe care te afli; restul continuă să se pregătească în timp ce citești, cu o notă de progres în bara de jos. O carte pe care ai mai deschis-o e gata imediat.'],
+          ['Cum îmi mut lectura pe alt telefon?', 'În Setări, folosește „Exportă datele de citire” ca să salvezi pozițiile, semnele de carte, evidențierile, notițele și corecturile într-un fișier, apoi importă-l pe celălalt telefon. Sau împachetează o singură carte împreună cu tot ce e pe ea prin „Exportă ca → Pachet Rewrap”: deschisă în Rewrap pe alt telefon — Android sau iPhone — cartea revine exact cum ai lăsat-o.'],
+        ],
+
+    footer_tagline: 'Un cititor de PDF pentru Android și iPhone.',
+    footer_links: 'Explorează', footer_contact: 'Contact', footer_email: 'Păreri',
+    footer_feedback: 'Ceva nu merge, sau ai o idee? Scrie-ne — subiect „Rewrap feedback”.',
+    footer_rights: 'Toate drepturile rezervate.',
+    footer_marks: 'Google Play și sigla Google Play sunt mărci comerciale ale Google LLC. Apple și TestFlight sunt mărci comerciale ale Apple Inc.',
+
+    pp_title: 'Politica de confidențialitate',
+    pp_intro: 'Rewrap este făcut ca să-ți țină cărțile pe telefon. Politica explică ce înseamnă asta în practică.',
+    pp_updated: 'Ultima actualizare',
+    pp_note_en: 'Politica completă de mai jos este în engleză, care este versiunea de referință.',
+    pp_summary_title: 'Pe scurt',
+    pp_summary1: 'Cărțile tale rămân pe telefon. Citirea merge fără nicio conexiune la internet — deschide o carte scanată în modul avion și ea tot este recunoscută și reașezată pe dispozitiv. Nu există cont și nu există reclame, nu rulăm niciun server, iar nimic din ce citești, scrii sau evidențiezi nu este încărcat vreodată.',
+    pp_summary2: 'Pe Android, aplicația include biblioteca Google de recunoaștere a textului, iar aceasta trimite către Google diagnostice anonime despre ea însăși — niciodată paginile sau textul tău. Detalii mai jos.',
+    pp_contact_title: 'Contact', pp_contact_text: 'Întrebări despre confidențialitate? Scrie-ne la',
+};

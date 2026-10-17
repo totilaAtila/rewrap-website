@@ -1,0 +1,147 @@
+// Rewrap — teksti latviešu valodā. Struktūrai jāatbilst en.js.
+// Pilnā privātuma politika (pp_sections) paliek angļu valodā: tā ir noteicošā versija.
+export default {
+    meta_title: 'Rewrap — lasi PDF tā, kā to pelnījuši mazie ekrāni',
+    meta_desc: 'Rewrap ir PDF lasītājs Android un iPhone ierīcēm, radīts maziem ekrāniem. Teksts tiek palielināts un pārkārtots uz vietas, nekad uz sāniem. 100% tavā tālrunī: bez mākoņa, bez konta, bez ģeneratīvā MI. Lasīšana darbojas bezsaistē.',
+
+    nav_features: 'Funkcijas', nav_gallery: 'Ekrāni', nav_pricing: 'Cena', nav_privacy: 'Privātums', nav_faq: 'Jautājumi',
+    nav_home: 'Sākums', nav_policy: 'Politika', nav_contact: 'Kontakti',
+    theme_dark: 'Nakts', theme_sepia: 'Sēpija', theme_light: 'Gaišā',
+
+    hero_pill: 'PDF lasītājs Android un iPhone ierīcēm',
+    hero_title_a: 'Lasi PDF tā, kā to ', hero_title_b: 'pelnījuši mazie ekrāni.',
+    hero_sub: 'Lappuse nekad nekļūst platāka par tavu displeju — teksts tiek palielināts un pārkārtots uz vietas, tāpēc nekas vairs neritinās uz sāniem. Viss darbojas 100% tavā tālrunī.',
+    cta_play: 'Lejupielādēt Google Play', cta_ios: 'Pievienoties iPhone beta (TestFlight)',
+    hero_note: 'Lasīšana vienmēr ir bezmaksas. Darbojas pilnībā bezsaistē. iPhone ierīcēs Rewrap ir publiskā beta versijā, izmantojot Apple lietotni TestFlight.',
+    qp_reflow: 'Pārkārtošana uz vietas', qp_scan: 'Skenējumi lasīti tālrunī', qp_offline: 'Darbojas bezsaistē', qp_privacy: 'Bez mākoņa, bez konta',
+
+    why_eyebrow: 'Pārskats', why_title: 'Radīts maziem ekrāniem.', why_sub: 'Ne klasiskais tālummaiņas režīms, ne pilns reflow — kaut kas labāks pa vidu.',
+    why: [
+          ['columns', 'Reflow, nesabojājot lappusi', 'Teksts aug un pārkārtojas uz vietas. Attēli, tabulas un zīmējumi paliek savās vietās un mērogojas kopā ar fontu — nekas neritinās uz sāniem.'],
+          ['scan', 'Skenējumi lasīti tālrunī', 'Skenētie PDF un nofotografētās lappuses tiek atpazītas tieši ierīcē. Šķībi uzņemti foto tiek iztaisnoti, blāvi skenējumi uzlaboti, kļūdas labotas pēc pierādījumiem pašā grāmatā.'],
+          ['type', 'Drukātie burti saglabāti', 'Vecie fonti, akcenti un īpašie burti paliek tieši tādi, kādi iespiesti — izgriezti no lappuses un asi pārzīmēti, nevis aizstāti ar tālruņa fontu.'],
+          ['lock', 'Patiesi privāts', 'Bez mākoņa, bez konta, bez mūsu servera. Tavas grāmatas, piezīmes un lasīšanas pozīcijas paliek tavā tālrunī, un viss darbojas lidojuma režīmā.'],
+        ],
+
+    cmp_eyebrow: 'Atšķirība', cmp_title: 'Tā pati lappuse. Lasāma.',
+    cmp_sub: 'Pa kreisi — oriģinālā lappuse divās kolonnās. Pa labi — tā pati lappuse pēc reflow: lielāks teksts, zīmējums palicis savā vietā.',
+    cmp_alt: 'Rewrap divreiz rāda vienu un to pašu akadēmisko PDF iPhone ierīcē: oriģinālo lappusi divās kolonnās un pārkārtoto lappusi ar lielāku tekstu un zīmējumu savā vietā.',
+
+    gallery_eyebrow: 'Ekrāni', gallery_title: 'Skaties uz īstas grāmatas.', gallery_sub: 'Ekrānuzņēmumi no lietotnes, īstā tālrunī.',
+    themes_eyebrow: 'Tēmas', themes_title: 'Gaišā, Sēpija, Nakts — un tīri melna.', themes_sub: 'Tēmas pārkrāso arī īsto lappusi, bet foto saglabā savas krāsas. Vari izveidot savu.',
+    gallery_prev: 'Iepriekšējais', gallery_next: 'Nākamais',
+    shots: [
+          ['Oriģināls', 'PDF tieši tāds, kā iespiests — divas kolonnas, sīks burtu izmērs.'],
+          ['Reflow', 'Tāds pats lappuses platums, teksts palielināts un pārkārtots uz vietas.'],
+          ['Skenētās grāmatas', 'Foto un skenējumi tiek atpazīti ierīcē — bez augšupielādes.'],
+          ['Sēpija', 'Tēmas, kas seko tavām acīm: gaišā, sēpija, nakts, AMOLED.'],
+          ['Nakts', 'Ērti tumsā, ar tavu teksta izmēru un atstarpēm.'],
+        ],
+
+    features_eyebrow: 'Funkcijas', features_title: 'Viss, ko tā var.', features_sub: 'Veidots funkciju pa funkcijai, pārbaudīts uz īstām grāmatām un ierīcēm.',
+    groups: [
+          ['Lasīšana, pārkārtota', [
+                  ['columns', 'Oriģināls | Reflow, viens slēdzis', 'Grāmata atveras uzreiz kā oriģinālā lappuse; viens pieskāriens parāda pārkārtoto tekstu. Abiem skatiem ir vienādas vadības iespējas.'],
+                  ['bookOpen', 'Izkārtojums, kas notur', 'Attēli, tabulas un zīmējumi saglabā savu vietu un mērogojas kopā ar fontu.'],
+                  ['type', 'Drukātie burti saglabāti', 'Izmanto pašas grāmatas burtus moderna fonta vietā — vecie fonti, akcenti un īpašie burti paliek tādi, kādi iespiesti, asi jebkurā izmērā. Izslēdzams jebkurā brīdī.'],
+                  ['palette', 'Pārkrāsota lappuse', 'Sēpija un Nakts pārkrāso arī īsto lappusi, bet foto saglabā savas krāsas.'],
+                  ['chevronsDown', 'Automātiskā ritināšana', 'Pieskaries lappusei, lai sāktu, un vēlreiz, lai apturētu. Ātrumu iestati pats, abos skatos.'],
+                  ['fileText', 'Ritināt vai šķirt lappuses', 'Nepārtraukta ritināšana vai lappuse pa lappusei. Jebkura lappuse var palikt tieši tāda, kā iespiesta.'],
+                ]],
+          ['Skenējumi un foto', [
+                  ['scan', 'Skenējumi lasīti ierīcē', 'Skenētās grāmatas un nofotografētās lappuses tiek atpazītas lokāli — bez augšupielādes, bez gaidīšanas uz serveri.'],
+                  ['sparkles', 'Labojumi pēc pierādījumiem', 'Bojāti fonti, pazudušas diakritiskās zīmes, rindas beigu defises, treknraksts un slīpraksts no oriģināla.'],
+                  ['globe', 'Rakstība, ko citi izlaiž', 'Grieķu, kirilica (krievu, ukraiņu, bulgāru, serbu) un ungāru valoda ar pareizu ő un ű — bezsaistē.'],
+                  ['camera', 'Kameras skeneris', 'Skenē lappuses ar kameru, sadali divu lappušu skenējumus, iztaisno šķībi uzņemtus foto.'],
+                  ['pencil', 'Izlabo vārdu vienreiz', 'Izlabo jebkuru vārdu pats, un labojums kļūst par likumu katram tā parādīšanās gadījumam grāmatā.'],
+                  ['image', 'Formāti', 'PDF, EPUB, TXT un foto — viens foto, vesela mape kā viena grāmata vai vairāki foto, sasieti PDF. Rewrap parādās arī citu lietotņu izvēlnē „Atvērt ar”.'],
+                ]],
+          ['Klausies un mācies', [
+                  ['volume', 'Lasīšana skaļi', 'Dabiska teksta pārvēršana runā grāmatas valodā. Izvēlies balsi un ātrumu (un runas dzinēju Android ierīcēs), seko izrunātajam vārdam, klausies tālāk ar izslēgtu ekrānu.'],
+                  ['pencil', 'Piezīmes un izcēlumi', 'Izceļ fragmentus un raksti savas piezīmes; uz malas paliek maza atzīme, un abi saglabājas, kad maini fontu.'],
+                  ['search', 'Meklēšana visā grāmatā', 'Meklēšana, kas neņem vērā akcentus latīņu, grieķu un kirilicas rakstībā, atrod vārdus visā grāmatā uzreiz, pat vēl nesagatavotās lappusēs.'],
+                  ['bookmark', 'Grāmatzīmes un pozīcija', 'Grāmatzīmes un atcerēta pozīcija katrai grāmatai.'],
+                  ['list', 'Satura rādītājs', 'Pašas grāmatas vai no virsrakstiem izveidots. Vāki tiek rādīti tādi, kādi iespiesti.'],
+                  ['info', 'Pieskaries, lai uzzinātu nozīmi', 'Uzmeklē vārdu savā bezsaistes vārdnīcā.'],
+                ]],
+          ['Komforts un pieejamība', [
+                  ['palette', 'Tēmas', 'Gaišā, Sēpija, Nakts, tīri melna AMOLED un pašu veidotas tēmas.'],
+                  ['type', 'Izmērs un atstarpes', 'Teksta izmērs tiek atcerēts katrai grāmatai atsevišķi, ar noregulējamām rindu un burtu atstarpēm.'],
+                  ['ruler', 'Lasīšanas lineāls', 'Aptumšo visu, izņemot rindas, kuras lasi.'],
+                  ['eye', 'Draudzīgs disleksijai', 'Disleksijai draudzīgs fonts un bioniskais treknraksts, kas darbojas pat skenētām grāmatām, jo teksts tiek saskaņots no jauna.'],
+                  ['globe', 'Tava valoda', '17 saskarnes valodas, portreta vai ainavas orientācijā.'],
+                ]],
+          ['Eksports, konvertēšana un pārvietošana', [
+                  ['share', 'Konvertēšana', 'Pārvērt jebkuru grāmatu par EPUB, TXT vai DOCX ar īstām nodaļām un iztīrītu tekstu — vai saglabā kā PDF ar saviem izcēlumiem un piezīmēm kā īstām anotācijām.'],
+                  ['fileText', 'Tavas piezīmes, eksportētas', 'Eksportē izcēlumus un piezīmes kā TXT, Markdown, Anki kartītes vai PDF.'],
+                  ['package', 'Rewrap pakotne', 'Viens fails aiznes grāmatu un visu tavu darbu — pozīciju, grāmatzīmes, izcēlumus, piezīmes, labojumus — uz citu tālruni, Android vai iPhone. Bez Rewrap tas ir parasts ZIP.'],
+                  ['rotate', 'Drošības tīkli', 'Automātiskas dublējumkopijas ierīcē, neobligāta mākoņa kopija tavā kontrolē un pārnēsājams lasīšanas datu eksports un imports.'],
+                  ['shield', 'Godīgi kļūdu ziņojumi', 'Problēmu ziņotājs nepievieno neko tehnisku bez tavas skaidras piekrišanas.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Cena', pricing_title: 'Lasīt bez maksas. Viena atbloķēšana smagajam darbam.', pricing_sub: 'Viens pirkums, vienreiz — bez abonementa, bez reklāmām, bez konta.',
+    plans: [
+          ['bookOpen', 'Bez maksas, vienmēr', 'Pati lasīšana. Bez lappušu, grāmatu un laika ierobežojuma.', [
+                  'Digitālie PDF, EPUB un TXT, pārkārtoti un palielināti',
+                  'Visas tēmas, atstarpes, disleksijai draudzīgais fonts un lasīšanas lineāls',
+                  'Meklēšana, grāmatzīmes, satura rādītājs, tava pozīcija katrā grāmatā',
+                  'Izcēlumi, savas piezīmes un vārdu labojumi',
+                  'Savu izcēlumu, piezīmju un lasīšanas datu eksports',
+                ]],
+          ['unlock', 'Vienreizēja atbloķēšana', 'Smagais darbs, paveikts tavā tālrunī.', [
+                  'Skenēto grāmatu un nofotografēto lappušu atpazīšana',
+                  'Kameras skeneris un perspektīvas korekcija',
+                  'Lasīšana skaļi',
+                  'Konvertēšana uz EPUB, TXT, DOCX vai PDF',
+                  'Tīrā lasīšana',
+                  'Viss, ko jau esi atpazinis vai konvertējis, paliek lasāms',
+                ]],
+        ],
+    pricing_trial_a: '14 dienas, viss atbloķēts.', pricing_trial_b: 'Jaunas Android instalācijas sākas ar izmēģinājumu ar pilnu piekļuvi — izmēģini to uz savām grāmatām. Lietotne paziņo dažas dienas pirms beigām; pēc tam lasīšana paliek bez maksas.',
+    pricing_ios: 'iPhone ierīcēs Rewrap ir beta versijā un pašlaik viss ir atvērts; vienreizējā atbloķēšana parādīsies kopā ar App Store izlaidumu.',
+    pricing_store: 'Atbloķēšanu pērk tā tālruņa veikalā, kuru izmanto. Rewrap nav konta un servera, tāpēc Android ierīcē pirkta atbloķēšana nepāriet uz iPhone, un otrādi.',
+
+    privacy_eyebrow: 'Privātums', privacy_title: 'Privāts pēc noklusējuma.', privacy_sub: 'Tavas grāmatas nekad neatstāj tālruni.',
+    privacy_btn: 'Lasīt privātuma politiku',
+    cards: [
+          ['database', 'Lokāla glabāšana', 'Grāmatas, piezīmes, izcēlumi un lasīšanas pozīcijas tiek glabātas tikai tavā ierīcē.'],
+          ['wifiOff', 'Darbojas bezsaistē', 'Lasīšanai — ieskaitot skenējumus — interneta savienojums nav vajadzīgs.'],
+          ['eyeOff', 'Bez izsekošanas', 'Bez mūsu pašu analītikas un reklāmām, un bez ģeneratīvā MI.'],
+          ['lock', 'Bez servera, bez konta', 'Mēs neuzturam serveri, un nav, kur reģistrēties.'],
+          ['shield', 'Godīgi par izņēmumiem', 'Android ierīcēs Google teksta atpazīšanas bibliotēka nosūta Google anonīmu diagnostiku par sevi — nekad tavas lappuses vai tekstu. Politika to uzskaita pilnībā.'],
+          ['fileText', 'Faili, ko izvēlies tu', 'Rewrap atver tikai tos failus, kurus izvēlies, izmantojot sistēmas dokumentu atlasītāju.'],
+        ],
+
+    faq_eyebrow: 'Jautājumi', faq_title: 'Jautājumi un īsā rokasgrāmata.', faq_sub: 'Tie paši jautājumi, uz kuriem atbild lietotnes rokasgrāmata — pieskaries kādam, lai redzētu atbildi.',
+    faqs: [
+          ['Vai Rewrap ir bezmaksas?', 'Lasīšana ir bezmaksas uz visiem laikiem: digitālie PDF, EPUB un TXT, pārkārtoti un palielināti, ar visām tēmām, meklēšanu, grāmatzīmēm, taviem izcēlumiem, savām piezīmēm un labojumiem. Vienreizēja atbloķēšana pievieno smago darbu — skenējumu atpazīšanu, kameras skeneri, lasīšanu skaļi, konvertēšanu uz citiem formātiem un tīro lasīšanu. Android ierīcēs jaunas instalācijas saņem 14 dienu izmēģinājumu ar visu atvērtu; iPhone ierīcēs beta laikā viss ir atvērts.'],
+          ['Kur to var lejupielādēt?', 'Android ierīcēs — Google Play. iPhone ierīcēs Rewrap ir publiskā beta versijā, izmantojot Apple lietotni TestFlight — izmanto šīs lapas pogu „Pievienoties iPhone beta”.'],
+          ['Vai tas darbojas bezsaistē?', 'Jā. Lasīšana — ieskaitot skenēto grāmatu atpazīšanu — notiek tālrunī, tāpēc darbojas lidojuma režīmā.'],
+          ['Kādus datus jūs vācat?', 'Nevienu no tava satura: mēs neuzturam serveri un mums nav kontu sistēmas. Precīzas detaļas, ieskaitot vienīgo diagnostikas izņēmumu Android ierīcēs, ir privātuma politikā.'],
+          ['Kādās valodās tā runā?', 'Lietotnei ir 17 saskarnes valodas, un šī vietne ir pieejama deviņās no tām. Teksta atpazīšana aptver latīņu, grieķu un kirilicas rakstību, kā arī ungāru valodu ar pareizu ő un ű.'],
+          ['Kā redzēt oriģinālo lappusi?', 'Ekrāna augšdaļā slēdzis Oriģināls | Reflow izvēlas, ko redzi: lappusi tieši tādu, kā iespiesta, vai palielinātu un pārkārtotu tekstu. Abiem skatiem ir vienādas vadības iespējas. Oriģinālā savelc pirkstus, lai pietuvinātu tabulu vai zīmējumu. Ja atsevišķu lappusi labāk atstāt neskartu — vāku, ielīmi, shēmu — kreisā atvilktne piedāvā „Rādīt šo lappusi kā oriģinālu”: šī lappuse paliek tāda, kā iespiesta, tiek atcerēta nākamreiz un joprojām ir meklējama.'],
+          ['Kā sākt un apturēt automātisko ritināšanu?', 'Pieskaries lappusei (vai lielajai ▶ pogai), lai sāktu ritināšanu; pieskaries vēlreiz, lai apturētu. Ātrums ir zobrata iestatījumos, cilnē Lasīšana. Ritinot viss paslēpjas, izņemot šauro joslu ar nosaukumu un lappuses numuru — un augšējo Oriģināls | Reflow slēdzi.'],
+          ['Kā šķirt lappuses kā drukātā grāmatā?', 'Atver labo atvilktni un zem „Lappušu šķiršana” izvēlies horizontālās bultiņas. Pēc tam velc pa kreisi vai pa labi, vai pieskaries ekrāna kreisajai vai labajai malai. Vertikālā bultiņa atgriež nepārtraukto ritināšanu. Iestatījums attiecas gan uz Oriģinālu, gan uz Reflow.'],
+          ['Kā klausīties grāmatu, kas tiek lasīta skaļi?', 'Pieskaries mikrofonam darbību joslā. Balss turpina lasīt ar izslēgtu ekrānu, ar vadību bloķēšanas ekrānā un austiņās. Balss un tās ātrums (un Android ierīcēs dzinējs) ir zobrata iestatījumos, cilnē Balss.'],
+          ['Vārds no skenējuma izskatās nepareizi — ko darīt?', 'Pieskaries labošanas ikonai darbību joslā (tastatūra Android ierīcēs, burts A ar teksta kursoru iPhone ierīcēs), pēc tam vārdam: parādās atlases rāmis ar rokturiem, ko vari vilkt pāri blakus rakstzīmēm; pieskaries atlasei, lai labotu. Labojums tiek saglabāts kā likums visai grāmatai. Ja visa skenētā grāmata lasās slikti, ieslēdz „Piespiedu OCR” (labā atvilktne vai zobrata iestatījumi, cilne Dokuments).'],
+          ['Kāpēc teksts izskatās kā drukātā grāmata, nevis kā tālruņa fonts?', 'Reflow režīmā Rewrap var izmantot pašas grāmatas burtus, izgrieztus no lappuses, tā vietā, lai pārzīmētu tekstu modernā fontā. Vecie fonti, akcenti un īpašie burti paliek tādi, kādi iespiesti — pat ja faila teksta slānis tos ir pazaudējis — un to kontūras tiek gludi pārzīmētas, tāpēc tie paliek asi jebkurā izmērā. Izslēdz to ar „Oriģinālie burti” (cilne Teksts vai labā atvilktne). Disleksijai draudzīgais fonts, trekni vārdu sākumi un burtu atstarpes pārslēdz grāmatu uz pārzīmētu tekstu, jo tie aizstāj drukātos burtus.'],
+          ['Kāpēc jaunai grāmatai vajag mirkli, lai pārkārtotos?', 'Jauna grāmata atveras uzreiz, rādot oriģinālo lappusi. Tikmēr lietotne klusi sagatavo tekstu fonā — nosaka valodu un skenētām grāmatām atpazīst lappuses. Kad pieskaries Reflow, tu gaidi tikai lappusi, kurā esi; pārējā turpina gatavoties, kamēr lasi, ar progresa piezīmi apakšējā joslā. Grāmata, kuru jau esi atvēris, ir gatava uzreiz.'],
+          ['Kā pārvietot savu lasīšanu uz citu tālruni?', 'Iestatījumos izmanto „Eksportēt lasīšanas datus”, lai saglabātu pozīcijas, grāmatzīmes, izcēlumus, piezīmes un labojumus failā, pēc tam importē to otrā tālrunī. Vai iepako vienu grāmatu kopā ar visu uz tās caur „Eksportēt kā → Rewrap pakotne”: atverta Rewrap citā tālrunī — Android vai iPhone — grāmata atgriežas tieši tāda, kādu to atstāji.'],
+        ],
+
+    footer_tagline: 'PDF lasītājs Android un iPhone ierīcēm.',
+    footer_links: 'Izpēti', footer_contact: 'Kontakti', footer_email: 'Atsauksmes',
+    footer_feedback: 'Kaut kas nedarbojas vai ir ideja? Raksti mums — tēma „Rewrap feedback”.',
+    footer_rights: 'Visas tiesības aizsargātas.',
+    footer_marks: 'Google Play un Google Play logotips ir Google LLC preču zīmes. Apple un TestFlight ir Apple Inc. preču zīmes.',
+
+    pp_title: 'Privātuma politika',
+    pp_intro: 'Rewrap ir veidots tā, lai tavas grāmatas paliktu tavā tālrunī. Šī politika izskaidro, ko tas nozīmē praksē.',
+    pp_updated: 'Pēdējoreiz atjaunināts',
+    pp_note_en: 'Pilnā politika zemāk ir angļu valodā — tā ir noteicošā versija.',
+    pp_summary_title: 'Īsumā',
+    pp_summary1: 'Tavas grāmatas paliek tavā tālrunī. Lasīšana darbojas bez jebkāda interneta savienojuma — atver skenētu grāmatu lidojuma režīmā, un tā tāpat tiek atpazīta un pārkārtota ierīcē. Nav konta un nav reklāmu, mēs neuzturam serveri, un nekas, ko tu lasi, raksti vai izcel, nekad netiek augšupielādēts.',
+    pp_summary2: 'Android ierīcēs lietotnē ir iekļauta Google teksta atpazīšanas bibliotēka, un tā nosūta Google anonīmu diagnostiku par sevi — nekad tavas lappuses un nekad tavu tekstu. Sīkāk zemāk.',
+    pp_contact_title: 'Kontakti', pp_contact_text: 'Jautājumi par privātumu? Raksti uz',
+};

@@ -1,239 +1,225 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rewrap — read PDFs the way small screens deserve</title>
-<meta name="theme-color" content="#0d1117" />
-<meta name="description" content="Rewrap is a PDF reader for Android and iPhone, made for small screens. The page never grows wider than your display — text is enlarged and rewrapped in place. 100% on your phone: no cloud, no account, no AI. Reading works offline." />
-<meta property="og:type" content="website" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0b1118" />
+<meta name="description" content="Rewrap is a PDF reader for Android and iPhone, made for small screens. Text is enlarged and re-laid out in place, never sideways. 100% on your phone: no cloud, no account, no generative AI. Reading works offline." />
+<meta name="robots" content="index, follow" />
 <meta property="og:title" content="Rewrap — make every PDF readable" />
 <meta property="og:description" content="On-device. Offline. Private. A PDF reader for small screens: text is enlarged and re-laid out in place, never sideways." />
+<meta property="og:type" content="website" />
 <meta property="og:image" content="https://rewrap-pdf.vercel.app/hero.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<style>
-  :root{
-    --bg:#0d1117; --bg2:#111a24; --card:rgba(255,255,255,.055); --stroke:rgba(255,255,255,.12);
-    --ink:#eef3f8; --muted:#9db0c2; --accent:#5fb1ff; --accent2:#8ad;
-  }
-  @media (prefers-color-scheme: light){
-    :root{ --bg:#eef2f6; --bg2:#e3ebf3; --card:rgba(255,255,255,.7); --stroke:rgba(20,40,60,.12);
-      --ink:#16222e; --muted:#4a5a68; --accent:#1f6feb; --accent2:#2f7; }
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink); background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(95,177,255,.16), transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, rgba(120,220,180,.10), transparent 55%),
-      linear-gradient(160deg,var(--bg),var(--bg2));
-    background-attachment:fixed; line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-  header{padding:70px 0 30px;text-align:center}
-  .badge{display:inline-block;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;
-    color:var(--accent);border:1px solid var(--stroke);border-radius:999px;padding:6px 14px;margin-bottom:22px;
-    background:var(--card)}
-  h1{font-size:clamp(30px,6vw,52px);line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
-  h1 .g{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .brand{font-weight:800;font-size:22px;letter-spacing:-.01em;margin-bottom:20px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lead{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:720px;margin:0 auto}
-  .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0 6px}
-  .pill{font-size:13.5px;color:var(--ink);background:var(--card);border:1px solid var(--stroke);
-    border-radius:999px;padding:8px 15px;backdrop-filter:blur(8px)}
-  .hero{margin:34px 0 0;border-radius:22px;overflow:hidden;border:1px solid var(--stroke);
-    box-shadow:0 24px 60px rgba(0,0,0,.35);line-height:0}
-  .hero img{width:100%;height:auto;display:block}
-  .gal{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 18px;-webkit-overflow-scrolling:touch}
-  .gal figure{flex:0 0 min(78vw,300px);margin:0;scroll-snap-align:center}
-  .gal img{width:100%;height:auto;display:block;border-radius:22px;border:1px solid var(--stroke);box-shadow:0 14px 34px rgba(0,0,0,.3);background:var(--card)}
-  .gal figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
-  .gal figcaption strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
-  @media(min-width:1020px){.gal{justify-content:center;overflow:visible}.gal figure{flex-basis:18%}}
-  .trial{margin-top:16px;background:var(--card);border:1px solid var(--stroke);border-left:3px solid var(--accent);
-    border-radius:14px;padding:14px 18px;color:var(--muted);font-size:14.5px;backdrop-filter:blur(10px)}
-  .trial strong{color:var(--ink)}
-  nav.top{position:sticky;top:0;z-index:5;display:flex;gap:6px;justify-content:center;padding:10px 12px;
-    background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--stroke)}
-  nav.top a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px}
-  nav.top a:hover{color:var(--ink);background:var(--card)}
-  html{scroll-behavior:smooth} section[id]{scroll-margin-top:60px}
-  section{padding:34px 0}
-  h2{font-size:clamp(21px,3.2vw,28px);margin:0 0 8px;letter-spacing:-.01em}
-  .sub{color:var(--muted);margin:0 0 26px;max-width:720px}
-  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-  .big{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:24px;backdrop-filter:blur(10px)}
-  .big h3{margin:0 0 8px;font-size:19px}
-  .big p{margin:0;color:var(--muted);font-size:15px}
-  .k{font-size:26px;margin-bottom:10px;display:block}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px)}
-  .card h4{margin:0 0 6px;font-size:16px}
-  .card p{margin:0;color:var(--muted);font-size:14px}
-  .privacy{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:26px;text-align:center;backdrop-filter:blur(10px)}
-  .privacy strong{color:var(--ink)}
-  .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:28px 0 4px}
-  .play-badge{display:inline-block;line-height:0;transition:transform .12s ease}
-  .play-badge:hover{transform:translateY(-1px)}
-  .play-badge img{height:74px;width:auto;margin:-10px -8px}
-  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15.5px;border-radius:14px;
-    padding:14px 22px;border:1px solid var(--stroke);transition:transform .12s ease}
-  .btn:hover{transform:translateY(-1px)}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#08121c}
-  .btn-secondary{background:var(--card);color:var(--ink);backdrop-filter:blur(8px)}
-  .cta-note{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
-  details.qa{background:var(--card);border:1px solid var(--stroke);border-radius:14px;
-    padding:0;margin-bottom:10px;backdrop-filter:blur(10px);overflow:hidden}
-  details.qa summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:15.5px;
-    display:flex;align-items:center;gap:10px}
-  details.qa summary::-webkit-details-marker{display:none}
-  details.qa summary::before{content:"▸";color:var(--accent);flex:0 0 auto;transition:transform .15s ease}
-  details.qa[open] summary::before{transform:rotate(90deg)}
-  details.qa .a{padding:0 18px 15px 40px;color:var(--muted);font-size:14.5px}
-  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:13.5px}
-  footer a{color:var(--accent);text-decoration:none}
-  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
-</style>
+<link rel="icon" type="image/png" href="/assets/brand/icon_512.png" />
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/src/styles.css" />
+<title>Rewrap — read PDFs the way small screens deserve</title>
+<script>
+// Set the theme before first paint so the page never flashes the wrong one.
+(function () {
+  try {
+    var t = localStorage.getItem('rewrap-theme');
+    if (t !== 'dark' && t !== 'sepia' && t !== 'light') {
+      t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
-  <nav class="top" aria-label="Sections"><a href="#gallery">Screens</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#guide">Questions</a></nav>
-  <div class="wrap">
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+<button class="brand" data-nav="home" aria-label="Rewrap home">
+<img src="/assets/brand/icon_512.png" alt="" />
+<span>Rewrap</span>
+</button>
+<nav class="desktop-nav" id="desktop-nav" aria-label="Main"></nav>
+<div class="actions">
+<div class="theme-seg" role="group" aria-label="Theme">
+<button class="seg-btn" data-theme-set="dark"></button>
+<button class="seg-btn" data-theme-set="sepia"></button>
+<button class="seg-btn" data-theme-set="light"></button>
+</div>
+<div class="lang">
+<button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false"></button>
+<div class="lang-menu" id="lang-menu" hidden></div>
+</div>
+<button class="icon-btn menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"></button>
+</div>
+<div class="mobile-menu" id="mobile-menu" hidden></div>
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+</header>
 
-    <header>
-      <div class="brand">Rewrap</div>
-      <span class="badge">On Google Play &amp; the App Store</span>
-      <h1>Read PDFs the way<br><span class="g">small screens deserve</span></h1>
-      <p class="lead">A PDF reader for Android and iPhone. The page never grows wider than your display — text is <strong>enlarged and re-laid out in place</strong>, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
-      <div class="pills">
-        <span class="pill">No cloud</span>
-        <span class="pill">No account</span>
-        <span class="pill">Works offline</span>
-        <span class="pill">Free to read · one-time unlock</span>
-      </div>
-      <div class="cta">
-        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.rewrap.app"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a>
-        <a class="btn btn-secondary" href="https://testflight.apple.com/join/cNFZfETe">Download on the App Store</a>
-      </div>
-      <div class="cta-note">Also available for iPhone on the App Store.</div>
-      <div class="cta-note" style="margin-top:6px">Something not working, or an idea? Write to <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span> — subject <em>Rewrap feedback</em>.</div>
-      <div class="hero"><picture><source srcset="hero.webp" type="image/webp"><img src="hero.jpg" width="2000" height="857" alt="Rewrap showing the same academic PDF twice on an iPhone: the original two-column page, and the reflowed page with larger text, the figure kept in place."></picture></div>
-    </header>
+<noscript><p style="max-width:640px;margin:40px auto;padding:0 22px;font-family:sans-serif">Rewrap is a PDF reader for Android and iPhone: text is enlarged and re-laid out in place, never sideways, entirely on your phone. This page needs JavaScript. Get it on <a href="https://play.google.com/store/apps/details?id=com.rewrap.app">Google Play</a> or join the <a href="https://testflight.apple.com/join/cNFZfETe">iPhone beta</a>.</p></noscript>
 
-    <section id="gallery">
-      <h2>See it on a real book</h2>
-      <p class="sub">Screenshots from the app, on a real phone.</p>
-      <div class="gal"><figure><img src="shots/original.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Original"><figcaption><strong>Original</strong>The PDF exactly as printed — two columns, tiny type.</figcaption></figure><figure><img src="shots/reflow.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Reflow"><figcaption><strong>Reflow</strong>Same page width, text enlarged and re-laid out in place.</figcaption></figure><figure><img src="shots/sepia.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Sepia"><figcaption><strong>Sepia</strong>Themes that follow your eyes: light, sepia, night, AMOLED.</figcaption></figure><figure><img src="shots/night.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Night"><figcaption><strong>Night</strong>Comfortable in the dark, with your own text size and spacing.</figcaption></figure><figure><img src="shots/scan.webp" width="640" height="1190" loading="lazy" alt="Rewrap — Scanned books"><figcaption><strong>Scanned books</strong>Photos and scans are recognized on the device — no upload.</figcaption></figure></div>
-    </section>
+<!-- ============ HOME ============ -->
+<main id="page-home">
+<section class="hero" id="top">
+<div class="hero-text">
+<span class="pill"><span class="i" data-icon="bookOpen"></span> <span data-i18n="hero_pill">PDF reader for Android and iPhone</span></span>
+<h1 class="serif"><span data-i18n="hero_title_a">Read PDFs the way </span><span class="accent" data-i18n="hero_title_b">small screens deserve.</span></h1>
+<p class="hero-sub" data-i18n="hero_sub">The page never grows wider than your display — text is enlarged and re-laid out in place, so nothing ever scrolls sideways. Everything runs 100% on your phone.</p>
+<div class="cta-row">
+<a class="btn btn-primary" id="cta-play" target="_blank" rel="noopener"><span class="i" data-icon="download"></span> <span data-i18n="cta_play">Get it on Google Play</span></a>
+<a class="btn btn-secondary" id="cta-ios" target="_blank" rel="noopener"><span class="i" data-icon="phone"></span> <span data-i18n="cta_ios">Join the iPhone beta (TestFlight)</span></a>
+</div>
+<p class="note" data-i18n="hero_note"></p>
+<div class="qp" id="quick-points"></div>
+</div>
+<div class="hero-device">
+<div class="wrap">
+<div class="glow" aria-hidden="true"></div>
+<div class="phone phone--hero"><img src="/assets/screenshots/reflow.webp" width="640" height="1190" alt="Rewrap — Reflow" /></div>
+</div>
+</div>
+</section>
 
-    <section id="why">
-      <div class="three">
-        <div class="big">
-          <span class="k">📐</span>
-          <h3>Reflow without breaking the page</h3>
-          <p>Not classic zoom, which forces sideways scrolling — and not full reflow, which destroys the layout. Text grows and rewraps in place; images, tables and figures stay where they belong and scale with the font.</p>
-        </div>
-        <div class="big">
-          <span class="k">🔍</span>
-          <h3>Scans read on the phone</h3>
-          <p>Scanned PDFs and photographed pages are recognized right on the device. Angled photos are straightened, faint scans enhanced, and recognition errors repaired from evidence in the book itself.</p>
-        </div>
-        <div class="big">
-          <span class="k">🔒</span>
-          <h3>Truly private</h3>
-          <p>No cloud, no account, no server of ours. Your books, notes and reading positions stay on your phone — and everything works in airplane mode. <a href="/privacy/">What leaves the device, exactly</a>.</p>
-        </div>
-      </div>
-    </section>
+<section class="section" id="overview">
+<div class="heading">
+<p class="eyebrow" data-i18n="why_eyebrow">Overview</p>
+<h2 class="serif h2" data-i18n="why_title">Made for small screens.</h2>
+<p class="lead" data-i18n="why_sub"></p>
+</div>
+<div class="grid3 grid4" id="why-grid"></div>
+</section>
 
-    <section id="features">
-      <h2>Everything it does</h2>
-      <p class="sub">Built feature by feature, measured on real books and real devices.</p>
-      <div class="grid">
-        <div class="card"><h4>Original | Reflow, one switch</h4><p>A book opens instantly as the original page; one tap shows the reflowed text on the same page. Both views share the same controls, auto-scroll included — and Sepia or Night recolour the real page too, while photos keep their colours.</p></div>
-        <div class="card"><h4>Faithful text</h4><p>Digital PDFs are read exactly from the file's text layer, in any language. Scans get on-device recognition with evidence-based repairs: broken fonts, lost diacritics, end-of-line hyphens, bold and italic from the original. Fix any word yourself, and the fix becomes a rule for every occurrence in the book.</p></div>
-        <div class="card"><h4>Formats &amp; camera</h4><p>PDF, EPUB, TXT and photos — one photo, a whole folder as one book, or several bound into a PDF. Scan pages with the camera, split double-page scans, straighten angled shots. Rewrap also shows up in other apps' "Open with" menu.</p></div>
-        <div class="card"><h4>Read aloud</h4><p>Natural text-to-speech in the book's own language: choose engine, voice and speed, follow the spoken word on the page, and keep listening with the screen off — from the lock screen or your headphones.</p></div>
-        <div class="card"><h4>Notes &amp; highlights</h4><p>Highlight passages and write your own notes; a small mark stays in the margin. Both hold when you change the font, and both export as text, Markdown, Anki cards, or a PDF with real annotations.</p></div>
-        <div class="card"><h4>Navigate</h4><p>Accent-insensitive full-text search (Latin, Greek and Cyrillic), bookmarks, a table of contents — the book's own or one built from headings — tap-to-define with your offline dictionary, and a remembered position per book. Covers are shown as printed.</p></div>
-        <div class="card"><h4>Export, convert &amp; move</h4><p>Turn any book into EPUB, TXT or DOCX with real chapters and cleaned text. The Rewrap package carries the book and all your work — position, bookmarks, highlights, notes, corrections — to another phone in one file (a plain ZIP without Rewrap).</p></div>
-        <div class="card"><h4>Comfort &amp; accessibility</h4><p>Light, Sepia, Night, pure-black AMOLED and custom themes; line and letter spacing; a reading ruler; bionic bold; and a dyslexia-friendly font that works even on scanned books, because the text is re-typeset. Portrait or landscape, in 17 interface languages.</p></div>
-        <div class="card"><h4>Safety nets</h4><p>Automatic on-device backups, an optional cloud backup you control, portable export and import of your reading data, and an issue reporter that attaches nothing technical without your explicit consent. Any page can be shown exactly as printed, one tap away.</p></div>
-      </div>
-    </section>
+<section class="section section--tight" id="compare">
+<div class="heading">
+<p class="eyebrow" data-i18n="cmp_eyebrow"></p>
+<h2 class="serif h2" data-i18n="cmp_title"></h2>
+<p class="lead" data-i18n="cmp_sub"></p>
+</div>
+<figure class="compare">
+<picture><source srcset="/hero.webp" type="image/webp" /><img id="cmp-img" src="/hero.jpg" width="1600" height="686" loading="lazy" alt="" /></picture>
+</figure>
+</section>
 
-    <section id="pricing">
-      <h2>What's free, and what the unlock adds</h2>
-      <p class="sub">Reading stays free forever. One purchase, once — no subscription, no ads, no account.</p>
-      <div class="grid">
-        <div class="card"><h4>Free, always</h4><p>Reading itself: digital PDFs, EPUB and TXT, reflowed and enlarged; all themes, spacing, the dyslexia font, the reading ruler; search, bookmarks, the table of contents and your position in every book; highlighting passages, writing your own notes, correcting words, and exporting your own highlights, notes and reading data. No page limit, no book limit, no time limit.</p></div>
-        <div class="card"><h4>One-time unlock</h4><p>The heavy work: recognizing scanned books and photographed pages, the camera scanner and perspective correction, read-aloud, converting to EPUB/TXT/DOCX/PDF, and clean reading. Everything you already recognized or converted stays readable.</p></div>
-      </div>
-      <div class="trial"><strong>14 days, everything unlocked.</strong> New installs start with a full-access trial — try it on your own books — and the app tells you a few days before it ends. After that, reading stays free.</div>
-    </section>
+<section class="section section--tight" id="themes">
+<div class="heading">
+<p class="eyebrow" data-i18n="themes_eyebrow"></p>
+<h2 class="serif h2" data-i18n="themes_title"></h2>
+<p class="lead" data-i18n="themes_sub"></p>
+</div>
+<div class="themes-row" id="themes-row"></div>
+</section>
 
+<section class="section" id="gallery">
+<div class="heading">
+<p class="eyebrow" data-i18n="gallery_eyebrow"></p>
+<h2 class="serif h2" data-i18n="gallery_title"></h2>
+<p class="lead" data-i18n="gallery_sub"></p>
+</div>
+<div class="gallery-wrap">
+<button class="gal-btn left" id="gal-prev" aria-label="Previous"></button>
+<div class="phone phone--gallery"><img id="gal-img" src="" alt="" /></div>
+<button class="gal-btn right" id="gal-next" aria-label="Next"></button>
+<div class="gal-caption"><h3 class="serif" id="gal-title"></h3><p id="gal-desc"></p></div>
+<div class="dots" id="gal-dots"></div>
+</div>
+</section>
 
-    <section id="guide">
-      <h2>Questions &amp; quick guide</h2>
-      <p class="sub">The same questions the in-app guide answers — tap one to see the answer.</p>
+<section class="section" id="features">
+<div class="heading">
+<p class="eyebrow" data-i18n="features_eyebrow"></p>
+<h2 class="serif h2" data-i18n="features_title"></h2>
+</div>
+<div class="free-row"><span class="free-pill" data-i18n="features_sub"></span></div>
+<div class="feature-groups" id="feature-groups"></div>
+</section>
 
-      <details class="qa"><summary>How do I start and stop the automatic scrolling?</summary>
-        <div class="a">Tap the page (or the big ▶ button) to start scrolling; tap again to pause. The scrolling speed is in the gear settings, on the Reading tab. While it scrolls, everything tucks away except the slim bar with the title and page number — and, on a PDF, the “View as classic PDF” pill at the top.</div>
-      </details>
-      <details class="qa"><summary>How do I turn pages like in a printed book?</summary>
-        <div class="a">Open the right-hand drawer (the ≡ on the right of the small centre pill) and choose the horizontal arrows under "Turn pages". Then swipe left/right or tap the left/right edge of the screen to turn pages. The vertical arrow brings back continuous scrolling. In page-turning mode the action bar tucks itself away — bring it back with the arrow at the left end of the bottom bar, or swipe up from the bottom.</div>
-      </details>
-      <details class="qa"><summary>How do I make the text bigger or smaller?</summary>
-        <div class="a">Pinch with two fingers directly on the page, or use the − + buttons in the right-hand drawer. The size is remembered separately for each book, and the app caps it so lines never get too short to read.</div>
-      </details>
-      <details class="qa"><summary>Where is the menu while I'm reading?</summary>
-        <div class="a">The slim bar at the bottom is always there: title, page, percent, search — and an arrow at its left end. Tap the arrow to reveal the action bar, the “‹ Library” button that leaves the book and the two ≡ buttons that open the side drawers; tap it again to tuck everything away. A tap on the page itself only pauses or resumes the reading.</div>
-      </details>
-      <details class="qa"><summary>How do I see the ORIGINAL page?</summary>
-        <div class="a">Tap the "View as classic PDF" pill at the top: the book opens exactly as printed, page by page, with pinch-zoom — useful for tables, figures or checking the text. The arrows at its ends choose how you browse: sideways or up and down. It starts on the page you are reading and brings you back to it when you close it. If a single page is better left alone — a cover, a plate, a diagram — the left drawer offers "Show this page as the original": that page alone stays as printed, remembered for next time, and still searchable.</div>
-      </details>
-      <details class="qa"><summary>How do I listen to the book being read aloud?</summary>
-        <div class="a">Tap the microphone in the action bar. The voice keeps reading with the screen off, with controls on the lock screen and your headphones. The voice, its speed and the engine are in the gear settings, on the Voice tab.</div>
-      </details>
-      <details class="qa"><summary>How do I highlight passages and export them?</summary>
-        <div class="a">Tap the pencil to enter marking mode, then tap paragraphs to highlight them; tap the pencil again to finish. The list lives in the left drawer under "Highlights", where you can jump to each passage, delete it, or export everything as TXT, Markdown, Anki or PDF.</div>
-      </details>
-      <details class="qa"><summary>A word from a scan looks wrong — what can I do?</summary>
-        <div class="a">Tap the "A✓" icon in the action bar, then tap the word: a selection box appears with handles you can drag over neighbouring characters; tap the selection to correct it. The fix is saved as a durable rule for the whole book. If a whole scanned book reads badly, turn on "Forced OCR" (right-hand drawer or gear settings, Document tab).</div>
-      </details>
-      <details class="qa"><summary>What is there for dyslexic readers?</summary>
-        <div class="a">In the gear settings, on the Text tab: a dyslexia-friendly font (OpenDyslexic) that works even on scanned books, bold word-beginnings for easier focus, a reading ruler that dims everything except the current lines, and wider letter and line spacing (also in the right-hand drawer). Read-aloud can help too.</div>
-      </details>
-      <details class="qa"><summary>How do I move my reading data to another phone?</summary>
-        <div class="a">In Settings, use "Export reading data" to save positions, bookmarks, highlights, notes and corrections to a file, then import it on the other phone. Or pack ONE book together with everything on it via "Export as → Rewrap package" — opened in Rewrap on the other phone, the book comes back exactly as you left it.</div>
-      </details>
-      <details class="qa"><summary>What is free, and what needs the unlock?</summary>
-        <div class="a">Reading is free forever: digital PDFs, EPUB and TXT, reflowed and enlarged, with all the themes, search, bookmarks, your highlights, your own notes and your corrections. A single one-time unlock adds the heavy work: recognizing scanned books, the camera scanner, read-aloud, converting to other formats and clean reading. New installs start with a 14-day trial with full access to everything, so you can try the heavy work on your own books first; after that, reading stays free and the heavy work asks for the unlock. The app tells you a few days before the trial ends.</div>
-      </details>
-      <details class="qa"><summary>Why does the first opening of a book take longer?</summary>
-        <div class="a">On first opening, the app extracts and repairs the text of the whole book (this is when scanned pages are recognized) — with a real progress bar. It happens once — afterwards pages open instantly from the cache.</div>
-      </details>
-    </section>
+<section class="section" id="pricing">
+<div class="heading">
+<p class="eyebrow" data-i18n="pricing_eyebrow"></p>
+<h2 class="serif h2" data-i18n="pricing_title"></h2>
+<p class="lead" data-i18n="pricing_sub"></p>
+</div>
+<div class="plans" id="plans"></div>
+<div class="trial"><span class="trial-icon" data-icon="clock"></span><p><strong data-i18n="pricing_trial_a"></strong> <span data-i18n="pricing_trial_b"></span></p></div>
+<div class="pricing-notes" id="pricing-notes"></div>
+</section>
 
-    <section>
-      <div class="privacy">
-        <h2>The reader that does the hard part locally</h2>
-        <p class="sub" style="margin:8px auto 0">Reflowing a scanned book, recognizing its text, repairing it, reading it aloud and exporting it — <strong>all on your phone</strong>, the things other readers send to the cloud or simply refuse to do.</p>
-        <div class="cta">
-          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.rewrap.app"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="646" height="250"></a>
-          <a class="btn btn-secondary" href="https://testflight.apple.com/join/cNFZfETe">Download on the App Store</a>
-        </div>
-        <div class="cta-note" style="margin-top:14px">Also available for iPhone on the App Store. Questions or feedback: <span style="color:var(--ink)">&#114;&#101;&#119;&#114;&#97;&#112;&#97;&#112;&#112;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</span>.</div>
-      </div>
-    </section>
+<section class="section" id="privacy">
+<div class="heading">
+<p class="eyebrow" data-i18n="privacy_eyebrow"></p>
+<h2 class="serif h2" data-i18n="privacy_title"></h2>
+<p class="lead" data-i18n="privacy_sub"></p>
+</div>
+<div class="grid3" id="privacy-grid"></div>
+<div style="display:flex;justify-content:center;margin-top:32px">
+<button class="btn btn-secondary" data-nav="privacy"><span class="i" data-icon="shield"></span> <span data-i18n="privacy_btn"></span></button>
+</div>
+</section>
 
-    <footer>
-      <div>Rewrap — a PDF reader for Android and iPhone.</div>
-      <div class="note" style="margin-top:6px"><a href="/privacy" style="color:var(--accent);text-decoration:none">Privacy Policy</a></div>
-      <div class="note">Google Play and the Google Play logo are trademarks of Google LLC.</div>
-    </footer>
+<section class="section" id="faq">
+<div class="heading">
+<p class="eyebrow" data-i18n="faq_eyebrow"></p>
+<h2 class="serif h2" data-i18n="faq_title"></h2>
+<p class="lead" data-i18n="faq_sub"></p>
+</div>
+<div class="faq-list" id="faq-list"></div>
+</section>
+</main>
 
-  </div>
+<!-- ============ PRIVACY ============ -->
+<main id="page-privacy" hidden>
+<section class="section privacy-hero" id="policy">
+<div class="shield" data-icon="shield"></div>
+<h1 class="serif" data-i18n="pp_title"></h1>
+<p class="intro" data-i18n="pp_intro"></p>
+<div class="policy-meta">
+<span><strong data-i18n="pp_updated"></strong>: <span id="pp-updated"></span></span>
+</div>
+</section>
+<section class="section section--tight">
+<p class="policy-note" id="pp-note" hidden></p>
+<div class="policy-card">
+<h2 class="serif" data-i18n="pp_summary_title"></h2>
+<p data-i18n="pp_summary1"></p>
+<p data-i18n="pp_summary2"></p>
+</div>
+<div id="policy-body"></div>
+<div class="policy-card" id="pp-contact">
+<h2 class="serif" data-i18n="pp_contact_title"></h2>
+<p><span data-i18n="pp_contact_text"></span> <a id="pp-contact-mail" href="#"></a>.</p>
+</div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+<div class="footer-main">
+<div class="footer-col">
+<div class="footer-brand"><img src="/assets/brand/icon_512.png" alt="" />Rewrap</div>
+<p data-i18n="footer_tagline"></p>
+<a class="footer-icon" id="footer-mail" href="#" aria-label="Email"><span data-icon="mail"></span></a>
+</div>
+<div class="footer-col">
+<h3 data-i18n="footer_links"></h3>
+<button class="footer-link" data-scroll="gallery" data-i18n="nav_gallery"></button>
+<button class="footer-link" data-scroll="pricing" data-i18n="nav_pricing"></button>
+<button class="footer-link" data-nav="privacy" data-i18n="nav_privacy"></button>
+<button class="footer-link" data-scroll="faq" data-i18n="nav_faq"></button>
+</div>
+<div class="footer-col">
+<h3 data-i18n="footer_contact"></h3>
+<a id="footer-email-1" href="#"></a>
+<a id="footer-email-2" href="#" data-i18n="footer_email"></a>
+<p data-i18n="footer_feedback"></p>
+</div>
+</div>
+<div class="footer-bottom">
+<p id="footer-copyright"></p>
+<button class="footer-link" data-nav="privacy" data-i18n="pp_title"></button>
+</div>
+<p class="footer-marks" data-i18n="footer_marks"></p>
+</footer>
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><span data-icon="chevronUp"></span></button>
+<script type="module" src="/src/app.js"></script>
 </body>
 </html>

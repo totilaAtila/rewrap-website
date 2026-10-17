@@ -1,0 +1,147 @@
+// Rewrap — teksty po polsku. Struktura musi być identyczna jak w en.js.
+// Pełna polityka prywatności (pp_sections) pozostaje po angielsku: to wersja obowiązująca.
+export default {
+    meta_title: 'Rewrap — czytaj PDF-y tak, jak zasługują na to małe ekrany',
+    meta_desc: 'Rewrap to czytnik PDF na Androida i iPhone’a, stworzony dla małych ekranów. Tekst jest powiększany i układany na nowo w miejscu, nigdy w bok. W 100% na Twoim telefonie: bez chmury, bez konta, bez generatywnej AI. Czytanie działa offline.',
+
+    nav_features: 'Funkcje', nav_gallery: 'Ekrany', nav_pricing: 'Cena', nav_privacy: 'Prywatność', nav_faq: 'Pytania',
+    nav_home: 'Start', nav_policy: 'Polityka', nav_contact: 'Kontakt',
+    theme_dark: 'Noc', theme_sepia: 'Sepia', theme_light: 'Jasny',
+
+    hero_pill: 'Czytnik PDF na Androida i iPhone’a',
+    hero_title_a: 'Czytaj PDF-y tak, jak ', hero_title_b: 'zasługują na to małe ekrany.',
+    hero_sub: 'Strona nigdy nie jest szersza niż Twój wyświetlacz — tekst jest powiększany i układany na nowo w miejscu, więc nic nie przewija się w bok. Wszystko działa w 100% na Twoim telefonie.',
+    cta_play: 'Pobierz z Google Play', cta_ios: 'Dołącz do bety na iPhone’a (TestFlight)',
+    hero_note: 'Czytanie jest zawsze darmowe. Działa w pełni offline. Na iPhonie Rewrap jest w publicznej becie przez aplikację Apple TestFlight.',
+    qp_reflow: 'Reflow w miejscu', qp_scan: 'Skany czytane na telefonie', qp_offline: 'Działa offline', qp_privacy: 'Bez chmury, bez konta',
+
+    why_eyebrow: 'Przegląd', why_title: 'Stworzony dla małych ekranów.', why_sub: 'Ani klasyczny zoom, ani pełny reflow — coś lepszego pomiędzy.',
+    why: [
+          ['columns', 'Reflow bez psucia strony', 'Tekst rośnie i układa się na nowo w miejscu. Obrazy, tabele i rysunki zostają tam, gdzie ich miejsce, i skalują się razem z czcionką — nic nie przewija się w bok.'],
+          ['scan', 'Skany czytane na telefonie', 'Zeskanowane PDF-y i sfotografowane strony są rozpoznawane prosto na urządzeniu. Zdjęcia robione pod kątem są prostowane, blade skany poprawiane, a błędy naprawiane na podstawie dowodów z samej książki.'],
+          ['type', 'Zachowane litery z druku', 'Stare kroje, akcenty i znaki specjalne zostają dokładnie takie, jak wydrukowano — wycięte ze strony i narysowane na nowo ostro, a nie zastąpione czcionką telefonu.'],
+          ['lock', 'Naprawdę prywatny', 'Bez chmury, bez konta, bez naszego serwera. Twoje książki, notatki i pozycje czytania zostają na telefonie, a wszystko działa w trybie samolotowym.'],
+        ],
+
+    cmp_eyebrow: 'Różnica', cmp_title: 'Ta sama strona. Czytelna.',
+    cmp_sub: 'Po lewej oryginalna strona w dwóch kolumnach. Po prawej ta sama strona po reflow: większy tekst, rysunek na swoim miejscu.',
+    cmp_alt: 'Rewrap pokazujący ten sam akademicki PDF dwa razy na iPhonie: oryginalną stronę w dwóch kolumnach i stronę po reflow z większym tekstem i rysunkiem na swoim miejscu.',
+
+    gallery_eyebrow: 'Ekrany', gallery_title: 'Zobacz na prawdziwej książce.', gallery_sub: 'Zrzuty ekranu z aplikacji, na prawdziwym telefonie.',
+    themes_eyebrow: 'Motywy', themes_title: 'Jasny, Sepia, Noc — i czysta czerń.', themes_sub: 'Motywy przebarwiają także prawdziwą stronę, a zdjęcia zachowują swoje kolory. Możesz stworzyć własny.',
+    gallery_prev: 'Poprzedni', gallery_next: 'Następny',
+    shots: [
+          ['Oryginał', 'PDF dokładnie tak, jak wydrukowany — dwie kolumny, drobny druk.'],
+          ['Reflow', 'Ta sama szerokość strony, tekst powiększony i ułożony na nowo w miejscu.'],
+          ['Zeskanowane książki', 'Zdjęcia i skany są rozpoznawane na urządzeniu — bez wysyłania.'],
+          ['Sepia', 'Motywy, które słuchają Twoich oczu: jasny, sepia, noc, AMOLED.'],
+          ['Noc', 'Wygodnie po ciemku, z Twoim rozmiarem tekstu i odstępami.'],
+        ],
+
+    features_eyebrow: 'Funkcje', features_title: 'Wszystko, co potrafi.', features_sub: 'Budowany funkcja po funkcji, sprawdzany na prawdziwych książkach i urządzeniach.',
+    groups: [
+          ['Czytanie, ułożone na nowo', [
+                  ['columns', 'Oryginał | Reflow, jeden przełącznik', 'Książka otwiera się natychmiast jako oryginalna strona; jedno dotknięcie pokazuje tekst po reflow. Oba widoki mają te same kontrolki.'],
+                  ['bookOpen', 'Układ, który trzyma', 'Obrazy, tabele i rysunki zachowują miejsce i skalują się razem z czcionką.'],
+                  ['type', 'Zachowane litery z druku', 'Użyj liter samej książki zamiast nowoczesnej czcionki — stare kroje, akcenty i znaki specjalne zostają jak w druku, ostre w każdym rozmiarze. Wyłączysz to w każdej chwili.'],
+                  ['palette', 'Przebarwiona strona', 'Sepia i Noc przebarwiają także prawdziwą stronę, a zdjęcia zachowują swoje kolory.'],
+                  ['chevronsDown', 'Automatyczne przewijanie', 'Dotknij strony, by zacząć, dotknij ponownie, by wstrzymać. Prędkość ustawiasz sam, w obu widokach.'],
+                  ['fileText', 'Przewijanie lub przewracanie stron', 'Ciągłe przewijanie albo strona po stronie. Każda pojedyncza strona może zostać dokładnie taka, jak wydrukowana.'],
+                ]],
+          ['Skany i zdjęcia', [
+                  ['scan', 'Skany czytane na urządzeniu', 'Zeskanowane książki i sfotografowane strony są rozpoznawane lokalnie — bez wysyłania, bez czekania na serwer.'],
+                  ['sparkles', 'Poprawki oparte na dowodach', 'Zepsute czcionki, utracone znaki diakrytyczne, dzielniki na końcu wiersza, pogrubienie i kursywa z oryginału.'],
+                  ['globe', 'Pisma, które inni pomijają', 'Greka, cyrylica (rosyjski, ukraiński, bułgarski, serbski) i węgierski z poprawnymi ő i ű — offline.'],
+                  ['camera', 'Skaner aparatem', 'Skanuj strony aparatem, dziel skany dwóch stron, prostuj zdjęcia robione pod kątem.'],
+                  ['pencil', 'Popraw słowo raz', 'Popraw dowolne słowo samodzielnie, a poprawka stanie się regułą dla każdego wystąpienia w książce.'],
+                  ['image', 'Formaty', 'PDF, EPUB, TXT i zdjęcia — jedno zdjęcie, cały folder jako jedna książka albo kilka zszytych w PDF. Rewrap pojawia się też w menu „Otwórz za pomocą” innych aplikacji.'],
+                ]],
+          ['Słuchaj i ucz się', [
+                  ['volume', 'Czytanie na głos', 'Naturalna synteza mowy w języku książki. Wybierasz głos i tempo (a na Androidzie silnik mowy), śledzisz wypowiadane słowo, słuchasz dalej przy wyłączonym ekranie.'],
+                  ['pencil', 'Notatki i zakreślenia', 'Zakreślaj fragmenty i pisz własne notatki; mały znaczek zostaje na marginesie, a oba przetrwają zmianę czcionki.'],
+                  ['search', 'Szukanie w całej książce', 'Wyszukiwanie niewrażliwe na akcenty w alfabecie łacińskim, greckim i cyrylicy, które znajduje słowa w całej książce naraz, nawet na stronach jeszcze nieprzygotowanych.'],
+                  ['bookmark', 'Zakładki i pozycja', 'Zakładki i zapamiętana pozycja w każdej książce.'],
+                  ['list', 'Spis treści', 'Własny książki albo zbudowany z nagłówków. Okładki są pokazywane tak, jak wydrukowano.'],
+                  ['info', 'Dotknij, by zobaczyć definicję', 'Sprawdź słowo w swoim słowniku offline.'],
+                ]],
+          ['Komfort i dostępność', [
+                  ['palette', 'Motywy', 'Jasny, Sepia, Noc, czysta czerń AMOLED i własne motywy.'],
+                  ['type', 'Rozmiar i odstępy', 'Rozmiar tekstu zapamiętany osobno dla każdej książki, z regulowanymi odstępami między wierszami i literami.'],
+                  ['ruler', 'Linijka do czytania', 'Przyciemnia wszystko poza czytanymi wierszami.'],
+                  ['eye', 'Przyjazny dysleksji', 'Czcionka przyjazna dysleksji i bioniczne pogrubienie, które działają nawet na zeskanowanych książkach, bo tekst jest składany na nowo.'],
+                  ['globe', 'Twój język', '17 języków interfejsu, w pionie lub poziomie.'],
+                ]],
+          ['Eksport, konwersja i przenoszenie', [
+                  ['share', 'Konwersja', 'Zamień dowolną książkę na EPUB, TXT lub DOCX z prawdziwymi rozdziałami i oczyszczonym tekstem — albo zapisz ją jako PDF z Twoimi zakreśleniami i notatkami jako prawdziwymi adnotacjami.'],
+                  ['fileText', 'Twoje notatki, wyeksportowane', 'Eksportuj zakreślenia i notatki jako TXT, Markdown, fiszki Anki lub PDF.'],
+                  ['package', 'Paczka Rewrap', 'Jeden plik niesie książkę i całą Twoją pracę — pozycję, zakładki, zakreślenia, notatki, poprawki — na inny telefon, z Androidem lub iPhone’a. Bez Rewrap to zwykły ZIP.'],
+                  ['rotate', 'Siatki bezpieczeństwa', 'Automatyczne kopie na urządzeniu, opcjonalna kopia w chmurze pod Twoją kontrolą oraz przenośny eksport i import danych czytania.'],
+                  ['shield', 'Uczciwe zgłoszenia błędów', 'Zgłaszanie problemów nie dołącza niczego technicznego bez Twojej wyraźnej zgody.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Cena', pricing_title: 'Czytanie za darmo. Jedno odblokowanie na ciężką pracę.', pricing_sub: 'Jeden zakup, raz — bez subskrypcji, bez reklam, bez konta.',
+    plans: [
+          ['bookOpen', 'Za darmo, zawsze', 'Samo czytanie. Bez limitu stron, książek i czasu.', [
+                  'Cyfrowe PDF-y, EPUB i TXT, ułożone na nowo i powiększone',
+                  'Wszystkie motywy, odstępy, czcionka dla dyslektyków i linijka do czytania',
+                  'Wyszukiwanie, zakładki, spis treści, Twoja pozycja w każdej książce',
+                  'Zakreślenia, własne notatki i poprawki słów',
+                  'Eksport własnych zakreśleń, notatek i danych czytania',
+                ]],
+          ['unlock', 'Jednorazowe odblokowanie', 'Ciężka praca, wykonana na Twoim telefonie.', [
+                  'Rozpoznawanie zeskanowanych książek i sfotografowanych stron',
+                  'Skaner aparatem i korekcja perspektywy',
+                  'Czytanie na głos',
+                  'Konwersja do EPUB, TXT, DOCX lub PDF',
+                  'Czyste czytanie',
+                  'Wszystko, co już rozpoznałeś lub przekonwertowałeś, zostaje czytelne',
+                ]],
+        ],
+    pricing_trial_a: '14 dni, wszystko odblokowane.', pricing_trial_b: 'Nowe instalacje na Androidzie zaczynają od okresu próbnego z pełnym dostępem — wypróbuj na własnych książkach. Aplikacja uprzedza na kilka dni przed końcem; potem czytanie zostaje darmowe.',
+    pricing_ios: 'Na iPhonie Rewrap jest w becie i wszystko jest teraz otwarte; jednorazowe odblokowanie pojawi się wraz z premierą w App Store.',
+    pricing_store: 'Odblokowanie kupuje się w sklepie telefonu, z którego korzystasz. Rewrap nie ma konta ani serwera, więc odblokowanie kupione na Androidzie nie przenosi się na iPhone’a, ani odwrotnie.',
+
+    privacy_eyebrow: 'Prywatność', privacy_title: 'Prywatny od początku.', privacy_sub: 'Twoje książki nigdy nie opuszczają telefonu.',
+    privacy_btn: 'Przeczytaj politykę prywatności',
+    cards: [
+          ['database', 'Lokalne przechowywanie', 'Książki, notatki, zakreślenia i pozycje czytania są tylko na Twoim urządzeniu.'],
+          ['wifiOff', 'Działa offline', 'Czytanie — ze skanami włącznie — nie potrzebuje internetu.'],
+          ['eyeOff', 'Bez śledzenia', 'Bez własnej analityki i reklam oraz bez generatywnej AI.'],
+          ['lock', 'Bez serwera, bez konta', 'Nie prowadzimy serwera i nie ma się gdzie rejestrować.'],
+          ['shield', 'Uczciwie o wyjątkach', 'Na Androidzie biblioteka Google do rozpoznawania tekstu wysyła do Google anonimowe dane diagnostyczne o sobie samej — nigdy Twoich stron ani tekstu. Polityka wymienia to w całości.'],
+          ['fileText', 'Pliki, które wybierasz', 'Rewrap otwiera tylko pliki, które wskażesz przez systemowy wybierak dokumentów.'],
+        ],
+
+    faq_eyebrow: 'Pytania', faq_title: 'Pytania i krótki przewodnik.', faq_sub: 'Te same pytania, na które odpowiada przewodnik w aplikacji — dotknij jednego, by zobaczyć odpowiedź.',
+    faqs: [
+          ['Czy Rewrap jest darmowy?', 'Czytanie jest darmowe na zawsze: cyfrowe PDF-y, EPUB i TXT, ułożone na nowo i powiększone, ze wszystkimi motywami, wyszukiwaniem, zakładkami, Twoimi zakreśleniami, własnymi notatkami i poprawkami. Jednorazowe odblokowanie dodaje ciężką pracę — rozpoznawanie skanów, skaner aparatem, czytanie na głos, konwersję do innych formatów i czyste czytanie. Na Androidzie nowe instalacje dostają 14-dniowy okres próbny z wszystkim otwartym; na iPhonie w czasie bety wszystko jest otwarte.'],
+          ['Gdzie mogę to pobrać?', 'Na Androidzie z Google Play. Na iPhonie Rewrap jest w publicznej becie przez aplikację Apple TestFlight — użyj przycisku „Dołącz do bety na iPhone’a” na tej stronie.'],
+          ['Czy działa offline?', 'Tak. Czytanie — łącznie z rozpoznawaniem zeskanowanych książek — odbywa się na telefonie, więc działa w trybie samolotowym.'],
+          ['Jakie dane zbieracie?', 'Żadnych z Twojej zawartości: nie prowadzimy serwera i nie mamy systemu kont. Dokładne szczegóły, w tym jedyny wyjątek diagnostyczny na Androidzie, są w polityce prywatności.'],
+          ['W jakich językach mówi?', 'Aplikacja ma 17 języków interfejsu, a ta strona jest dostępna w dziewięciu z nich. Rozpoznawanie tekstu obejmuje pisma łacińskie, greckie i cyrylicę oraz węgierski z poprawnymi ő i ű.'],
+          ['Jak zobaczyć oryginalną stronę?', 'U góry ekranu przełącznik Oryginał | Reflow wybiera, co widzisz: stronę dokładnie tak, jak wydrukowaną, albo tekst powiększony i ułożony na nowo. Oba widoki mają te same kontrolki. W Oryginale zbliż palcami, by powiększyć tabelę lub rysunek. Jeśli pojedyncza strona lepiej wygląda nietknięta — okładka, plansza, diagram — lewa szuflada oferuje „Pokaż tę stronę jako oryginał”: ta strona zostaje taka, jak wydrukowana, zapamiętana na następny raz i nadal przeszukiwalna.'],
+          ['Jak włączyć i zatrzymać automatyczne przewijanie?', 'Dotknij strony (lub dużego przycisku ▶), by zacząć przewijanie; dotknij ponownie, by wstrzymać. Prędkość jest w ustawieniach (koło zębate), na karcie Czytanie. Podczas przewijania wszystko się chowa poza wąskim paskiem z tytułem i numerem strony — oraz przełącznikiem Oryginał | Reflow u góry.'],
+          ['Jak przewracać strony jak w drukowanej książce?', 'Otwórz prawą szufladę i wybierz poziome strzałki pod „Przewracanie stron”. Potem przesuwaj palcem w lewo lub w prawo albo dotykaj lewej lub prawej krawędzi ekranu. Pionowa strzałka przywraca ciągłe przewijanie. Ustawienie dotyczy zarówno Oryginału, jak i Reflow.'],
+          ['Jak odsłuchać książkę czytaną na głos?', 'Dotknij mikrofonu na pasku akcji. Głos czyta dalej przy wyłączonym ekranie, ze sterowaniem na ekranie blokady i w słuchawkach. Głos i jego tempo (a na Androidzie silnik) są w ustawieniach (koło zębate), na karcie Głos.'],
+          ['Słowo ze skanu wygląda źle — co zrobić?', 'Dotknij ikony poprawiania na pasku akcji (klawiatura na Androidzie, litera A z kursorem tekstu na iPhonie), a potem słowa: pojawia się ramka zaznaczenia z uchwytami, które możesz przeciągnąć na sąsiednie znaki; dotknij zaznaczenia, by poprawić. Poprawka zapisuje się jako reguła dla całej książki. Jeśli cała zeskanowana książka czyta się słabo, włącz „Wymuszony OCR” (prawa szuflada lub ustawienia, karta Dokument).'],
+          ['Dlaczego tekst wygląda jak drukowana książka, a nie jak czcionka telefonu?', 'W Reflow Rewrap może użyć liter samej książki, wyciętych ze strony, zamiast rysować tekst na nowo nowoczesną czcionką. Stare kroje, akcenty i znaki specjalne zostają jak w druku — nawet gdy warstwa tekstowa pliku je utraciła — a ich kontury są gładko narysowane na nowo, więc pozostają ostre w każdym rozmiarze. Wyłączysz to opcją „Oryginalne litery” (karta Tekst lub prawa szuflada). Czcionka dla dyslektyków, pogrubione początki słów i odstępy między literami przełączają książkę na tekst narysowany na nowo, bo zastępują litery z druku.'],
+          ['Dlaczego nowa książka potrzebuje chwili na reflow?', 'Nowa książka otwiera się natychmiast, pokazując oryginalną stronę. W tym czasie aplikacja po cichu przygotowuje tekst w tle — wykrywa język, a w zeskanowanych książkach rozpoznaje strony. Gdy dotkniesz Reflow, czekasz tylko na stronę, na której jesteś; reszta nadal się przygotowuje podczas czytania, z informacją o postępie na dolnym pasku. Książka, którą już otwierałeś, jest gotowa od razu.'],
+          ['Jak przenieść czytanie na inny telefon?', 'W Ustawieniach użyj „Eksportuj dane czytania”, by zapisać pozycje, zakładki, zakreślenia, notatki i poprawki do pliku, a potem zaimportuj go na drugim telefonie. Albo spakuj jedną książkę razem ze wszystkim, co z nią związane, przez „Eksportuj jako → Paczka Rewrap”: otwarta w Rewrap na innym telefonie — z Androidem lub iPhone’em — książka wraca dokładnie taka, jak ją zostawiłeś.'],
+        ],
+
+    footer_tagline: 'Czytnik PDF na Androida i iPhone’a.',
+    footer_links: 'Odkrywaj', footer_contact: 'Kontakt', footer_email: 'Opinie',
+    footer_feedback: 'Coś nie działa albo masz pomysł? Napisz do nas — temat „Rewrap feedback”.',
+    footer_rights: 'Wszelkie prawa zastrzeżone.',
+    footer_marks: 'Google Play i logo Google Play są znakami towarowymi Google LLC. Apple i TestFlight są znakami towarowymi Apple Inc.',
+
+    pp_title: 'Polityka prywatności',
+    pp_intro: 'Rewrap jest zbudowany tak, by trzymać Twoje książki na telefonie. Ta polityka wyjaśnia, co to oznacza w praktyce.',
+    pp_updated: 'Ostatnia aktualizacja',
+    pp_note_en: 'Pełna polityka poniżej jest po angielsku, to wersja obowiązująca.',
+    pp_summary_title: 'W skrócie',
+    pp_summary1: 'Twoje książki zostają na telefonie. Czytanie działa bez żadnego połączenia z internetem — otwórz zeskanowaną książkę w trybie samolotowym, a i tak zostanie rozpoznana i ułożona na nowo na urządzeniu. Nie ma konta ani reklam, nie prowadzimy serwera, a nic, co czytasz, piszesz lub zakreślasz, nigdy nie jest wysyłane.',
+    pp_summary2: 'Na Androidzie aplikacja zawiera bibliotekę Google do rozpoznawania tekstu, która wysyła do Google anonimowe dane diagnostyczne o sobie samej — nigdy Twoich stron ani tekstu. Szczegóły poniżej.',
+    pp_contact_title: 'Kontakt', pp_contact_text: 'Pytania o prywatność? Napisz na',
+};

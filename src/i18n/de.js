@@ -1,0 +1,147 @@
+// Rewrap — Texte auf Deutsch. Die Struktur muss mit en.js übereinstimmen.
+// Die vollständige Datenschutzerklärung (pp_sections) bleibt auf Englisch: sie ist die maßgebliche Fassung.
+export default {
+    meta_title: 'Rewrap — PDFs lesen, wie kleine Bildschirme es verdienen',
+    meta_desc: 'Rewrap ist ein PDF-Reader für Android und iPhone, gemacht für kleine Bildschirme. Der Text wird vergrößert und an Ort und Stelle neu umbrochen, nie seitwärts. 100 % auf deinem Telefon: keine Cloud, kein Konto, keine generative KI. Lesen funktioniert offline.',
+
+    nav_features: 'Funktionen', nav_gallery: 'Ansichten', nav_pricing: 'Preis', nav_privacy: 'Datenschutz', nav_faq: 'Fragen',
+    nav_home: 'Start', nav_policy: 'Erklärung', nav_contact: 'Kontakt',
+    theme_dark: 'Nacht', theme_sepia: 'Sepia', theme_light: 'Hell',
+
+    hero_pill: 'PDF-Reader für Android und iPhone',
+    hero_title_a: 'PDFs lesen, wie ', hero_title_b: 'kleine Bildschirme es verdienen.',
+    hero_sub: 'Die Seite wird nie breiter als dein Display — der Text wird vergrößert und an Ort und Stelle neu umbrochen, damit nichts mehr seitwärts scrollt. Alles läuft zu 100 % auf deinem Telefon.',
+    cta_play: 'Jetzt bei Google Play', cta_ios: 'iPhone-Beta beitreten (TestFlight)',
+    hero_note: 'Lesen ist immer kostenlos. Funktioniert komplett offline. Auf dem iPhone ist Rewrap in der öffentlichen Beta über Apples TestFlight-App.',
+    qp_reflow: 'Umbruch an Ort und Stelle', qp_scan: 'Scans direkt auf dem Telefon gelesen', qp_offline: 'Funktioniert offline', qp_privacy: 'Keine Cloud, kein Konto',
+
+    why_eyebrow: 'Überblick', why_title: 'Gemacht für kleine Bildschirme.', why_sub: 'Weder klassischer Zoom noch vollständiger Reflow — etwas Besseres dazwischen.',
+    why: [
+          ['columns', 'Reflow, ohne die Seite zu zerstören', 'Der Text wächst und bricht an Ort und Stelle um. Bilder, Tabellen und Abbildungen bleiben, wo sie hingehören, und wachsen mit der Schrift — nichts scrollt seitwärts.'],
+          ['scan', 'Scans, auf dem Telefon gelesen', 'Gescannte PDFs und fotografierte Seiten werden direkt auf dem Gerät erkannt. Schräge Fotos werden begradigt, blasse Scans verbessert, Fehler anhand von Belegen aus dem Buch selbst repariert.'],
+          ['type', 'Die gedruckten Buchstaben, bewahrt', 'Alte Schriften, Akzente und Sonderzeichen bleiben genau wie gedruckt — aus der Seite geschnitten und scharf neu gezeichnet, nicht durch eine Handyschrift ersetzt.'],
+          ['lock', 'Wirklich privat', 'Keine Cloud, kein Konto, kein Server von uns. Deine Bücher, Notizen und Leseposition bleiben auf deinem Telefon, und alles funktioniert im Flugmodus.'],
+        ],
+
+    cmp_eyebrow: 'Der Unterschied', cmp_title: 'Dieselbe Seite. Lesbar.',
+    cmp_sub: 'Links die originale zweispaltige Seite. Rechts dieselbe Seite nach dem Reflow: größerer Text, die Abbildung bleibt an ihrem Platz.',
+    cmp_alt: 'Rewrap zeigt dasselbe wissenschaftliche PDF zweimal auf einem iPhone: die originale zweispaltige Seite und die neu umbrochene Seite mit größerem Text und der Abbildung an ihrem Platz.',
+
+    gallery_eyebrow: 'Ansichten', gallery_title: 'An einem echten Buch.', gallery_sub: 'Screenshots aus der App, auf einem echten Telefon.',
+    themes_eyebrow: 'Designs', themes_title: 'Hell, Sepia, Nacht — und reines Schwarz.', themes_sub: 'Die Designs färben auch die echte Seite um, während Fotos ihre Farben behalten. Du kannst auch eigene bauen.',
+    gallery_prev: 'Zurück', gallery_next: 'Weiter',
+    shots: [
+          ['Original', 'Das PDF genau wie gedruckt — zwei Spalten, winzige Schrift.'],
+          ['Reflow', 'Gleiche Seitenbreite, Text vergrößert und an Ort und Stelle neu umbrochen.'],
+          ['Gescannte Bücher', 'Fotos und Scans werden auf dem Gerät erkannt — ohne Upload.'],
+          ['Sepia', 'Designs, die deinen Augen folgen: hell, Sepia, Nacht, AMOLED.'],
+          ['Nacht', 'Angenehm im Dunkeln, mit deiner eigenen Schriftgröße und Abständen.'],
+        ],
+
+    features_eyebrow: 'Funktionen', features_title: 'Alles, was es kann.', features_sub: 'Funktion für Funktion gebaut, an echten Büchern und Geräten gemessen.',
+    groups: [
+          ['Lesen, neu umbrochen', [
+                  ['columns', 'Original | Reflow, ein Schalter', 'Ein Buch öffnet sich sofort als Originalseite; ein Tipp zeigt den umbrochenen Text. Beide Ansichten teilen dieselben Bedienelemente.'],
+                  ['bookOpen', 'Layout, das hält', 'Bilder, Tabellen und Abbildungen behalten ihren Platz und wachsen mit der Schrift.'],
+                  ['type', 'Die gedruckten Buchstaben, bewahrt', 'Die Buchstaben des Buchs selbst statt einer modernen Schrift: alte Schriften, Akzente und Sonderzeichen bleiben wie gedruckt, in jeder Größe scharf. Jederzeit abschaltbar.'],
+                  ['palette', 'Umgefärbte Seite', 'Sepia und Nacht färben auch die echte Seite um, während Fotos ihre Farben behalten.'],
+                  ['chevronsDown', 'Automatisches Scrollen', 'Tippe auf die Seite zum Starten, noch einmal zum Pausieren. Die Geschwindigkeit stellst du selbst ein, in beiden Ansichten.'],
+                  ['fileText', 'Scrollen oder blättern', 'Fortlaufend scrollen oder Seite für Seite. Jede einzelne Seite kann genau wie gedruckt bleiben.'],
+                ]],
+          ['Scans & Fotos', [
+                  ['scan', 'Scans auf dem Gerät gelesen', 'Gescannte Bücher und fotografierte Seiten werden lokal erkannt — kein Upload, kein Warten auf einen Server.'],
+                  ['sparkles', 'Reparaturen auf Belegbasis', 'Defekte Schriften, verlorene Diakritika, Silbentrennstriche am Zeilenende, Fett und Kursiv aus dem Original.'],
+                  ['globe', 'Schriften, die andere auslassen', 'Griechisch, Kyrillisch (Russisch, Ukrainisch, Bulgarisch, Serbisch) und Ungarisch mit korrektem ő und ű — offline.'],
+                  ['camera', 'Kamera-Scanner', 'Seiten mit der Kamera scannen, Doppelseiten trennen, schräge Aufnahmen begradigen.'],
+                  ['pencil', 'Ein Wort einmal korrigieren', 'Korrigiere jedes Wort selbst, und die Korrektur wird zur Regel für jedes Vorkommen im Buch.'],
+                  ['image', 'Formate', 'PDF, EPUB, TXT und Fotos — ein Foto, ein ganzer Ordner als ein Buch oder mehrere zu einem PDF gebunden. Rewrap erscheint auch im „Öffnen mit“-Menü anderer Apps.'],
+                ]],
+          ['Hören & Lernen', [
+                  ['volume', 'Vorlesen', 'Natürliche Sprachausgabe in der Sprache des Buchs. Wähle Stimme und Tempo (und auf Android die Sprach-Engine), folge dem gesprochenen Wort, hör weiter bei ausgeschaltetem Bildschirm.'],
+                  ['pencil', 'Notizen & Markierungen', 'Markiere Stellen und schreibe eigene Notizen; ein kleines Zeichen bleibt am Rand, und beides bleibt erhalten, wenn du die Schrift änderst.'],
+                  ['search', 'Suche im ganzen Buch', 'Akzentunempfindliche Suche in lateinischer, griechischer und kyrillischer Schrift, die Wörter im ganzen Buch auf einmal findet, auch auf noch nicht vorbereiteten Seiten.'],
+                  ['bookmark', 'Lesezeichen & Position', 'Lesezeichen und eine gemerkte Position für jedes Buch.'],
+                  ['list', 'Inhaltsverzeichnis', 'Das des Buchs oder eines aus den Überschriften erstelltes. Umschläge werden wie gedruckt gezeigt.'],
+                  ['info', 'Antippen zum Nachschlagen', 'Schlage ein Wort in deinem Offline-Wörterbuch nach.'],
+                ]],
+          ['Komfort & Barrierefreiheit', [
+                  ['palette', 'Designs', 'Hell, Sepia, Nacht, reines AMOLED-Schwarz und eigene Designs.'],
+                  ['type', 'Größe & Abstände', 'Schriftgröße pro Buch gemerkt, mit einstellbaren Zeilen- und Buchstabenabständen.'],
+                  ['ruler', 'Leselineal', 'Blendet alles außer den Zeilen aus, die du gerade liest.'],
+                  ['eye', 'Legasthenie-freundlich', 'Eine legasthenie-freundliche Schrift und Bionic-Fettdruck, die selbst bei gescannten Büchern funktionieren, weil der Text neu gesetzt wird.'],
+                  ['globe', 'Deine Sprache', '17 Oberflächensprachen, im Hoch- oder Querformat.'],
+                ]],
+          ['Exportieren, konvertieren & umziehen', [
+                  ['share', 'Konvertieren', 'Wandle jedes Buch in EPUB, TXT oder DOCX mit echten Kapiteln und bereinigtem Text um — oder speichere es als PDF mit deinen Markierungen und Notizen als echte Anmerkungen.'],
+                  ['fileText', 'Deine Notizen, exportiert', 'Exportiere Markierungen und Notizen als TXT, Markdown, Anki-Karten oder PDF.'],
+                  ['package', 'Rewrap-Paket', 'Eine Datei trägt das Buch und alle deine Arbeit — Position, Lesezeichen, Markierungen, Notizen, Korrekturen — auf ein anderes Telefon, Android oder iPhone. Ohne Rewrap ein einfaches ZIP.'],
+                  ['rotate', 'Sicherheitsnetze', 'Automatische Backups auf dem Gerät, ein optionales Cloud-Backup unter deiner Kontrolle sowie tragbarer Export und Import deiner Lesedaten.'],
+                  ['shield', 'Ehrliche Fehlerberichte', 'Die Fehlermeldung hängt ohne deine ausdrückliche Zustimmung nichts Technisches an.'],
+                ]],
+        ],
+
+    pricing_eyebrow: 'Preis', pricing_title: 'Lesen ist kostenlos. Eine Freischaltung für die schwere Arbeit.', pricing_sub: 'Ein Kauf, einmal — kein Abo, keine Werbung, kein Konto.',
+    plans: [
+          ['bookOpen', 'Kostenlos, immer', 'Das Lesen selbst. Keine Seitengrenze, keine Buchgrenze, keine Zeitgrenze.', [
+                  'Digitale PDFs, EPUB und TXT, umbrochen und vergrößert',
+                  'Alle Designs, Abstände, die Legasthenie-Schrift und das Leselineal',
+                  'Suche, Lesezeichen, Inhaltsverzeichnis, deine Position in jedem Buch',
+                  'Markierungen, eigene Notizen und Wortkorrekturen',
+                  'Export deiner eigenen Markierungen, Notizen und Lesedaten',
+                ]],
+          ['unlock', 'Einmalige Freischaltung', 'Die schwere Arbeit, auf deinem Telefon erledigt.', [
+                  'Erkennen gescannter Bücher und fotografierter Seiten',
+                  'Der Kamera-Scanner und die Perspektivkorrektur',
+                  'Vorlesen',
+                  'Konvertieren in EPUB, TXT, DOCX oder PDF',
+                  'Bereinigtes Lesen',
+                  'Alles, was du schon erkannt oder konvertiert hast, bleibt lesbar',
+                ]],
+        ],
+    pricing_trial_a: '14 Tage, alles freigeschaltet.', pricing_trial_b: 'Neuinstallationen auf Android starten mit einer Testphase mit vollem Zugriff — probiere es an deinen eigenen Büchern. Die App sagt dir ein paar Tage vor dem Ende Bescheid; danach bleibt das Lesen kostenlos.',
+    pricing_ios: 'Auf dem iPhone ist Rewrap in der Beta und derzeit ist alles offen; die einmalige Freischaltung kommt mit dem App-Store-Release.',
+    pricing_store: 'Die Freischaltung wird im Store des Telefons gekauft, das du benutzt. Rewrap hat kein Konto und keinen Server, daher wird eine auf Android gekaufte Freischaltung nicht aufs iPhone übertragen, und umgekehrt auch nicht.',
+
+    privacy_eyebrow: 'Datenschutz', privacy_title: 'Privat von Haus aus.', privacy_sub: 'Deine Bücher verlassen dein Telefon nie.',
+    privacy_btn: 'Datenschutzerklärung lesen',
+    cards: [
+          ['database', 'Lokale Speicherung', 'Bücher, Notizen, Markierungen und Leseposition bleiben ausschließlich auf deinem Gerät.'],
+          ['wifiOff', 'Funktioniert offline', 'Lesen — Scans eingeschlossen — braucht keine Internetverbindung.'],
+          ['eyeOff', 'Kein Tracking', 'Keine eigene Analyse und keine Werbung, und keine generative KI.'],
+          ['lock', 'Kein Server, kein Konto', 'Wir betreiben keinen Server, und es gibt nichts, wofür du dich anmelden müsstest.'],
+          ['shield', 'Ehrlich bei Ausnahmen', 'Auf Android sendet Googles Texterkennungsbibliothek anonyme Diagnosedaten über sich selbst an Google — nie deine Seiten oder deinen Text. Die Erklärung listet es vollständig auf.'],
+          ['fileText', 'Dateien, die du wählst', 'Rewrap öffnet nur die Dateien, die du über die Dokumentenauswahl des Systems auswählst.'],
+        ],
+
+    faq_eyebrow: 'Fragen', faq_title: 'Fragen & Kurzanleitung.', faq_sub: 'Dieselben Fragen, die auch die Anleitung in der App beantwortet — tippe auf eine, um die Antwort zu sehen.',
+    faqs: [
+          ['Ist Rewrap kostenlos?', 'Lesen ist für immer kostenlos: digitale PDFs, EPUB und TXT, umbrochen und vergrößert, mit allen Designs, Suche, Lesezeichen, deinen Markierungen, eigenen Notizen und Korrekturen. Eine einmalige Freischaltung ergänzt die schwere Arbeit — Scans erkennen, Kamera-Scanner, Vorlesen, Konvertieren in andere Formate und bereinigtes Lesen. Auf Android erhalten Neuinstallationen eine 14-tägige Testphase mit allem offen; auf dem iPhone ist während der Beta alles offen.'],
+          ['Wo kann ich es herunterladen?', 'Auf Android bei Google Play. Auf dem iPhone ist Rewrap in der öffentlichen Beta über Apples TestFlight-App — nutze den Button „iPhone-Beta beitreten“ auf dieser Seite.'],
+          ['Funktioniert es offline?', 'Ja. Das Lesen — einschließlich der Erkennung gescannter Bücher — läuft auf dem Telefon und funktioniert daher im Flugmodus.'],
+          ['Welche Daten erhebt ihr?', 'Keine deiner Inhalte: Wir betreiben keinen Server und haben kein Kontosystem. Die genauen Details, einschließlich der einen Diagnose-Ausnahme auf Android, stehen in der Datenschutzerklärung.'],
+          ['Welche Sprachen spricht es?', 'Die App hat 17 Oberflächensprachen, und diese Website gibt es in neun davon. Die Texterkennung deckt lateinische, griechische und kyrillische Schrift ab sowie Ungarisch mit korrektem ő und ű.'],
+          ['Wie sehe ich die Originalseite?', 'Oben auf dem Bildschirm wählt der Schalter Original | Reflow, was du siehst: die Seite genau wie gedruckt oder den vergrößerten, neu umbrochenen Text. Beide Ansichten teilen dieselben Bedienelemente. Im Original zoomst du mit zwei Fingern in eine Tabelle oder Abbildung. Wenn eine einzelne Seite besser unverändert bleibt — ein Umschlag, eine Tafel, ein Diagramm — bietet die linke Schublade „Diese Seite als Original zeigen“: Diese Seite bleibt wie gedruckt, wird für das nächste Mal gemerkt und bleibt durchsuchbar.'],
+          ['Wie starte und stoppe ich das automatische Scrollen?', 'Tippe auf die Seite (oder den großen ▶-Button), um das Scrollen zu starten; tippe erneut zum Pausieren. Die Geschwindigkeit steht in den Zahnrad-Einstellungen auf dem Reiter Lesen. Beim Scrollen verschwindet alles bis auf die schmale Leiste mit Titel und Seitenzahl — und den Original | Reflow-Schalter oben.'],
+          ['Wie blättere ich wie in einem gedruckten Buch?', 'Öffne die rechte Schublade und wähle unter „Seiten umblättern“ die waagerechten Pfeile. Dann wischst du nach links oder rechts oder tippst auf den linken oder rechten Bildschirmrand. Der senkrechte Pfeil bringt das fortlaufende Scrollen zurück. Die Einstellung gilt für Original und Reflow.'],
+          ['Wie lasse ich mir das Buch vorlesen?', 'Tippe in der Aktionsleiste auf das Mikrofon. Die Stimme liest bei ausgeschaltetem Bildschirm weiter, mit Steuerung auf dem Sperrbildschirm und an den Kopfhörern. Stimme und Tempo (und auf Android die Engine) stehen in den Zahnrad-Einstellungen auf dem Reiter Stimme.'],
+          ['Ein Wort aus einem Scan sieht falsch aus — was kann ich tun?', 'Tippe in der Aktionsleiste auf das Korrektursymbol (auf Android eine Tastatur, auf dem iPhone ein A mit Textcursor) und dann auf das Wort: Ein Auswahlrahmen erscheint mit Griffen, die du über benachbarte Zeichen ziehen kannst; tippe auf die Auswahl, um zu korrigieren. Die Korrektur wird als Regel für das ganze Buch gespeichert. Wenn ein ganzes gescanntes Buch schlecht gelesen wird, schalte „Erzwungene OCR“ ein (rechte Schublade oder Zahnrad-Einstellungen, Reiter Dokument).'],
+          ['Warum sieht der Text aus wie das gedruckte Buch und nicht wie eine Handyschrift?', 'Im Reflow kann Rewrap die Buchstaben des Buchs selbst, aus der Seite geschnitten, wiederverwenden, statt den Text in einer modernen Schrift neu zu zeichnen. Alte Schriften, Akzente und Sonderzeichen bleiben wie gedruckt — auch wenn die Textebene der Datei sie verloren hat — und ihre Umrisse werden glatt neu gezeichnet, sodass sie in jeder Größe scharf bleiben. Schalte es mit „Originalbuchstaben“ aus (Reiter Text oder rechte Schublade). Die legasthenie-freundliche Schrift, fette Wortanfänge und Buchstabenabstand schalten das Buch auf neu gezeichneten Text um, da sie die gedruckten Buchstaben ersetzen.'],
+          ['Warum braucht ein neues Buch einen Moment zum Umbrechen?', 'Ein neues Buch öffnet sich sofort und zeigt die Originalseite. Währenddessen bereitet die App im Hintergrund still den Text vor — sie erkennt die Sprache und bei gescannten Büchern die Seiten. Wenn du auf Reflow tippst, wartest du nur auf die Seite, auf der du bist; der Rest wird beim Lesen weiter vorbereitet, mit einem Fortschrittshinweis in der unteren Leiste. Ein Buch, das du schon geöffnet hast, ist sofort bereit.'],
+          ['Wie übertrage ich meine Lektüre auf ein anderes Telefon?', 'Nutze in den Einstellungen „Lesedaten exportieren“, um Positionen, Lesezeichen, Markierungen, Notizen und Korrekturen in einer Datei zu sichern, und importiere sie dann auf dem anderen Telefon. Oder packe ein Buch samt allem darauf über „Exportieren als → Rewrap-Paket“: In Rewrap auf einem anderen Telefon — Android oder iPhone — geöffnet, kehrt das Buch genau so zurück, wie du es verlassen hast.'],
+        ],
+
+    footer_tagline: 'Ein PDF-Reader für Android und iPhone.',
+    footer_links: 'Entdecken', footer_contact: 'Kontakt', footer_email: 'Feedback',
+    footer_feedback: 'Etwas funktioniert nicht, oder du hast eine Idee? Schreib uns — Betreff „Rewrap feedback“.',
+    footer_rights: 'Alle Rechte vorbehalten.',
+    footer_marks: 'Google Play und das Google-Play-Logo sind Marken von Google LLC. Apple und TestFlight sind Marken von Apple Inc.',
+
+    pp_title: 'Datenschutzerklärung',
+    pp_intro: 'Rewrap ist darauf ausgelegt, deine Bücher auf deinem Telefon zu lassen. Diese Erklärung beschreibt, was das in der Praxis bedeutet.',
+    pp_updated: 'Zuletzt aktualisiert',
+    pp_note_en: 'Die vollständige Erklärung unten ist auf Englisch, das ist die maßgebliche Fassung.',
+    pp_summary_title: 'Die Kurzfassung',
+    pp_summary1: 'Deine Bücher bleiben auf deinem Telefon. Lesen funktioniert ganz ohne Internetverbindung — öffne ein gescanntes Buch im Flugmodus, und es wird trotzdem auf dem Gerät erkannt und neu umbrochen. Es gibt kein Konto und keine Werbung, wir betreiben keinen Server, und nichts, was du liest, schreibst oder markierst, wird je hochgeladen.',
+    pp_summary2: 'Auf Android enthält die App Googles Texterkennungsbibliothek, und diese sendet anonyme Diagnosedaten über sich selbst an Google — nie deine Seiten und nie deinen Text. Details unten.',
+    pp_contact_title: 'Kontakt', pp_contact_text: 'Fragen zum Datenschutz? Schreib an',
+};

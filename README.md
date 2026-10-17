@@ -1,45 +1,58 @@
 # rewrap-website
 
-Landing page and privacy policy for **Rewrap**, a PDF reader for Android and iPhone
-— the page never grows wider than your screen; text is
-enlarged and re-laid out in place.
-
+Landing page and privacy policy for **Rewrap**, a PDF reader for Android and iPhone.
 Live at **https://rewrap-pdf.vercel.app**
 
-## What is here
+Same architecture as the Arise site: static **HTML + CSS + vanilla JS (ES modules)**, no
+framework, no build step, no tracking.
+
+## Layout
 
 ```
-index.html          the landing page (single file, no build step, no JavaScript)
-privacy/index.html  the privacy policy
+index.html          static markup (home + privacy are two <main> blocks of one page)
+src/styles.css      all styles; three themes via [data-theme]: dark (Night), sepia, light
+src/app.js          i18n, theme, language, routing, gallery, FAQ, pricing, scroll indicator
+src/i18n/index.js   language list, detection, translations map
+src/i18n/<code>.js  copy for one language — en.js is the source of truth for structure
+assets/             brand icon + screenshots
+hero.jpg/.webp      Original-vs-Reflow banner (also the og:image — keep the URL stable)
+vercel.json         rewrites /privacy, /privacy/ and /privacy-policy to index.html
 ```
 
-No framework, no dependencies, no tracking. What you see in the source is what
-the browser gets.
+CONFIG at the top of `src/app.js` holds the Play and TestFlight URLs, the support e-mail and
+the policy date.
 
-## How it deploys
+## Local development
 
-Pushing to `main` publishes automatically — the repository is connected to the
-Vercel project `rewrap`.
-
-That was not always true, and it cost a silent failure worth recording: the
-project used to be linked only at the *folder* level, through a local
-`.vercel/project.json`, so deployments had to be made by hand with the CLI. A
-push would succeed and publish nothing, and the live page quietly stayed
-behind. If the automatic deployment ever stops, check **Settings → Git** in the
-Vercel project before assuming the push worked.
-
-To publish manually, from this folder:
+ES modules do not load over `file://`. Serve the root over HTTP and make `/privacy` fall back
+to `index.html`, as Vercel does:
 
 ```
-vercel --prod
+npx serve .   # or: python3 -m http.server 8000  (then open /?lang=ro; /privacy needs the rewrite)
 ```
+
+## Behaviour
+
+- **Theme** — Night / Sepia / Light, persisted in `localStorage['rewrap-theme']`; first visit
+  follows `prefers-color-scheme`. An inline script in `<head>` applies it before first paint.
+- **Language** — `?lang=xx` → `localStorage['rewrap-lang']` → `navigator.languages` → English.
+  Nine languages: `en, de, fr, lv, lt, hu, pl, ro, ru` (the app itself has 17).
+- **Routes** — `/` and `/privacy` (also `/privacy/`, `/privacy-policy`). The privacy URL is the
+  one published in the stores: it must keep resolving directly to the policy.
+- **Scroll indicator** — underlined nav entry + progress bar; feature groups collapse into
+  accordions below 700px.
+
+## Translations
+
+Each language file default-exports the same keys and array shapes as `en.js`
+(`why[]`, `cards[]` and `groups[][]` entries are `[icon, title, text]`; `plans[]`,
+`shots[]`, `faqs[]`). Icon names are structure, not copy and must match across languages.
+The full privacy policy (`pp_sections`) exists **only in English**; other languages translate
+the summary and show it with a note that the English text prevails.
+To add a language: copy `en.js`, drop `pp_sections`, translate, register it in `index.js`.
 
 ## A rule for this page
 
-Every claim here must be true of the app as it ships. The page has already been
-audited once for statements that had drifted ahead of reality, and once for
-promising a Google Play testing track the app was not on. When a feature or a
-release track changes, this page changes with it — the app is what makes the
-promises honest, not the copy.
-
-The application itself lives in a separate, private repository.
+Every claim here must be true of the app as it ships. When a feature or a release track
+changes (App Store release, iPhone purchase, new languages), this page changes with it — in
+**every** language file.
