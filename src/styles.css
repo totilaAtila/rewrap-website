@@ -204,15 +204,11 @@ h1, h2, h3, h4, p { margin-top: 0; }
 .glow { position: absolute; width: min(115%, 520px); height: min(115%, 520px); background: radial-gradient(circle, var(--accent) 0%, transparent 62%); filter: blur(38px); opacity: .4; border-radius: 50%; animation: rewrapGlow 6s ease-in-out infinite; }
 
 /* ---------- Phone frames ---------- */
-.phone { position: relative; border: 11px solid #0a0a0a; border-radius: 40px; background: #000; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,0.5); aspect-ratio: 640 / 1190; }
+.phone { position: relative; border: 11px solid #0a0a0a; border-radius: 40px; background: #000; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,0.5); aspect-ratio: 640 / 1286; }
 .phone img { width: 100%; height: 100%; object-fit: cover; }
 .phone--hero, .phone--theme { background: var(--panel2); }
 .phone--hero { width: min(72vw, 296px); }
-.phone--gallery { width: min(72vw, 296px); aspect-ratio: auto; }
-.phone--gallery img { height: auto; }
-/* The slot keeps the tallest frame's height, so shorter screenshots (the Goal Setting pair)
-   sit centred without the caption and arrows jumping between slides. */
-.gallery-slot { width: min(72vw, 296px); aspect-ratio: 640 / 1190; display: grid; place-items: center; }
+.phone--gallery { width: min(72vw, 296px); }
 .phone--theme { border-width: 9px; border-radius: 32px; width: clamp(148px, 40vw, 206px); box-shadow: var(--shadow); }
 
 /* ---------- Cards ---------- */
@@ -230,7 +226,7 @@ h1, h2, h3, h4, p { margin-top: 0; }
 
 /* ---------- Gallery ---------- */
 .gallery-wrap { position: relative; max-width: 720px; margin: 0 auto; display: grid; place-items: center; }
-.gal-btn { position: absolute; top: calc(min(72vw, 296px) * 1190 / 640 / 2); transform: translateY(-50%); width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); display: grid; place-items: center; cursor: pointer; z-index: 5; box-shadow: var(--shadow); }
+.gal-btn { position: absolute; top: calc(min(72vw, 296px) * 1286 / 640 / 2); transform: translateY(-50%); width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); display: grid; place-items: center; cursor: pointer; z-index: 5; box-shadow: var(--shadow); }
 .gal-btn.left { left: 0; }
 .gal-btn.right { right: 0; }
 .gal-caption { text-align: center; margin-top: 22px; min-height: 70px; }

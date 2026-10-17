@@ -12,7 +12,7 @@ const CONFIG = {
 };
 
 const GALLERY_SRCS = [
-  '/assets/screenshots/original-gs.webp', '/assets/screenshots/reflow-gs.webp',
+  '/assets/screenshots/original.webp', '/assets/screenshots/reflow.webp',
   '/assets/screenshots/scan.webp', '/assets/screenshots/sepia.webp',
   '/assets/screenshots/night.webp',
 ];
@@ -238,7 +238,7 @@ function renderLists() {
   $('#privacy-grid').innerHTML = (t.cards || []).map((c) => cardHTML(c[0], c[1], c[2])).join('');
 
   $('#themes-row').innerHTML = THEME_SHOTS.map(([src, key]) =>
-    `<div class="theme-item"><div class="phone phone--theme"><img src="${src}" width="640" height="1190" loading="lazy" alt="${t[key]}" /></div><span class="theme-label">${t[key]}</span></div>`).join('');
+    `<div class="theme-item"><div class="phone phone--theme"><img src="${src}" width="640" height="1286" loading="lazy" alt="${t[key]}" /></div><span class="theme-label">${t[key]}</span></div>`).join('');
 
   const compact = narrow.matches;
   $('#feature-groups').innerHTML = (t.groups || []).map((g, gi) => {
