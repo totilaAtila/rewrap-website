@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Oriģināls', 'PDF tieši tāds, kā iespiests — divas kolonnas, sīks burtu izmērs.'],
           ['Reflow', 'Tāds pats lappuses platums, teksts palielināts un pārkārtots uz vietas.'],
+          ['Bibliotēka', 'Turpini, kur apstājies — tava bibliotēka paliek tavā tālrunī.'],
           ['Skenētās grāmatas', 'Foto un skenējumi tiek atpazīti ierīcē — bez augšupielādes.'],
           ['Sēpija', 'Tēmas, kas seko tavām acīm: gaišā, sēpija, nakts, AMOLED.'],
           ['Nakts', 'Ērti tumsā, ar tavu teksta izmēru un atstarpēm.'],

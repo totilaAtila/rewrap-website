@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Originalas', 'PDF tiksliai toks, kaip atspausdintas — du stulpeliai, smulkus šriftas.'],
           ['Reflow', 'Tas pats puslapio plotis, tekstas padidintas ir perdėliotas vietoje.'],
+          ['Biblioteka', 'Tęskite, kur sustojote — jūsų biblioteka lieka telefone.'],
           ['Nuskenuotos knygos', 'Nuotraukos ir skenavimai atpažįstami įrenginyje — be įkėlimo.'],
           ['Sepija', 'Temos, kurios seka jūsų akis: šviesi, sepija, naktis, AMOLED.'],
           ['Naktis', 'Patogu tamsoje, su jūsų pasirinktu teksto dydžiu ir tarpais.'],

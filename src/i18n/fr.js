@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Original', 'Le PDF exactement comme imprimé — deux colonnes, caractères minuscules.'],
           ['Reflow', 'Même largeur de page, texte agrandi et remis en page sur place.'],
+          ['Bibliothèque', 'Reprenez là où vous vous êtes arrêté — votre bibliothèque reste sur votre téléphone.'],
           ['Livres scannés', 'Photos et scans sont reconnus sur l’appareil — sans envoi.'],
           ['Sépia', 'Des thèmes qui suivent vos yeux : clair, sépia, nuit, AMOLED.'],
           ['Nuit', 'Confortable dans le noir, avec votre taille de texte et vos espacements.'],

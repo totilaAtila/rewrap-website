@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Oryginał', 'PDF dokładnie tak, jak wydrukowany — dwie kolumny, drobny druk.'],
           ['Reflow', 'Ta sama szerokość strony, tekst powiększony i ułożony na nowo w miejscu.'],
+          ['Biblioteka', 'Wróć tam, gdzie skończyłeś — Twoja biblioteka zostaje na telefonie.'],
           ['Zeskanowane książki', 'Zdjęcia i skany są rozpoznawane na urządzeniu — bez wysyłania.'],
           ['Sepia', 'Motywy, które słuchają Twoich oczu: jasny, sepia, noc, AMOLED.'],
           ['Noc', 'Wygodnie po ciemku, z Twoim rozmiarem tekstu i odstępami.'],

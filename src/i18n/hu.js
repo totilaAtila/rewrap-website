@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Eredeti', 'A PDF pontosan úgy, ahogy nyomtatták — két oszlop, apró betűk.'],
           ['Reflow', 'Ugyanaz az oldalszélesség, a szöveg nagyítva és a helyén újratördelve.'],
+          ['Könyvtár', 'Folytasd, ahol abbahagytad — a könyvtárad a telefonodon marad.'],
           ['Beszkennelt könyvek', 'A fotókat és szkenneléseket az eszközön ismeri fel — feltöltés nélkül.'],
           ['Szépia', 'Témák, amelyek követik a szemedet: világos, szépia, éjszaka, AMOLED.'],
           ['Éjszaka', 'Kényelmes sötétben, a saját betűméreteddel és térközeiddel.'],

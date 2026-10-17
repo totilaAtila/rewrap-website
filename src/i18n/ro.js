@@ -33,6 +33,7 @@ export default {
     shots: [
           ['Original', 'PDF-ul exact ca în tipar — două coloane, litere mici.'],
           ['Reflow', 'Aceeași lățime de pagină, text mărit și reașezat pe loc.'],
+          ['Bibliotecă', 'Continuă de unde ai rămas — biblioteca ta rămâne pe telefon.'],
           ['Cărți scanate', 'Fotografiile și scanurile sunt recunoscute pe dispozitiv — fără încărcare.'],
           ['Sepia', 'Teme care îți ascultă ochii: luminos, sepia, noapte, AMOLED.'],
           ['Noapte', 'Confortabil pe întuneric, cu mărimea și spațierea textului alese de tine.'],

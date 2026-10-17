@@ -13,7 +13,8 @@ const CONFIG = {
 
 const GALLERY_SRCS = [
   '/assets/screenshots/original.webp', '/assets/screenshots/reflow.webp',
-  '/assets/screenshots/scan.webp', '/assets/screenshots/sepia.webp',
+  '/assets/screenshots/library.webp', '/assets/screenshots/scan.webp',
+  '/assets/screenshots/sepia.webp',
   '/assets/screenshots/night.webp',
 ];
 // [image, i18n key of the theme's name]
