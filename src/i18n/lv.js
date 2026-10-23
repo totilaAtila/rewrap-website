@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 dienas, viss atbloķēts.', pricing_trial_b: 'Jaunas Android instalācijas sākas ar izmēģinājumu ar pilnu piekļuvi — izmēģini to uz savām grāmatām. Lietotne paziņo dažas dienas pirms beigām; pēc tam lasīšana paliek bez maksas.',
-    pricing_ios: 'iPhone ierīcēs Rewrap ir beta versijā un pašlaik viss ir atvērts; vienreizējā atbloķēšana parādīsies kopā ar App Store izlaidumu.',
+    pricing_ios: 'iPhone ierīcēs Apple noteikumi prasa, lai 14 dienu izmēģinājumu sāktu tu pats: atver Iestatījumi → Rewrap Premium un pieskaries „Sākt bezmaksas 14 dienu izmēģinājumu”. Nekas netiek iekasēts, un pēc 14 dienām lasīšana paliek bez maksas. TestFlight beta versijā arī atbloķēšana neko nemaksā.',
     pricing_store: 'Atbloķēšanu pērk tā tālruņa veikalā, kuru izmanto. Rewrap nav konta un servera, tāpēc Android ierīcē pirkta atbloķēšana nepāriet uz iPhone, un otrādi.',
 
     privacy_eyebrow: 'Privātums', privacy_title: 'Privāts pēc noklusējuma.', privacy_sub: 'Tavas grāmatas nekad neatstāj tālruni.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Jautājumi', faq_title: 'Jautājumi un īsā rokasgrāmata.', faq_sub: 'Tie paši jautājumi, uz kuriem atbild lietotnes rokasgrāmata — pieskaries kādam, lai redzētu atbildi.',
     faqs: [
-          ['Vai Rewrap ir bezmaksas?', 'Lasīšana ir bezmaksas uz visiem laikiem: digitālie PDF, EPUB un TXT, pārkārtoti un palielināti, ar visām tēmām, meklēšanu, grāmatzīmēm, taviem izcēlumiem, savām piezīmēm un labojumiem. Vienreizēja atbloķēšana pievieno smago darbu — skenējumu atpazīšanu, kameras skeneri, lasīšanu skaļi, konvertēšanu uz citiem formātiem un tīro lasīšanu. Android ierīcēs jaunas instalācijas saņem 14 dienu izmēģinājumu ar visu atvērtu; iPhone ierīcēs beta laikā viss ir atvērts.'],
+          ['Vai Rewrap ir bezmaksas?', 'Lasīšana ir bezmaksas uz visiem laikiem: digitālie PDF, EPUB un TXT, pārkārtoti un palielināti, ar visām tēmām, meklēšanu, grāmatzīmēm, taviem izcēlumiem, savām piezīmēm un labojumiem. Vienreizēja atbloķēšana pievieno smago darbu — skenējumu atpazīšanu, kameras skeneri, lasīšanu skaļi, konvertēšanu uz citiem formātiem un tīro lasīšanu. Android ierīcēs jaunas instalācijas saņem 14 dienu izmēģinājumu ar visu atvērtu; iPhone ierīcēs to pašu 14 dienu izmēģinājumu sāc pats, sadaļā Iestatījumi → Rewrap Premium.'],
           ['Kur to var lejupielādēt?', 'Android ierīcēs — Google Play. iPhone ierīcēs Rewrap ir publiskā beta versijā, izmantojot Apple lietotni TestFlight — izmanto šīs lapas pogu „Pievienoties iPhone beta”.'],
           ['Vai tas darbojas bezsaistē?', 'Jā. Lasīšana — ieskaitot skenēto grāmatu atpazīšanu — notiek tālrunī, tāpēc darbojas lidojuma režīmā.'],
           ['Kādus datus jūs vācat?', 'Nevienu no tava satura: mēs neuzturam serveri un mums nav kontu sistēmas. Precīzas detaļas, ieskaitot vienīgo diagnostikas izņēmumu Android ierīcēs, ir privātuma politikā.'],

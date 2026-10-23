@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 dienų, viskas atrakinta.', pricing_trial_b: 'Naujos „Android“ įdiegtys prasideda bandomuoju laikotarpiu su visa prieiga — išbandykite su savo knygomis. Programėlė praneša likus kelioms dienoms iki pabaigos; po to skaitymas lieka nemokamas.',
-    pricing_ios: '„iPhone“ Rewrap yra beta versijoje ir šiuo metu viskas atvira; vienkartinis atrakinimas atkeliaus kartu su „App Store“ išleidimu.',
+    pricing_ios: '„iPhone“ „Apple“ taisyklės reikalauja, kad 14 dienų bandymą pradėtumėte patys: atverkite Nustatymai → Rewrap Premium ir palieskite „Pradėti nemokamą 14 dienų bandymą“. Nieko neapmokestinama, o po 14 dienų skaitymas lieka nemokamas. „TestFlight“ beta versijoje atrakinimas taip pat nieko nekainuoja.',
     pricing_store: 'Atrakinimas perkamas jūsų naudojamo telefono parduotuvėje. Rewrap neturi paskyros ir serverio, todėl „Android“ pirktas atrakinimas neperkeliamas į „iPhone“, ir atvirkščiai.',
 
     privacy_eyebrow: 'Privatumas', privacy_title: 'Privatu pagal numatymą.', privacy_sub: 'Jūsų knygos niekada nepalieka telefono.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Klausimai', faq_title: 'Klausimai ir trumpas vadovas.', faq_sub: 'Tie patys klausimai, į kuriuos atsako programėlės vadovas — palieskite bet kurį, kad pamatytumėte atsakymą.',
     faqs: [
-          ['Ar Rewrap nemokamas?', 'Skaitymas nemokamas visam laikui: skaitmeniniai PDF, EPUB ir TXT, perdėlioti ir padidinti, su visomis temomis, paieška, žymėmis, jūsų paryškinimais, užrašais ir pataisymais. Vienkartinis atrakinimas prideda sunkų darbą — skenavimų atpažinimą, kameros skenerį, skaitymą balsu, konvertavimą į kitus formatus ir švarų skaitymą. „Android“ naujos įdiegtys gauna 14 dienų bandomąjį laikotarpį su viskuo atvira; „iPhone“ beta metu viskas atvira.'],
+          ['Ar Rewrap nemokamas?', 'Skaitymas nemokamas visam laikui: skaitmeniniai PDF, EPUB ir TXT, perdėlioti ir padidinti, su visomis temomis, paieška, žymėmis, jūsų paryškinimais, užrašais ir pataisymais. Vienkartinis atrakinimas prideda sunkų darbą — skenavimų atpažinimą, kameros skenerį, skaitymą balsu, konvertavimą į kitus formatus ir švarų skaitymą. „Android“ naujos įdiegtys gauna 14 dienų bandomąjį laikotarpį su viskuo atvira; „iPhone“ tą patį 14 dienų bandymą pradedate patys, skiltyje Nustatymai → Rewrap Premium.'],
           ['Kur galiu atsisiųsti?', '„Android“ — iš „Google Play“. „iPhone“ Rewrap yra viešoje beta versijoje per „Apple“ programėlę „TestFlight“ — naudokite šio puslapio mygtuką „Prisijungti prie iPhone beta“.'],
           ['Ar veikia neprisijungus?', 'Taip. Skaitymas — įskaitant nuskenuotų knygų atpažinimą — vyksta telefone, todėl veikia lėktuvo režimu.'],
           ['Kokius duomenis renkate?', 'Nieko iš jūsų turinio: mes nevaldome serverio ir neturime paskyrų sistemos. Tikslios detalės, įskaitant vienintelę diagnostikos išimtį „Android“, yra privatumo politikoje.'],

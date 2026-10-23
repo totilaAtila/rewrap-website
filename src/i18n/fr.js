@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 jours, tout déverrouillé.', pricing_trial_b: 'Les nouvelles installations sur Android démarrent par un essai à accès complet — testez-le sur vos propres livres. L’application vous prévient quelques jours avant la fin ; ensuite, la lecture reste gratuite.',
-    pricing_ios: 'Sur iPhone, Rewrap est en bêta et tout est actuellement ouvert ; le déverrouillage unique arrivera avec la sortie sur l’App Store.',
+    pricing_ios: 'Sur iPhone, les règles d’Apple demandent que vous lanciez vous-même l’essai de 14 jours : ouvrez Paramètres → Rewrap Premium et touchez « Commencer l’essai gratuit de 14 jours ». Rien n’est facturé, et après les 14 jours la lecture reste gratuite. Dans la bêta TestFlight, le déverrouillage ne coûte rien non plus.',
     pricing_store: 'Le déverrouillage s’achète dans la boutique du téléphone que vous utilisez. Rewrap n’a ni compte ni serveur : un déverrouillage acheté sur Android ne passe donc pas sur iPhone, ni l’inverse.',
 
     privacy_eyebrow: 'Confidentialité', privacy_title: 'Privé par défaut.', privacy_sub: 'Vos livres ne quittent jamais votre téléphone.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Questions', faq_title: 'Questions et guide rapide.', faq_sub: 'Les mêmes questions que le guide intégré à l’application — touchez-en une pour voir la réponse.',
     faqs: [
-          ['Rewrap est-il gratuit ?', 'La lecture est gratuite pour toujours : PDF numériques, EPUB et TXT, remis en page et agrandis, avec tous les thèmes, la recherche, les signets, vos surlignages, vos propres notes et vos corrections. Un déverrouillage unique ajoute le gros travail — reconnaissance des scans, scanner par caméra, lecture à voix haute, conversion vers d’autres formats et lecture épurée. Sur Android, les nouvelles installations ont un essai de 14 jours avec tout ouvert ; sur iPhone, tout est ouvert pendant la bêta.'],
+          ['Rewrap est-il gratuit ?', 'La lecture est gratuite pour toujours : PDF numériques, EPUB et TXT, remis en page et agrandis, avec tous les thèmes, la recherche, les signets, vos surlignages, vos propres notes et vos corrections. Un déverrouillage unique ajoute le gros travail — reconnaissance des scans, scanner par caméra, lecture à voix haute, conversion vers d’autres formats et lecture épurée. Sur Android, les nouvelles installations ont un essai de 14 jours avec tout ouvert ; sur iPhone, vous lancez vous-même le même essai de 14 jours, depuis Paramètres → Rewrap Premium.'],
           ['Où puis-je le télécharger ?', 'Sur Android, depuis Google Play. Sur iPhone, Rewrap est en bêta publique via l’application TestFlight d’Apple — utilisez le bouton « Rejoindre la bêta iPhone » de cette page.'],
           ['Fonctionne-t-il hors ligne ?', 'Oui. La lecture — y compris la reconnaissance des livres scannés — se fait sur le téléphone, donc elle marche en mode avion.'],
           ['Quelles données collectez-vous ?', 'Rien de votre contenu : nous n’avons aucun serveur ni système de comptes. Les détails exacts, y compris l’unique exception de diagnostic sur Android, sont dans la politique de confidentialité.'],

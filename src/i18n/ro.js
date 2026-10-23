@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 zile, totul deblocat.', pricing_trial_b: 'Instalările noi pe Android încep cu o probă cu acces complet — încearc-o pe cărțile tale. Aplicația te anunță cu câteva zile înainte să se termine; după aceea, citirea rămâne gratuită.',
-    pricing_ios: 'Pe iPhone, Rewrap este în beta și totul este deschis acum; deblocarea unică va veni odată cu lansarea pe App Store.',
+    pricing_ios: 'Pe iPhone, regulile Apple cer ca proba de 14 zile s-o pornești tu: deschide Setări → Rewrap Premium și atinge „Începe proba gratuită de 14 zile”. Nu se plătește nimic, iar după cele 14 zile citirea rămâne gratuită. În beta TestFlight, nici deblocarea nu costă nimic.',
     pricing_store: 'Deblocarea se cumpără în magazinul telefonului pe care îl folosești. Rewrap nu are cont și nu are server, așa că o deblocare cumpărată pe Android nu se transferă pe iPhone, și nici invers.',
 
     privacy_eyebrow: 'Confidențialitate', privacy_title: 'Privat din start.', privacy_sub: 'Cărțile tale nu părăsesc telefonul.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Întrebări', faq_title: 'Întrebări și ghid rapid.', faq_sub: 'Aceleași întrebări la care răspunde ghidul din aplicație — atinge una ca să vezi răspunsul.',
     faqs: [
-          ['Este Rewrap gratuit?', 'Citirea e gratuită pentru totdeauna: PDF-uri digitale, EPUB și TXT, reașezate și mărite, cu toate temele, căutarea, semnele de carte, evidențierile, propriile notițe și corecturile. O deblocare unică adaugă munca grea — recunoașterea scanurilor, scanerul cu camera, citirea cu voce tare, conversia în alte formate și citirea curată. Pe Android, instalările noi primesc o probă de 14 zile cu totul deschis; pe iPhone, totul e deschis pe durata beta.'],
+          ['Este Rewrap gratuit?', 'Citirea e gratuită pentru totdeauna: PDF-uri digitale, EPUB și TXT, reașezate și mărite, cu toate temele, căutarea, semnele de carte, evidențierile, propriile notițe și corecturile. O deblocare unică adaugă munca grea — recunoașterea scanurilor, scanerul cu camera, citirea cu voce tare, conversia în alte formate și citirea curată. Pe Android, instalările noi primesc o probă de 14 zile cu totul deschis; pe iPhone, aceeași probă de 14 zile o pornești tu, din Setări → Rewrap Premium.'],
           ['De unde îl pot descărca?', 'Pe Android, din Google Play. Pe iPhone, Rewrap este în beta publică prin aplicația Apple TestFlight — folosește butonul „Intră în beta pentru iPhone” de pe această pagină.'],
           ['Funcționează offline?', 'Da. Citirea — inclusiv recunoașterea cărților scanate — rulează pe telefon, deci merge în modul avion.'],
           ['Ce date colectați?', 'Nimic din conținutul tău: nu avem server și nu avem sistem de conturi. În politica de confidențialitate găsești detaliile exacte, inclusiv singura excepție de diagnostic de pe Android.'],

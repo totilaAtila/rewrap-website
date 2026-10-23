@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 nap, minden feloldva.', pricing_trial_b: 'Az új Android-telepítések teljes hozzáférésű próbával indulnak — próbáld ki a saját könyveiden. Az alkalmazás néhány nappal a lejárat előtt szól; utána az olvasás ingyenes marad.',
-    pricing_ios: 'iPhone-on a Rewrap bétában van, és jelenleg minden nyitott; az egyszeri feloldás az App Store-os megjelenéssel érkezik.',
+    pricing_ios: 'iPhone-on az Apple szabályai szerint a 14 napos próbát te magad indítod: nyisd meg a Beállítások → Rewrap Premium menüt, és koppints „Az ingyenes 14 napos próba indítása” gombra. Semmit sem kell fizetni, és a 14 nap után az olvasás ingyenes marad. A TestFlight-bétában a feloldás sem kerül semmibe.',
     pricing_store: 'A feloldást annak a telefonnak az áruházában veszed meg, amelyet használsz. A Rewrapnak nincs fiókja és szervere, így az Androidon vásárolt feloldás nem vihető át iPhone-ra, és fordítva sem.',
 
     privacy_eyebrow: 'Adatvédelem', privacy_title: 'Alapból privát.', privacy_sub: 'A könyveid sosem hagyják el a telefonodat.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Kérdések', faq_title: 'Kérdések és gyors útmutató.', faq_sub: 'Ugyanazok a kérdések, amelyekre az alkalmazásbeli útmutató is válaszol — érints meg egyet a válaszhoz.',
     faqs: [
-          ['Ingyenes a Rewrap?', 'Az olvasás örökre ingyenes: digitális PDF-ek, EPUB és TXT, újratördelve és nagyítva, minden témával, kereséssel, könyvjelzővel, a kiemeléseiddel, saját jegyzeteiddel és javításaiddal. Egy egyszeri feloldás hozzáadja a nehéz munkát — a szkennelések felismerését, a kamerás szkennert, a felolvasást, a más formátumokba való átalakítást és a tiszta olvasást. Androidon az új telepítések 14 napos próbát kapnak mindennel nyitva; iPhone-on a béta alatt minden nyitott.'],
+          ['Ingyenes a Rewrap?', 'Az olvasás örökre ingyenes: digitális PDF-ek, EPUB és TXT, újratördelve és nagyítva, minden témával, kereséssel, könyvjelzővel, a kiemeléseiddel, saját jegyzeteiddel és javításaiddal. Egy egyszeri feloldás hozzáadja a nehéz munkát — a szkennelések felismerését, a kamerás szkennert, a felolvasást, a más formátumokba való átalakítást és a tiszta olvasást. Androidon az új telepítések 14 napos próbát kapnak mindennel nyitva; iPhone-on ugyanezt a 14 napos próbát te magad indítod, a Beállítások → Rewrap Premium menüben.'],
           ['Hol tölthetem le?', 'Androidon a Google Playről. iPhone-on a Rewrap nyilvános bétában van az Apple TestFlight alkalmazásán keresztül — használd az oldalon lévő „Csatlakozás az iPhone-bétához” gombot.'],
           ['Működik offline?', 'Igen. Az olvasás — a beszkennelt könyvek felismerését is beleértve — a telefonon fut, ezért repülő üzemmódban is működik.'],
           ['Milyen adatokat gyűjtötök?', 'A tartalmaidból semmit: nem üzemeltetünk szervert, és nincs fiókrendszerünk. A pontos részletek, az Androidon az egyetlen diagnosztikai kivételt is beleértve, az adatvédelmi tájékoztatóban vannak.'],

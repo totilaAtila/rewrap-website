@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 days, everything unlocked.', pricing_trial_b: 'New installs on Android start with a full-access trial — try it on your own books. The app tells you a few days before it ends; after that, reading stays free.',
-    pricing_ios: 'On iPhone, Rewrap is in beta and everything is currently open; the one-time unlock will arrive with the App Store release.',
+    pricing_ios: 'On iPhone, Apple’s rules ask that you start the 14-day trial yourself: open Settings → Rewrap Premium and tap “Start the free 14-day trial”. Nothing is charged, and after the 14 days reading stays free. In the TestFlight beta, the unlock costs nothing either.',
     pricing_store: 'The unlock is bought in the store of the phone you use. Rewrap has no account and no server, so an unlock bought on Android does not carry over to iPhone, or the other way round.',
 
     privacy_eyebrow: 'Privacy', privacy_title: 'Private by default.', privacy_sub: 'Your books never leave your phone.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Questions', faq_title: 'Questions & quick guide.', faq_sub: 'The same questions the in-app guide answers — tap one to see the answer.',
     faqs: [
-          ['Is Rewrap free?', 'Reading is free forever: digital PDFs, EPUB and TXT, reflowed and enlarged, with all the themes, search, bookmarks, your highlights, your own notes and your corrections. A one-time unlock adds the heavy work — recognizing scans, the camera scanner, read aloud, converting to other formats and clean reading. On Android, new installs get a 14-day trial with everything open; on iPhone, everything is open during the beta.'],
+          ['Is Rewrap free?', 'Reading is free forever: digital PDFs, EPUB and TXT, reflowed and enlarged, with all the themes, search, bookmarks, your highlights, your own notes and your corrections. A one-time unlock adds the heavy work — recognizing scans, the camera scanner, read aloud, converting to other formats and clean reading. On Android, new installs get a 14-day trial with everything open; on iPhone, you start the same 14-day trial yourself, from Settings → Rewrap Premium.'],
           ['Where can I download it?', 'On Android, from Google Play. On iPhone, Rewrap is in public beta through Apple’s TestFlight app — use the “Join the iPhone beta” button on this page.'],
           ['Does it work offline?', 'Yes. Reading — including recognizing scanned books — runs on the phone, so it works in airplane mode.'],
           ['What data do you collect?', 'None of your content: we run no server and have no account system. See the privacy policy for the exact details, including the one diagnostic exception on Android.'],
@@ -171,7 +171,7 @@ export default {
                   '<strong>iPhone.</strong> Recognition is done on the device by Apple’s Vision framework and by Tesseract. Rewrap sends your pages and text nowhere. Any system diagnostics your iPhone shares with Apple are governed by your iOS settings and Apple’s privacy policy.',
                 ]],
           ['Purchases', [
-                  'The one-time unlock is handled entirely by the store — on Android, Google Play — and we never see your payment details. On iPhone, Rewrap is currently in beta with everything open; when the unlock arrives, it will go through Apple’s App Store.',
+                  'The one-time unlock is handled entirely by the store — Google Play on Android, Apple’s App Store on iPhone — and we never see your payment details. On iPhone, the free 14-day trial is also an App Store item, which you take yourself; its start date comes from Apple, and the app keeps a copy of it on the phone to know when the trial ends.',
                   'Rewrap has no account, so an unlock bought on one platform does not carry over to the other.',
                 ]],
           ['Children', [

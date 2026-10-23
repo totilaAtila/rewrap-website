@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 Tage, alles freigeschaltet.', pricing_trial_b: 'Neuinstallationen auf Android starten mit einer Testphase mit vollem Zugriff — probiere es an deinen eigenen Büchern. Die App sagt dir ein paar Tage vor dem Ende Bescheid; danach bleibt das Lesen kostenlos.',
-    pricing_ios: 'Auf dem iPhone ist Rewrap in der Beta und derzeit ist alles offen; die einmalige Freischaltung kommt mit dem App-Store-Release.',
+    pricing_ios: 'Auf dem iPhone verlangen Apples Regeln, dass du die 14-tägige Testphase selbst startest: Öffne Einstellungen → Rewrap Premium und tippe auf „Kostenlose 14-Tage-Testphase starten“. Es wird nichts berechnet, und nach den 14 Tagen bleibt das Lesen kostenlos. In der TestFlight-Beta kostet auch die Freischaltung nichts.',
     pricing_store: 'Die Freischaltung wird im Store des Telefons gekauft, das du benutzt. Rewrap hat kein Konto und keinen Server, daher wird eine auf Android gekaufte Freischaltung nicht aufs iPhone übertragen, und umgekehrt auch nicht.',
 
     privacy_eyebrow: 'Datenschutz', privacy_title: 'Privat von Haus aus.', privacy_sub: 'Deine Bücher verlassen dein Telefon nie.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Fragen', faq_title: 'Fragen & Kurzanleitung.', faq_sub: 'Dieselben Fragen, die auch die Anleitung in der App beantwortet — tippe auf eine, um die Antwort zu sehen.',
     faqs: [
-          ['Ist Rewrap kostenlos?', 'Lesen ist für immer kostenlos: digitale PDFs, EPUB und TXT, umbrochen und vergrößert, mit allen Designs, Suche, Lesezeichen, deinen Markierungen, eigenen Notizen und Korrekturen. Eine einmalige Freischaltung ergänzt die schwere Arbeit — Scans erkennen, Kamera-Scanner, Vorlesen, Konvertieren in andere Formate und bereinigtes Lesen. Auf Android erhalten Neuinstallationen eine 14-tägige Testphase mit allem offen; auf dem iPhone ist während der Beta alles offen.'],
+          ['Ist Rewrap kostenlos?', 'Lesen ist für immer kostenlos: digitale PDFs, EPUB und TXT, umbrochen und vergrößert, mit allen Designs, Suche, Lesezeichen, deinen Markierungen, eigenen Notizen und Korrekturen. Eine einmalige Freischaltung ergänzt die schwere Arbeit — Scans erkennen, Kamera-Scanner, Vorlesen, Konvertieren in andere Formate und bereinigtes Lesen. Auf Android erhalten Neuinstallationen eine 14-tägige Testphase mit allem offen; auf dem iPhone startest du dieselbe 14-tägige Testphase selbst, unter Einstellungen → Rewrap Premium.'],
           ['Wo kann ich es herunterladen?', 'Auf Android bei Google Play. Auf dem iPhone ist Rewrap in der öffentlichen Beta über Apples TestFlight-App — nutze den Button „iPhone-Beta beitreten“ auf dieser Seite.'],
           ['Funktioniert es offline?', 'Ja. Das Lesen — einschließlich der Erkennung gescannter Bücher — läuft auf dem Telefon und funktioniert daher im Flugmodus.'],
           ['Welche Daten erhebt ihr?', 'Keine deiner Inhalte: Wir betreiben keinen Server und haben kein Kontosystem. Die genauen Details, einschließlich der einen Diagnose-Ausnahme auf Android, stehen in der Datenschutzerklärung.'],

@@ -100,7 +100,7 @@ export default {
                 ]],
         ],
     pricing_trial_a: '14 dni, wszystko odblokowane.', pricing_trial_b: 'Nowe instalacje na Androidzie zaczynają od okresu próbnego z pełnym dostępem — wypróbuj na własnych książkach. Aplikacja uprzedza na kilka dni przed końcem; potem czytanie zostaje darmowe.',
-    pricing_ios: 'Na iPhonie Rewrap jest w becie i wszystko jest teraz otwarte; jednorazowe odblokowanie pojawi się wraz z premierą w App Store.',
+    pricing_ios: 'Na iPhonie zasady Apple wymagają, żebyś sam uruchomił 14-dniowy okres próbny: otwórz Ustawienia → Rewrap Premium i dotknij „Rozpocznij bezpłatny 14-dniowy okres próbny”. Nic nie jest pobierane, a po 14 dniach czytanie zostaje darmowe. W becie TestFlight odblokowanie też nic nie kosztuje.',
     pricing_store: 'Odblokowanie kupuje się w sklepie telefonu, z którego korzystasz. Rewrap nie ma konta ani serwera, więc odblokowanie kupione na Androidzie nie przenosi się na iPhone’a, ani odwrotnie.',
 
     privacy_eyebrow: 'Prywatność', privacy_title: 'Prywatny od początku.', privacy_sub: 'Twoje książki nigdy nie opuszczają telefonu.',
@@ -116,7 +116,7 @@ export default {
 
     faq_eyebrow: 'Pytania', faq_title: 'Pytania i krótki przewodnik.', faq_sub: 'Te same pytania, na które odpowiada przewodnik w aplikacji — dotknij jednego, by zobaczyć odpowiedź.',
     faqs: [
-          ['Czy Rewrap jest darmowy?', 'Czytanie jest darmowe na zawsze: cyfrowe PDF-y, EPUB i TXT, ułożone na nowo i powiększone, ze wszystkimi motywami, wyszukiwaniem, zakładkami, Twoimi zakreśleniami, własnymi notatkami i poprawkami. Jednorazowe odblokowanie dodaje ciężką pracę — rozpoznawanie skanów, skaner aparatem, czytanie na głos, konwersję do innych formatów i czyste czytanie. Na Androidzie nowe instalacje dostają 14-dniowy okres próbny z wszystkim otwartym; na iPhonie w czasie bety wszystko jest otwarte.'],
+          ['Czy Rewrap jest darmowy?', 'Czytanie jest darmowe na zawsze: cyfrowe PDF-y, EPUB i TXT, ułożone na nowo i powiększone, ze wszystkimi motywami, wyszukiwaniem, zakładkami, Twoimi zakreśleniami, własnymi notatkami i poprawkami. Jednorazowe odblokowanie dodaje ciężką pracę — rozpoznawanie skanów, skaner aparatem, czytanie na głos, konwersję do innych formatów i czyste czytanie. Na Androidzie nowe instalacje dostają 14-dniowy okres próbny z wszystkim otwartym; na iPhonie ten sam 14-dniowy okres próbny uruchamiasz sam, w Ustawienia → Rewrap Premium.'],
           ['Gdzie mogę to pobrać?', 'Na Androidzie z Google Play. Na iPhonie Rewrap jest w publicznej becie przez aplikację Apple TestFlight — użyj przycisku „Dołącz do bety na iPhone’a” na tej stronie.'],
           ['Czy działa offline?', 'Tak. Czytanie — łącznie z rozpoznawaniem zeskanowanych książek — odbywa się na telefonie, więc działa w trybie samolotowym.'],
           ['Jakie dane zbieracie?', 'Żadnych z Twojej zawartości: nie prowadzimy serwera i nie mamy systemu kont. Dokładne szczegóły, w tym jedyny wyjątek diagnostyczny na Androidzie, są w polityce prywatności.'],

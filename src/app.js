@@ -8,7 +8,7 @@ const CONFIG = {
   ios: 'https://testflight.apple.com/join/cNFZfETe',
   // Assembled at runtime so the address is not sitting in the source as plain text.
   email: ['rewrapapp', 'gmail.com'].join('@'),
-  updated: '2026-10-17',
+  updated: '2026-10-23',
 };
 
 const GALLERY_SRCS = [
