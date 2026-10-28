@@ -457,7 +457,7 @@
       text-align: justify;
     }
 
-    /* Diagrama intercalata */
+    /* Diagrama intercalata + Lupa pentru benzi (b325) */
     .doc-figure-card {
       margin: 12px 0 6px 0;
       padding: 12px;
@@ -468,6 +468,67 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      position: relative;
+      cursor: zoom-in;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .doc-figure-card .fig-head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .doc-figure-card .fig-lupa-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(156, 91, 46, 0.12);
+      padding: 2px 7px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .band-magnifier-loupe {
+      position: absolute;
+      width: 136px;
+      height: 136px;
+      border-radius: 50%;
+      border: 2.5px solid var(--accent);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.34), 0 0 0 1px rgba(255,255,255,0.22) inset;
+      background: var(--sheet);
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.75);
+      transition: opacity 0.16s ease, transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 40;
+    }
+    .band-magnifier-loupe.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .band-magnifier-loupe .loupe-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+    }
+    .band-magnifier-loupe .loupe-badge {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-fg);
+      letter-spacing: 0.2px;
     }
     .doc-figure-card .fig-title {
       font-size: 12px;
@@ -1285,10 +1346,16 @@
             <h2 id="reflow-heading" style="font-size: 26px;">On the Habit of Reading</h2>
             <div id="reflow-paragraphs-p1"></div>
 
-            <!-- DIAGRAMA INTERCALATĂ (FIGURA 1) -->
+            <!-- DIAGRAMA INTERCALATĂ (FIGURA 1) + LUPA PENTRU BENZI (b325) -->
             <div class="doc-figure-card" id="reflow-figure-card">
-              <span class="fig-title" id="fig-title-text">Figure 1. Reading efficiency across viewport modes</span>
-              <svg viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div class="fig-head-row">
+                <span class="fig-title" id="fig-title-text">Figure 1. Reading efficiency across viewport modes</span>
+                <span class="fig-lupa-hint" id="fig-lupa-hint">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                  <span id="fig-lupa-label">Hold to magnify</span>
+                </span>
+              </div>
+              <svg id="reflow-figure-svg" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Linii de grilă fundal -->
                 <line x1="45" y1="20" x2="305" y2="20" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
                 <line x1="45" y1="55" x2="305" y2="55" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
@@ -1322,6 +1389,12 @@
                 <text x="250" y="11" fill="var(--fg)" font-size="8.5" font-weight="600" font-family="sans-serif" id="fig-legend-reflow">Rewrap Reflow</text>
               </svg>
               <div class="fig-caption" id="fig-caption-text">Fig. 1 — Measured reading speed (words/min) and comprehension retention under adaptive reflow vs. manual viewport zoom.</div>
+
+              <!-- Lupa circulară pentru benzi (BandMagnifier / LupaBenzi) -->
+              <div class="band-magnifier-loupe" id="band-magnifier-loupe" aria-hidden="true">
+                <div class="loupe-inner" id="band-magnifier-inner"></div>
+                <span class="loupe-badge">×2.2</span>
+              </div>
             </div>
 
             <div id="reflow-paragraphs-p2"></div>
@@ -1595,9 +1668,9 @@
           <span class="label" id="bm-toc">Table of contents</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>
         </button>
-        <button class="menu-item" data-action="goto">
-          <span class="label" id="bm-goto">Go to page…</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <button class="menu-item" data-action="orig-page">
+          <span class="label" id="bm-orig-page">Show this page as the original</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16"/></svg>
         </button>
 
         <div class="menu-gap"></div>
@@ -3097,7 +3170,7 @@
         $('#btn-start-trial').textContent = t('prem_btn');
         $('#txt-prem-sub').textContent = t('prem_footer');
 
-        // Figura 1 texte
+        // Figura 1 texte + Lupa
         $('#fig-title-text').textContent = t('fig_title');
         $('#fig-lbl-speed').textContent = t('fig_lbl_speed');
         $('#fig-lbl-comp').textContent = t('fig_lbl_comp');
@@ -3106,6 +3179,44 @@
         $('#fig-caption-text').textContent = t('fig_caption');
         $('#page-end-indicator').textContent = t('page_end');
         $('#orig-heading').textContent = t('orig_header');
+
+        const lupaHintByLang = {
+          en: 'Hold to magnify',
+          ro: 'Ține apăsat: lupă',
+          de: 'Halten: Lupe',
+          fr: 'Maintenir : loupe',
+          hu: 'Tartsd nyomva: nagyító',
+          pl: 'Przytrzymaj: lupa',
+          ru: 'Удерживайте: лупа',
+          lt: 'Laikykite: didintuvas',
+          lv: 'Turiet nospiestu: lupa'
+        };
+        const lupaLabel = $('#fig-lupa-label');
+        if (lupaLabel) lupaLabel.textContent = lupaHintByLang[state.lang] || lupaHintByLang.en;
+
+        // Meniul Cartea (localizat în toate cele 9 limbi, conform Facelift v4)
+        const bookMenuStrings = {
+          en: { toc: 'Table of contents', orig: 'Show this page as the original', bm: 'Bookmarks', hl: 'Highlights', nt: 'Notes', cr: 'Corrections', ex: 'Export as…', sh: 'Share file', rp: 'Report an issue', gd: 'Quick guide' },
+          ro: { toc: 'Cuprins', orig: 'Arată pagina asta ca în original', bm: 'Semne de carte', hl: 'Evidențieri', nt: 'Notițe', cr: 'Corecturi', ex: 'Exportă ca…', sh: 'Trimite fișierul', rp: 'Raportează o problemă', gd: 'Ghid rapid' },
+          de: { toc: 'Inhaltsverzeichnis', orig: 'Diese Seite wie im Original zeigen', bm: 'Lesezeichen', hl: 'Markierungen', nt: 'Notizen', cr: 'Korrekturen', ex: 'Exportieren als…', sh: 'Datei teilen', rp: 'Problem melden', gd: 'Kurzanleitung' },
+          fr: { toc: 'Table des matières', orig: 'Afficher cette page comme l’original', bm: 'Signets', hl: 'Surlignages', nt: 'Notes', cr: 'Corrections', ex: 'Exporter sous…', sh: 'Partager le fichier', rp: 'Signaler un problème', gd: 'Guide rapide' },
+          hu: { toc: 'Tartalomjegyzék', orig: 'Oldal megjelenítése eredetiként', bm: 'Könyvjelzők', hl: 'Kiemelések', nt: 'Jegyzetek', cr: 'Javítások', ex: 'Exportálás másként…', sh: 'Fájl megosztása', rp: 'Probléma jelentése', gd: 'Gyors útmutató' },
+          pl: { toc: 'Spis treści', orig: 'Pokaż tę stronę jak w oryginale', bm: 'Zakładki', hl: 'Zakreślenia', nt: 'Notatki', cr: 'Korekty', ex: 'Eksportuj jako…', sh: 'Udostępnij plik', rp: 'Zgłoś problem', gd: 'Szybki przewodnik' },
+          ru: { toc: 'Оглавление', orig: 'Показать страницу как в оригинале', bm: 'Закладки', hl: 'Выделения', nt: 'Заметки', cr: 'Исправления', ex: 'Экспортировать как…', sh: 'Поделиться файлом', rp: 'Сообщить о проблеме', gd: 'Краткое руководство' },
+          lt: { toc: 'Turinys', orig: 'Rodyti šį puslapį kaip originale', bm: 'Žymės', hl: 'Paryškinimai', nt: 'Pastabos', cr: 'Pataisymai', ex: 'Eksportuoti kaip…', sh: 'Bendrinti failą', rp: 'Pranešti apie problemą', gd: 'Trumpas vadovas' },
+          lv: { toc: 'Satura rādītājs', orig: 'Rādīt šo lapu kā oriģinālā', bm: 'Grāmatzīmes', hl: 'Izcēlumi', nt: 'Piezīmes', cr: 'Labojumi', ex: 'Eksportēt kā…', sh: 'Kopīgot failu', rp: 'Ziņot par problēmu', gd: 'Īsais ceļvedis' }
+        };
+        const bms = bookMenuStrings[state.lang] || bookMenuStrings.en;
+        if ($('#bm-toc')) $('#bm-toc').textContent = bms.toc;
+        if ($('#bm-orig-page')) $('#bm-orig-page').textContent = bms.orig;
+        if ($('#bm-bm')) $('#bm-bm').textContent = bms.bm;
+        if ($('#bm-hl')) $('#bm-hl').textContent = bms.hl;
+        if ($('#bm-nt')) $('#bm-nt').textContent = bms.nt;
+        if ($('#bm-cr')) $('#bm-cr').textContent = bms.cr;
+        if ($('#bm-ex')) $('#bm-ex').textContent = bms.ex;
+        if ($('#bm-sh')) $('#bm-sh').textContent = bms.sh;
+        if ($('#bm-rp')) $('#bm-rp').textContent = bms.rp;
+        if ($('#bm-gd')) $('#bm-gd').textContent = bms.gd;
 
         $('#reflow-heading').textContent = t('book_title');
         $('#info-bubble-title').textContent = t('book_title');
@@ -3428,11 +3539,87 @@
 
         $$('#book-menu .menu-item').forEach(btn => {
           btn.addEventListener('click', () => {
+            const action = btn.dataset.action;
             const label = btn.querySelector('.label').textContent;
-            showToast(label + ' — ' + (state.lang === 'ro' ? 'selectat' : 'selected'));
             closeDrawers();
+            if (action === 'orig-page') {
+              $('#btn-mode-orig')?.click();
+              return;
+            }
+            showToast(label + ' — ' + (state.lang === 'ro' ? 'selectat' : 'selected'));
           });
         });
+
+        // Lupa pentru benzi (BandMagnifier / LupaBenzi — b325) pe Figura 1 în Reflow
+        const figCard = $('#reflow-figure-card');
+        const loupe = $('#band-magnifier-loupe');
+        const loupeInner = $('#band-magnifier-inner');
+        const figSvg = $('#reflow-figure-svg');
+        if (figCard && loupe && loupeInner && figSvg) {
+          let loupeActive = false;
+          let loupeHideTimer = null;
+          const ZOOM = 2.2;
+          const LOUPE_SIZE = 136;
+
+          const updateLoupeAt = (clientX, clientY) => {
+            const rect = figCard.getBoundingClientRect();
+            const svgRect = figSvg.getBoundingClientRect();
+            const scaleFactor = rect.width / figCard.offsetWidth || 1;
+            const localX = Math.max(24, Math.min(figCard.offsetWidth - 24, (clientX - rect.left) / scaleFactor));
+            const localY = Math.max(24, Math.min(figCard.offsetHeight - 24, (clientY - rect.top) / scaleFactor));
+
+            loupe.style.left = Math.round(localX - LOUPE_SIZE / 2) + 'px';
+            loupe.style.top = Math.round(localY - LOUPE_SIZE / 2 - 14) + 'px';
+
+            const svgOffsetLeft = (svgRect.left - rect.left) / scaleFactor;
+            const svgOffsetTop = (svgRect.top - rect.top) / scaleFactor;
+            const svgW = figSvg.clientWidth || 290;
+            const svgH = figSvg.clientHeight || 145;
+
+            loupeInner.innerHTML = figSvg.outerHTML;
+            const clonedSvg = loupeInner.querySelector('svg');
+            if (clonedSvg) {
+              clonedSvg.removeAttribute('id');
+              clonedSvg.style.width = (svgW * ZOOM) + 'px';
+              clonedSvg.style.height = (svgH * ZOOM) + 'px';
+              const relX = localX - svgOffsetLeft;
+              const relY = localY - svgOffsetTop;
+              loupeInner.style.transform = `translate(${Math.round(LOUPE_SIZE / 2 - relX * ZOOM)}px, ${Math.round(LOUPE_SIZE / 2 - relY * ZOOM)}px)`;
+            }
+          };
+
+          const showLoupe = (clientX, clientY, autoHideMs) => {
+            clearTimeout(loupeHideTimer);
+            loupeActive = true;
+            updateLoupeAt(clientX, clientY);
+            loupe.classList.add('active');
+            if (autoHideMs) {
+              loupeHideTimer = setTimeout(() => {
+                loupeActive = false;
+                loupe.classList.remove('active');
+              }, autoHideMs);
+            }
+          };
+
+          figCard.addEventListener('pointerdown', (ev) => {
+            showLoupe(ev.clientX, ev.clientY, 0);
+            showToast(state.lang === 'ro' ? 'Lupă pentru figuri (×2.2) — claritatea paginii originale' : 'Figure magnifier (×2.2) — full original page sharpness');
+          });
+          figCard.addEventListener('pointermove', (ev) => {
+            if (loupeActive) updateLoupeAt(ev.clientX, ev.clientY);
+          });
+          const endLoupe = () => {
+            if (!loupeActive) return;
+            clearTimeout(loupeHideTimer);
+            loupeHideTimer = setTimeout(() => {
+              loupeActive = false;
+              loupe.classList.remove('active');
+            }, 900);
+          };
+          figCard.addEventListener('pointerup', endLoupe);
+          figCard.addEventListener('pointercancel', endLoupe);
+          figCard.addEventListener('pointerleave', endLoupe);
+        }
 
         // Filele sertarului Aa
         $$('.seg-tab-btn').forEach(btn => {
