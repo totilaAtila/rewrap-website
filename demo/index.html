@@ -1,0 +1,3688 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rewrap — Interactive Live Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --stage-bg: #18181b;
+      --font-serif: "Literata", "Iowan Old Style", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color-scheme: light dark;
+      box-sizing: border-box;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--stage-bg);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+    }
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Container de scalare proportionala */
+    #device-viewport {
+      position: absolute;
+      width: 390px;
+      height: 844px;
+      transform-origin: 0 0;
+      left: 0;
+      top: 0;
+    }
+
+    /* Corpul telefonului */
+    .phone {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      border-radius: 44px;
+      overflow: hidden;
+      background: var(--page);
+      color: var(--fg);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 0 0 3px #1c1c1f,
+        0 0 0 10px #27272a,
+        0 0 0 11px #18181b,
+        0 28px 75px rgba(0, 0, 0, 0.55);
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    /* Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 118px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 900;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 11px;
+    }
+    .dynamic-island .camera {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0d0d16;
+      border: 1px solid #1a1a24;
+    }
+    .dynamic-island .sensor {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #08080d;
+    }
+
+    /* Bara de stare iOS */
+    .status-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 28px 0 28px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      z-index: 850;
+      pointer-events: none;
+      color: var(--fg);
+    }
+    .status-bar .icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Home indicator iOS */
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 5px;
+      border-radius: 3px;
+      background: var(--fg);
+      opacity: 0.28;
+      z-index: 850;
+      pointer-events: none;
+    }
+
+    /* Ecrane */
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .screen.active {
+      display: flex;
+    }
+
+    /* =========================================================
+       1. BIBLIOTECA
+       ========================================================= */
+    #screen-library {
+      padding: 54px 20px 24px 20px;
+      background: var(--sheet);
+    }
+    .lib-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .lib-header h1 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    .lib-actions {
+      display: flex;
+      gap: 4px;
+    }
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      color: var(--fg);
+      transition: background 0.15s;
+    }
+    .icon-btn:hover { background: var(--line); }
+
+    .lib-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--page);
+      border: 1px solid var(--line);
+      padding: 0 12px;
+      color: var(--sub);
+      font-size: 14.5px;
+      margin-bottom: 16px;
+    }
+    .lib-search .chip {
+      margin-left: auto;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--line);
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .resume-card {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--page);
+      border: 1px solid var(--line);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    .resume-thumb {
+      width: 82px;
+      height: 122px;
+      border-radius: 6px;
+      background: #5D7A8C;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 11px;
+      line-height: 1.2;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+    .resume-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+    .resume-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .resume-title {
+      font-family: var(--font-serif);
+      font-size: 16.5px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--fg);
+    }
+    .resume-sub {
+      font-size: 13px;
+      color: var(--sub);
+    }
+    .resume-btn {
+      align-self: flex-start;
+      margin-top: 6px;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-fg);
+      font-weight: 600;
+      font-size: 13.5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+
+    .books-section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 12px;
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      overflow-y: auto;
+      padding-bottom: 60px;
+    }
+    .book-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+    .book-cover {
+      aspect-ratio: 2 / 3;
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+      display: flex;
+      align-items: flex-end;
+      padding: 6px;
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 9.5px;
+      line-height: 1.15;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease;
+    }
+    .book-item:active .book-cover { transform: scale(0.97); }
+    .book-title {
+      font-family: var(--font-serif);
+      font-size: 12px;
+      line-height: 1.25;
+      color: var(--fg);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .book-meta {
+      font-size: 11px;
+      color: var(--sub);
+    }
+    .fab-add {
+      position: absolute;
+      right: 20px;
+      bottom: 28px;
+      height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: var(--fg);
+      color: var(--sheet);
+      font-weight: 600;
+      font-size: 14.5px;
+      gap: 8px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.24);
+      z-index: 10;
+    }
+
+    /* =========================================================
+       2. CITITORUL (READER) — Facelift v4
+       ========================================================= */
+    #screen-reader {
+      background: var(--page);
+      color: var(--ink);
+    }
+
+    /* Bara de sus cu instrumentele deschise: ‹ Library  ≡ Book */
+    .reader-top-bar {
+      position: absolute;
+      top: 48px;
+      left: 14px;
+      right: 14px;
+      height: 38px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      animation: fadeIn 0.18s ease;
+    }
+    .reader-top-bar.active { display: flex; }
+
+    .nav-pill-btn {
+      height: 34px;
+      padding: 0 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--chrome);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--sub);
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .nav-pill-btn:hover { color: var(--fg); }
+
+    /* Comutatorul central Original | Reflow */
+    .mode-switch-wrap {
+      position: absolute;
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--chrome);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      z-index: 110;
+      transition: top 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mode-switch-wrap.tools-open {
+      top: 92px; /* Coboara sub bara de sus cand uneltele sunt deschise */
+    }
+    .mode-btn {
+      height: 34px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--sub);
+      transition: background 0.15s, color 0.15s;
+    }
+    .mode-btn.active {
+      background: var(--accent);
+      color: var(--accent-fg);
+    }
+
+    /* Pagina de lectura — cu scroll complet pana la capat! */
+    .reader-page-viewport {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 98px;
+      bottom: 84px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 20px 96px; /* 96px spatiu generos pentru a derula pana la capatul textului! */
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+      transition: top 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reader-page-viewport.tools-open {
+      top: 140px;
+    }
+    .reader-page-viewport::-webkit-scrollbar { width: 4px; }
+    .reader-page-viewport::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+    /* Text Reflow */
+    .view-reflow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .view-reflow h2 {
+      margin: 0 0 4px;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--ink);
+    }
+    .view-reflow p {
+      margin: 0;
+      color: var(--ink);
+      text-align: justify;
+    }
+
+    /* Diagrama intercalata */
+    .doc-figure-card {
+      margin: 12px 0 6px 0;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--sheet);
+      border: 1px solid var(--line);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .doc-figure-card .fig-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.1px;
+    }
+    .doc-figure-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .doc-figure-card .fig-caption {
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--sub);
+      font-style: italic;
+    }
+
+    /* Sfarsit de pagina indicator */
+    .page-end-mark {
+      text-align: center;
+      margin: 20px 0 10px;
+      color: var(--sub);
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.7;
+    }
+
+    /* Modul Original (2 coloane, fidel tiparului) */
+    .view-original {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      font-family: var(--font-serif);
+    }
+    .view-original .orig-header {
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+    }
+    .view-original .orig-cols {
+      column-count: 2;
+      column-gap: 16px;
+      font-size: 8.5px;
+      line-height: 1.42;
+      text-align: justify;
+    }
+    .view-original p {
+      margin: 0 0 6px 0;
+      text-indent: 8px;
+    }
+
+    /* Rigla de citire */
+    .reading-ruler-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: none;
+      z-index: 50;
+    }
+    .reading-ruler-overlay.active { display: block; }
+    .ruler-dim-top {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 140px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(1.5px);
+    }
+    .ruler-dim-bottom {
+      position: absolute;
+      left: 0; right: 0; bottom: 0; top: 250px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(1.5px);
+    }
+
+    /* =========================================================
+       BARA DE JOS (CHROME JOS) — FACELIFT v4
+       ========================================================= */
+    .reader-bottom-chrome {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 120;
+      height: 52px;
+    }
+
+    /* Butonul rotund ▲ / ▼ */
+    .btn-toggle-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--chrome);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .btn-toggle-arrow svg {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-toggle-arrow.open svg {
+      transform: rotate(180deg);
+    }
+
+    /* 1. Starea DE REPAUS: Linia de progres subțire + procent */
+    .progress-track-row {
+      flex: 1;
+      height: 44px;
+      border-radius: 999px;
+      background: var(--chrome);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      cursor: pointer;
+      position: relative;
+    }
+    .progress-line-track {
+      flex: 1;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--line);
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-line-fill {
+      width: 30%;
+      height: 100%;
+      border-radius: 3px;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+    .progress-label-pct {
+      font-size: 12px;
+      color: var(--sub);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+    /* Info bucla: Titlu · Pagina (apare PE LOC la tap pe bara) */
+    .progress-info-bubble {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--fg);
+      background: var(--chrome);
+      border-radius: 999px;
+      padding: 0 14px;
+    }
+    .progress-info-bubble.active { display: flex; }
+    .progress-info-bubble .b-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .progress-info-bubble .b-pos {
+      color: var(--sub);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* 2. Starea CU INSTRUMENTE: Pill cu 7 unelte + Buton Aa */
+    .tools-pill-group {
+      flex: 1;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .tools-pill-group.active { display: flex; }
+
+    .actions-pill {
+      flex: 1;
+      height: 44px;
+      border-radius: 999px;
+      background: var(--chrome);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 4px;
+    }
+    .tool-btn {
+      width: 36px;
+      height: 38px;
+      border-radius: 8px;
+      color: var(--accent);
+      transition: background 0.15s;
+    }
+    .tool-btn:hover { background: var(--line); }
+
+    .btn-aa {
+      height: 44px;
+      min-width: 54px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-fg);
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 18px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      transition: transform 0.15s ease;
+    }
+    .btn-aa:active { transform: scale(0.96); }
+
+    /* =========================================================
+       3. SERTARUL „Aa” REAL (FACELIFT v4)
+       316px lățime, plutitor deasupra butonului Aa
+       ========================================================= */
+    .aa-drawer-card {
+      position: absolute;
+      right: 14px;
+      bottom: 76px;
+      width: 316px;
+      border-radius: 20px;
+      background: var(--menu);
+      backdrop-filter: blur(32px) saturate(180%);
+      -webkit-backdrop-filter: blur(32px) saturate(180%);
+      border: 0.5px solid var(--line);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.28);
+      color: var(--fg);
+      z-index: 650;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: drawerRise 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .aa-drawer-card.active { display: flex; }
+    @keyframes drawerRise {
+      from { opacity: 0; transform: translateY(12px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Filele din UISegmentedControl */
+    .segmented-tabs-bar {
+      display: flex;
+      padding: 3px;
+      margin: 10px 10px 6px 10px;
+      border-radius: 10px;
+      background: var(--line);
+      gap: 2px;
+    }
+    .seg-tab-btn {
+      flex: 1;
+      height: 30px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sub);
+      transition: background 0.15s, color 0.15s;
+    }
+    .seg-tab-btn.active {
+      background: var(--page);
+      color: var(--fg);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .drawer-content-body {
+      padding: 6px 12px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    .drawer-stepper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+    }
+    .drawer-stepper-row .s-title {
+      font-size: 14px;
+      color: var(--fg);
+    }
+    .stepper-controls {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--line);
+      border-radius: 999px;
+      padding: 2px;
+    }
+    .stepper-btn {
+      width: 32px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--page);
+      color: var(--fg);
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .stepper-val-label {
+      min-width: 52px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .drawer-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+    }
+    .drawer-switch-row .sw-label-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .drawer-switch-row .sw-title { font-size: 14px; color: var(--fg); }
+    .drawer-switch-row .sw-sub { font-size: 11.5px; color: var(--sub); }
+
+    .drawer-sep {
+      height: 0.5px;
+      background: var(--line);
+      margin: 6px 0;
+    }
+
+    .turn-pages-seg {
+      display: flex;
+      padding: 2px;
+      border-radius: 8px;
+      background: var(--line);
+      gap: 2px;
+    }
+    .turn-pages-btn {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--sub);
+    }
+    .turn-pages-btn.active {
+      background: var(--page);
+      color: var(--fg);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    /* 4 buline curate de temă */
+    .theme-dots-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 10px 4px 10px;
+    }
+    .theme-dot-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+    .theme-dot-btn:active { transform: scale(0.92); }
+    .theme-dot-btn.active {
+      box-shadow: 0 0 0 3px var(--accent) !important;
+    }
+
+    .ios-switch {
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--off);
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    .ios-switch.on { background: var(--accent); }
+    .ios-switch .knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.22);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ios-switch.on .knob { transform: translateX(18px); }
+
+    .drawer-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: var(--page);
+      border: 1px solid var(--line);
+      font-size: 13.5px;
+      color: var(--fg);
+      margin-top: 4px;
+    }
+    .drawer-action-btn:hover { background: var(--sheet); }
+    .drawer-reset-btn {
+      height: 38px;
+      color: var(--accent);
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-top: 6px;
+      justify-content: center;
+    }
+
+    .drawer-group-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 8px 0 2px 0;
+    }
+
+    .drawer-tab-view { display: none; flex-direction: column; gap: 4px; }
+    .drawer-tab-view.active { display: flex; }
+
+    /* =========================================================
+       4. MENIUL CARTEA (iOS DROPDOWN)
+       ========================================================= */
+    .book-menu {
+      position: absolute;
+      top: 86px;
+      right: 14px;
+      width: 254px;
+      border-radius: 16px;
+      background: var(--menu);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 0.5px solid var(--line);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+      color: var(--fg);
+      z-index: 700;
+      overflow: hidden;
+      display: none;
+      transform-origin: top right;
+      animation: menuIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .book-menu.active { display: block; }
+    @keyframes menuIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .menu-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-top: 0.5px solid var(--line);
+      font-size: 15px;
+      color: var(--fg);
+      text-align: left;
+    }
+    .menu-item:first-child { border-top: 0; }
+    .menu-item:hover { background: var(--line); }
+    .menu-item .label { flex: 1; }
+    .menu-item .count { font-size: 13.5px; color: var(--sub); font-variant-numeric: tabular-nums; }
+    .menu-gap { height: 7px; background: var(--menu-gap); }
+
+    /* =========================================================
+       5. SETĂRILE APLICAȚIEI
+       ========================================================= */
+    #screen-app {
+      padding: 54px 20px 24px 20px;
+      background: var(--sheet);
+      gap: 12px;
+    }
+    .app-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+    .app-card-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: var(--page);
+      border: 1px solid var(--line);
+      text-align: left;
+      color: var(--fg);
+    }
+    .app-card-btn:hover { background: var(--sheet); }
+    .app-card-btn.premium-highlight { border-color: var(--accent); }
+    .app-card-btn .card-meta { display: flex; flex-direction: column; gap: 2px; flex-grow: 1; }
+    .app-card-btn .card-title { font-weight: 600; font-size: 14.5px; }
+    .app-card-btn .card-sub { font-size: 12.5px; color: var(--sub); }
+    .app-card-btn.premium-highlight .card-sub { color: var(--accent); font-weight: 500; }
+
+    .dismiss-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 600;
+      display: none;
+    }
+    .dismiss-scrim.active { display: block; }
+
+    /* Modal Premium */
+    .premium-sheet {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 50px;
+      border-radius: 26px 26px 0 0;
+      background: var(--sheet);
+      color: var(--fg);
+      padding: 18px 22px 34px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.24);
+      z-index: 750;
+      transform: translateY(100%);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .premium-sheet.active { transform: translateY(0); }
+    .premium-sheet h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+    }
+    .premium-reason-pill { font-size: 13px; color: var(--accent); font-weight: 600; }
+    .feature-list { font-size: 14px; line-height: 1.6; color: var(--fg); margin: 4px 0; }
+
+    /* Modal Selector Limbă (9 limbi) */
+    .lang-sheet {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 80px;
+      border-radius: 26px 26px 0 0;
+      background: var(--sheet);
+      color: var(--fg);
+      padding: 16px 20px 34px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.32);
+      z-index: 760;
+      transform: translateY(105%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lang-sheet.active { transform: translateY(0); }
+    .lang-sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .lang-sheet-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .lang-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 2px;
+    }
+    .lang-option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      color: var(--fg);
+      font-size: 15px;
+      font-weight: 500;
+      text-align: left;
+      transition: background 0.15s, border-color 0.15s;
+      width: 100%;
+    }
+    .lang-option-btn:hover { background: var(--page); }
+    .lang-option-btn.active {
+      background: var(--page);
+      border-color: var(--line);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .lang-option-btn .opt-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-option-btn .opt-flag { font-size: 20px; line-height: 1; }
+    .lang-option-btn .opt-check {
+      font-size: 16px;
+      color: var(--accent);
+      opacity: 0;
+      font-weight: 700;
+    }
+    .lang-option-btn.active .opt-check { opacity: 1; }
+
+    /* Toast */
+    .toast-pill {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 108px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: var(--fg);
+      color: var(--sheet);
+      font-size: 13.5px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 950;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .toast-pill.visible { opacity: 1; transform: translateY(0); }
+
+    /* Palete de culori */
+    .theme-alb {
+      --page: #FFFFFF;
+      --ink: #1F1F1F;
+      --sheet: #F4F4F6;
+      --fg: #1C1C1E;
+      --sub: #636366;
+      --line: #E2E2E6;
+      --chrome: rgba(244,244,246,0.94);
+      --accent: #9C5B2E;
+      --accent-fg: #FFFFFF;
+      --off: #C9C9CF;
+      --menu: rgba(250,250,252,0.92);
+      --menu-gap: rgba(0,0,0,0.06);
+    }
+    .theme-sepia {
+      --page: #F4ECD8;
+      --ink: #4A3B2C;
+      --sheet: #F9F3E6;
+      --fg: #3E3124;
+      --sub: #6B5A47;
+      --line: #E2D5BE;
+      --chrome: rgba(249,243,230,0.94);
+      --accent: #9C5B2E;
+      --accent-fg: #FFFFFF;
+      --off: #CDBFA6;
+      --menu: rgba(251,246,236,0.94);
+      --menu-gap: rgba(90,60,30,0.08);
+    }
+    .theme-noapte {
+      --page: #121212;
+      --ink: #E4E4E4;
+      --sheet: #1E2126;
+      --fg: #ECE8E1;
+      --sub: #ADA79D;
+      --line: #353A41;
+      --chrome: rgba(30,33,38,0.94);
+      --accent: #D98B6F;
+      --accent-fg: #1A1410;
+      --off: #4A4F57;
+      --menu: rgba(38,41,47,0.94);
+      --menu-gap: rgba(0,0,0,0.28);
+    }
+    .theme-amoled {
+      --page: #000000;
+      --ink: #D8D8D8;
+      --sheet: #121212;
+      --fg: #ECECEC;
+      --sub: #A8A8A8;
+      --line: #282828;
+      --chrome: rgba(18,18,18,0.94);
+      --accent: #D98B6F;
+      --accent-fg: #1A1410;
+      --off: #444444;
+      --menu: rgba(26,26,28,0.95);
+      --menu-gap: rgba(0,0,0,0.45);
+    }
+  </style>
+</head>
+<body class="theme-sepia">
+
+  <div id="device-viewport">
+    <div class="phone theme-sepia" id="phone-container">
+
+      <!-- Dynamic Island -->
+      <div class="dynamic-island">
+        <div class="sensor"></div>
+        <div class="camera"></div>
+      </div>
+
+      <!-- Bara de stare iOS -->
+      <div class="status-bar">
+        <span>09:41</span>
+        <div class="icons">
+          <!-- Semnal -->
+          <svg width="15" height="11" viewBox="0 0 17 11" fill="currentColor"><path d="M1 9h2V2H1v7zm4 0h2V0H5v9zm4 0h2V4H9v5zm4 0h2V7h-2v2z"/></svg>
+          <!-- Wi-Fi -->
+          <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zm-3-3a10.1 10.1 0 0 1 14.4 0l-1.4 1.4a8.1 8.1 0 0 0-11.6 0L.8 3.5z"/></svg>
+          <!-- Baterie -->
+          <svg width="22" height="11" viewBox="0 0 24 12" fill="currentColor"><rect x="1" y="1" width="19" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M22 4.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="3" y="3" width="12" height="6" rx="1.5"/></svg>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           1. ECRAN BIBLIOTECA
+           ========================================================= -->
+      <section class="screen" id="screen-library">
+        <div class="lib-header">
+          <h1 id="txt-lib-title">Library</h1>
+          <div class="lib-actions">
+            <button class="icon-btn" id="btn-lib-toggle-view" aria-label="Toggle view">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>
+            </button>
+            <button class="icon-btn" id="btn-open-app-settings" aria-label="Settings">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="lib-search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span id="txt-lib-search">Search library…</span>
+          <span class="chip" id="txt-lib-recent">Recent</span>
+        </div>
+
+        <!-- Continuă lectura -->
+        <div class="resume-card">
+          <div class="resume-thumb" id="resume-thumb-title">On the Habit of Reading</div>
+          <div class="resume-meta">
+            <span class="resume-eyebrow" id="txt-continue-eyebrow">Continue reading</span>
+            <span class="resume-title" id="resume-card-title">On the Habit of Reading</span>
+            <span class="resume-sub" id="txt-continue-pos">Page 3 of 10 · 30%</span>
+            <button class="resume-btn" id="btn-resume-read">Continue</button>
+          </div>
+        </div>
+
+        <div class="books-section-title">
+          <span id="txt-all-books">All books · 6</span>
+        </div>
+
+        <div class="books-grid" id="books-grid-container"></div>
+
+        <button class="fab-add" id="btn-fab-add">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span id="txt-btn-add">Add</span>
+        </button>
+      </section>
+
+      <!-- =========================================================
+           2. ECRAN CITITOR (READER)
+           ========================================================= -->
+      <section class="screen active" id="screen-reader">
+        <!-- Bara de sus: apare DOAR cu instrumentele deschise -->
+        <div class="reader-top-bar" id="reader-top-bar">
+          <button class="nav-pill-btn" id="btn-back-library">‹ <span id="txt-back-lib">Library</span></button>
+          <button class="nav-pill-btn" id="btn-open-book-menu">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <span id="txt-btn-book">Book</span>
+          </button>
+        </div>
+
+        <!-- Comutator central Original | Reflow -->
+        <div class="mode-switch-wrap" id="mode-switch-pill">
+          <button class="mode-btn" id="btn-mode-orig">Original</button>
+          <button class="mode-btn active" id="btn-mode-reflow">Reflow</button>
+        </div>
+
+        <!-- Rigla de citire -->
+        <div class="reading-ruler-overlay" id="reading-ruler">
+          <div class="ruler-dim-top"></div>
+          <div class="ruler-dim-bottom"></div>
+        </div>
+
+        <!-- Pagina cărții (în fundal, observabilă direct la ajustări și cu derulare completă!) -->
+        <div class="reader-page-viewport" id="reader-viewport">
+          <!-- Modul Reflow -->
+          <div class="view-reflow" id="view-reflow-content">
+            <h2 id="reflow-heading" style="font-size: 26px;">On the Habit of Reading</h2>
+            <div id="reflow-paragraphs-p1"></div>
+
+            <!-- DIAGRAMA INTERCALATĂ (FIGURA 1) -->
+            <div class="doc-figure-card" id="reflow-figure-card">
+              <span class="fig-title" id="fig-title-text">Figure 1. Reading efficiency across viewport modes</span>
+              <svg viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Linii de grilă fundal -->
+                <line x1="45" y1="20" x2="305" y2="20" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+                <line x1="45" y1="55" x2="305" y2="55" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+                <line x1="45" y1="90" x2="305" y2="90" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+                <line x1="45" y1="125" x2="305" y2="125" stroke="var(--line)" stroke-width="1.2"/>
+
+                <!-- Etichete axa Y -->
+                <text x="38" y="24" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">100%</text>
+                <text x="38" y="59" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">66%</text>
+                <text x="38" y="94" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">33%</text>
+                <text x="38" y="128" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">0</text>
+
+                <!-- Bare Grupul 1: Reading Speed -->
+                <rect x="75" y="68" width="32" height="57" rx="3" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+                <text x="91" y="63" fill="var(--fg)" font-size="9.5" font-weight="600" text-anchor="middle" font-family="sans-serif">142</text>
+                <rect x="113" y="32" width="32" height="93" rx="3" fill="var(--accent)"/>
+                <text x="129" y="27" fill="var(--accent)" font-size="9.5" font-weight="700" text-anchor="middle" font-family="sans-serif">238</text>
+                <text x="110" y="140" fill="var(--fg)" font-size="10" font-weight="600" text-anchor="middle" font-family="sans-serif" id="fig-lbl-speed">Speed (wpm)</text>
+
+                <!-- Bare Grupul 2: Comprehension Retention -->
+                <rect x="205" y="53" width="32" height="72" rx="3" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+                <text x="221" y="48" fill="var(--fg)" font-size="9.5" font-weight="600" text-anchor="middle" font-family="sans-serif">68%</text>
+                <rect x="243" y="28" width="32" height="97" rx="3" fill="var(--accent)"/>
+                <text x="259" y="23" fill="var(--accent)" font-size="9.5" font-weight="700" text-anchor="middle" font-family="sans-serif">89%</text>
+                <text x="240" y="140" fill="var(--fg)" font-size="10" font-weight="600" text-anchor="middle" font-family="sans-serif" id="fig-lbl-comp">Comprehension</text>
+
+                <!-- Legendă sus dreapta -->
+                <circle cx="165" cy="8" r="3.5" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+                <text x="173" y="11" fill="var(--sub)" font-size="8.5" font-family="sans-serif" id="fig-legend-zoom">Standard zoom</text>
+                <circle cx="242" cy="8" r="3.5" fill="var(--accent)"/>
+                <text x="250" y="11" fill="var(--fg)" font-size="8.5" font-weight="600" font-family="sans-serif" id="fig-legend-reflow">Rewrap Reflow</text>
+              </svg>
+              <div class="fig-caption" id="fig-caption-text">Fig. 1 — Measured reading speed (words/min) and comprehension retention under adaptive reflow vs. manual viewport zoom.</div>
+            </div>
+
+            <div id="reflow-paragraphs-p2"></div>
+
+            <div class="page-end-mark" id="page-end-indicator">❖ Page 3 of 10 ❖</div>
+          </div>
+
+          <!-- Modul Original (2 coloane, fidel tiparului) -->
+          <div class="view-original" id="view-original-content">
+            <div class="orig-header" id="orig-heading">On the Habit of Reading — Academic Edition</div>
+            <div class="orig-cols" id="orig-paragraphs"></div>
+          </div>
+        </div>
+
+        <!-- =========================================================
+             CHROME DE JOS (FACELIFT v4)
+             ========================================================= -->
+        <div class="reader-bottom-chrome">
+          <!-- Butonul săgeată ▲ / ▼ (în stânga, 44px, fără suprapunere) -->
+          <button class="btn-toggle-arrow" id="btn-toggle-tools" aria-label="Tools">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+          </button>
+
+          <!-- 1. Starea DE REPAUS: Linia de progres + procent -->
+          <div class="progress-track-row" id="progress-track-row">
+            <div class="progress-line-track">
+              <div class="progress-line-fill"></div>
+            </div>
+            <span class="progress-label-pct">30%</span>
+
+            <!-- Info balon la tap pe linie -->
+            <div class="progress-info-bubble" id="progress-info-bubble">
+              <span class="b-title" id="info-bubble-title">On the Habit of Reading</span>
+              <span class="b-pos" id="info-bubble-pos">· Page 3 of 10</span>
+            </div>
+          </div>
+
+          <!-- 2. Starea CU INSTRUMENTE: Pill-ul celor 7 unelte + Butonul Aa -->
+          <div class="tools-pill-group" id="tools-pill-group">
+            <div class="actions-pill">
+              <button class="tool-btn" id="btn-tool-search" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-page" aria-label="Go to page">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h14v16H5z"/><path d="m9 9 3-3 3 3M12 6v8"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-voice" aria-label="Voice">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-highlight" aria-label="Highlight">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 20 4-1 11-11-3-3L5 16zM14 7l3 3"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-note" aria-label="Note">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-bookmark" aria-label="Bookmark">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+              </button>
+              <button class="tool-btn" id="btn-tool-correct" aria-label="Correct">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19 9 5l5 14M6 14h6M18 5v14"/></svg>
+              </button>
+            </div>
+            <button class="btn-aa" id="btn-open-aa" aria-label="Aa Settings">Aa</button>
+          </div>
+        </div>
+
+        <!-- =========================================================
+             SERTARUL „Aa” REAL (FACELIFT v4)
+             ========================================================= -->
+        <div class="aa-drawer-card" id="aa-drawer">
+          <div class="segmented-tabs-bar">
+            <button class="seg-tab-btn active" data-tab="rapid" id="tab-btn-aa">Aa</button>
+            <button class="seg-tab-btn" data-tab="citire" id="tab-btn-reading">Reading</button>
+            <button class="seg-tab-btn" data-tab="voce" id="tab-btn-voice">Voice</button>
+            <button class="seg-tab-btn" data-tab="text" id="tab-btn-text">Text</button>
+            <button class="seg-tab-btn" data-tab="document" id="tab-btn-doc">Document</button>
+          </div>
+
+          <div class="drawer-content-body">
+            <!-- 1. FILA Aa (Meniul rapid) -->
+            <div class="drawer-tab-view active" id="tab-v-rapid">
+              <div class="drawer-stepper-row">
+                <span class="s-title" id="txt-aa-fs">Text size</span>
+                <div class="stepper-controls">
+                  <button class="stepper-btn" id="btn-dec-fs">−</button>
+                  <span class="stepper-val-label" id="lbl-fs">140%</span>
+                  <button class="stepper-btn" id="btn-inc-fs">+</button>
+                </div>
+              </div>
+
+              <div class="drawer-stepper-row">
+                <span class="s-title" id="txt-aa-lh">Line spacing</span>
+                <div class="stepper-controls">
+                  <button class="stepper-btn" id="btn-dec-lh">−</button>
+                  <span class="stepper-val-label" id="lbl-lh">Normal</span>
+                  <button class="stepper-btn" id="btn-inc-lh">+</button>
+                </div>
+              </div>
+
+              <div class="drawer-stepper-row">
+                <span class="s-title" id="txt-aa-ls">Letter spacing</span>
+                <div class="stepper-controls">
+                  <button class="stepper-btn" id="btn-dec-ls">−</button>
+                  <span class="stepper-val-label" id="lbl-ls">+0%</span>
+                  <button class="stepper-btn" id="btn-inc-ls">+</button>
+                </div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-aa-orig">Original letters</span>
+                  <span class="sw-sub" id="txt-aa-orig-sub">printed letters cut from page</span>
+                </div>
+                <div class="ios-switch on" id="sw-orig-letters"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-sep"></div>
+
+              <div class="drawer-stepper-row">
+                <span class="s-title" id="txt-aa-turn">Turn pages</span>
+                <div class="turn-pages-seg">
+                  <button class="turn-pages-btn active" id="btn-turn-scroll">↕</button>
+                  <button class="turn-pages-btn" id="btn-turn-pages">↔</button>
+                </div>
+              </div>
+
+              <div class="theme-dots-row">
+                <button class="theme-dot-btn" data-theme="alb" style="background: #FFFFFF;" aria-label="White"></button>
+                <button class="theme-dot-btn active" data-theme="sepia" style="background: #F4ECD8;" aria-label="Sepia"></button>
+                <button class="theme-dot-btn" data-theme="noapte" style="background: #121212;" aria-label="Night"></button>
+                <button class="theme-dot-btn" data-theme="amoled" style="background: #000000;" aria-label="AMOLED"></button>
+              </div>
+            </div>
+
+            <!-- 2. FILA Citire -->
+            <div class="drawer-tab-view" id="tab-v-citire">
+              <div class="drawer-stepper-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-speed-title">Scroll speed</span>
+                  <span class="sw-sub" id="lbl-speed-sub">one screen in ~42 s</span>
+                </div>
+                <div class="stepper-controls">
+                  <button class="stepper-btn" id="btn-dec-speed">−</button>
+                  <span class="stepper-val-label" id="lbl-speed">55 px/s</span>
+                  <button class="stepper-btn" id="btn-inc-speed">+</button>
+                </div>
+              </div>
+
+              <div class="drawer-group-header" id="txt-theme-hdr">THEME</div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-follow-sys">Follow phone theme</span>
+                  <span class="sw-sub" id="txt-follow-sys-sub">dark at night, light by day</span>
+                </div>
+                <div class="ios-switch" id="sw-follow-sys"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-book-only">This book only</span>
+                  <span class="sw-sub" id="txt-book-only-sub">theme applies only to this book</span>
+                </div>
+                <div class="ios-switch" id="sw-book-only"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-orig-colors">Original colors</span>
+                  <span class="sw-sub" id="txt-orig-colors-sub">uncolored original page</span>
+                </div>
+                <div class="ios-switch" id="sw-orig-colors"><div class="knob"></div></div>
+              </div>
+            </div>
+
+            <!-- 3. FILA Voce -->
+            <div class="drawer-tab-view" id="tab-v-voce">
+              <div class="drawer-stepper-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-voice-speed">Voice speed</span>
+                  <span class="sw-sub" id="lbl-voice-sub">natural</span>
+                </div>
+                <div class="stepper-controls">
+                  <button class="stepper-btn" id="btn-dec-voice">−</button>
+                  <span class="stepper-val-label" id="lbl-voice">×1.00</span>
+                  <button class="stepper-btn" id="btn-inc-voice">+</button>
+                </div>
+              </div>
+
+              <button class="drawer-action-btn" id="btn-pick-voice">
+                <span id="txt-voice-name">Voice: English (Samantha)</span>
+                <span style="color: var(--sub);">›</span>
+              </button>
+
+              <div class="drawer-action-btn" style="border: 0; background: transparent; padding: 0;">
+                <span style="color: var(--sub); font-size: 12.5px;" id="txt-voice-engine">Engine: Apple system speech</span>
+              </div>
+            </div>
+
+            <!-- 4. FILA Text -->
+            <div class="drawer-tab-view" id="tab-v-text">
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-dyslexia">Dyslexia font</span>
+                  <span class="sw-sub" id="txt-dyslexia-sub">OpenDyslexic, even on scans</span>
+                </div>
+                <div class="ios-switch" id="sw-dyslexia"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-bionic">Bionic reading</span>
+                  <span class="sw-sub" id="txt-bionic-sub">start of each word in bold</span>
+                </div>
+                <div class="ios-switch" id="sw-bionic"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-ruler">Reading ruler</span>
+                  <span class="sw-sub" id="txt-ruler-sub">dims the rest of the page</span>
+                </div>
+                <div class="ios-switch" id="sw-ruler"><div class="knob"></div></div>
+              </div>
+
+              <button class="drawer-reset-btn" id="btn-reset-text">Reset text settings</button>
+            </div>
+
+            <!-- 5. FILA Document -->
+            <div class="drawer-tab-view" id="tab-v-document">
+              <button class="drawer-action-btn" id="btn-pick-doc-lang">
+                <span id="txt-doc-lang">Language: Auto (English)</span>
+                <span style="color: var(--sub);">›</span>
+              </button>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-force-ocr">Force OCR</span>
+                  <span class="sw-sub" id="txt-force-ocr-sub">file text layer is damaged</span>
+                </div>
+                <div class="ios-switch" id="sw-force-ocr"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-enhance">Enhance scans</span>
+                  <span class="sw-sub" id="txt-enhance-sub">higher contrast for OCR</span>
+                </div>
+                <div class="ios-switch on" id="sw-enhance"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-clean-read">Clean reading</span>
+                  <span class="sw-sub" id="txt-clean-read-sub">remove headers and page numbers</span>
+                </div>
+                <div class="ios-switch" id="sw-clean-read"><div class="knob"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dismiss-scrim" id="dismiss-scrim"></div>
+      </section>
+
+      <!-- =========================================================
+           MENIUL CARTEA (iOS DROPDOWN)
+           ========================================================= -->
+      <div class="book-menu" id="book-menu">
+        <button class="menu-item" data-action="toc">
+          <span class="label" id="bm-toc">Table of contents</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>
+        </button>
+        <button class="menu-item" data-action="goto">
+          <span class="label" id="bm-goto">Go to page…</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="menu-gap"></div>
+
+        <button class="menu-item" data-action="bookmarks">
+          <span class="label" id="bm-bm">Bookmarks</span>
+          <span class="count">3</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+        </button>
+        <button class="menu-item" data-action="highlights">
+          <span class="label" id="bm-hl">Highlights</span>
+          <span class="count">5</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m4 20 4-1 11-11-3-3L5 16zM14 7l3 3"/></svg>
+        </button>
+        <button class="menu-item" data-action="notes">
+          <span class="label" id="bm-nt">Notes</span>
+          <span class="count">2</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>
+        </button>
+        <button class="menu-item" data-action="corrections">
+          <span class="label" id="bm-cr">Corrections</span>
+          <span class="count">1</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19 9 5l5 14M6 14h6M18 5v14"/></svg>
+        </button>
+
+        <div class="menu-gap"></div>
+
+        <button class="menu-item" data-action="export">
+          <span class="label" id="bm-ex">Export as…</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M8 7l4-4 4 4M5 13v7h14v-7"/></svg>
+        </button>
+        <button class="menu-item" data-action="share">
+          <span class="label" id="bm-sh">Share file</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 3 3 10l7 3 3 7zM10 13 21 3"/></svg>
+        </button>
+
+        <div class="menu-gap"></div>
+
+        <button class="menu-item" data-action="report">
+          <span class="label" id="bm-rp">Report an issue</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4M12 16.5h.01M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        </button>
+        <button class="menu-item" data-action="guide">
+          <span class="label" id="bm-gd">Quick guide</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 0-4 4zM4 4v16a4 4 0 0 1 4-4h12"/></svg>
+        </button>
+      </div>
+
+      <!-- =========================================================
+           5. ECRAN SETĂRILE APLICAȚIEI
+           ========================================================= -->
+      <section class="screen" id="screen-app">
+        <div class="lib-header">
+          <h1 id="txt-app-title">Settings</h1>
+          <button class="icon-btn" id="btn-close-app-settings" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <span style="font-size: 13px; color: var(--sub);" id="txt-app-sub">App only. Book settings are inside the book at “Aa”.</span>
+
+        <div class="app-cards-list">
+          <button class="app-card-btn premium-highlight" id="btn-open-premium-card">
+            <div class="card-meta">
+              <span class="card-title">Rewrap Premium</span>
+              <span class="card-sub" id="txt-card-premium-sub">14-day free trial available — unlock all</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+
+          <!-- Comutare limbă direct din mock-up! -->
+          <button class="app-card-btn" id="btn-app-toggle-lang">
+            <div class="card-meta">
+              <span class="card-title" id="txt-card-lang-title">App language</span>
+              <span class="card-sub" id="txt-card-lang-sub">English (tap to change)</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+
+          <button class="app-card-btn" data-action="about">
+            <div class="card-meta">
+              <span class="card-title" id="txt-card-about-title">About Rewrap</span>
+              <span class="card-sub" id="txt-card-about-sub">What Rewrap does — and quick guide</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+
+          <button class="app-card-btn" data-action="cloud">
+            <div class="card-meta">
+              <span class="card-title" id="txt-card-backup-title">Backups</span>
+              <span class="card-sub" id="txt-card-backup-sub">Optional — phone's standard backup</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+
+          <button class="app-card-btn" data-action="storage">
+            <div class="card-meta">
+              <span class="card-title" id="txt-card-storage-title">Storage used</span>
+              <span class="card-sub" id="txt-card-storage-sub">Recognized text and temp files: 13 MB</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           MODAL DEBLOCARE PREMIUM
+           ========================================================= -->
+      <div class="premium-sheet" id="premium-sheet">
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="icon-btn" id="btn-close-premium" style="width: 32px; height: 32px;">✕</button>
+        </div>
+        <h2 id="txt-prem-title">Unlock Rewrap</h2>
+        <div class="premium-reason-pill" id="premium-reason-text">All heavy-lifting features with a single purchase.</div>
+        <div style="font-weight: 600; font-size: 15px;" id="txt-prem-included">One unlock, everything below:</div>
+        <div class="feature-list" id="txt-prem-features">
+          • On-device scan recognition (local OCR)<br>
+          • Camera book scanner<br>
+          • Read aloud with zero limits<br>
+          • Convert to EPUB, TXT, DOCX, PDF<br>
+          • Clean reading (remove headers and page numbers)
+        </div>
+        <span style="font-size: 12px; color: var(--sub); line-height: 1.4;" id="txt-prem-note">
+          Free for 14 days with everything open. When the trial ends, basic reading remains free forever; advanced tools require the one-time unlock (£6.99).
+        </span>
+        <button class="resume-btn" id="btn-start-trial" style="height: 48px; border-radius: 14px; width: 100%; justify-content: center; font-size: 15px; margin-top: 4px;">
+          Start 14-day free trial
+        </button>
+        <span style="font-size: 12px; color: var(--sub); text-align: center;" id="txt-prem-sub">One-time payment. No subscriptions.</span>
+      </div>
+
+      <!-- =========================================================
+           MODAL SELECTOR LIMBĂ (9 LIMBI)
+           ========================================================= -->
+      <div class="lang-sheet" id="lang-sheet">
+        <div class="lang-sheet-header">
+          <span class="lang-sheet-title" id="txt-lang-sheet-title">Select Language</span>
+          <button class="icon-btn" id="btn-close-lang-sheet" style="width: 32px; height: 32px;">✕</button>
+        </div>
+        <div class="lang-options-list" id="lang-options-container"></div>
+      </div>
+
+      <!-- TOAST NOTIFICARE -->
+      <div class="toast-pill" id="toast-pill"></div>
+
+      <!-- Home Indicator -->
+      <div class="home-indicator"></div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Dictionar bilingv complet (Engleză implicită + Română)
+      const ALL_LANGS = ["en","ro","de","fr","hu","pl","ru","lt","lv"];
+      const LANG_NAMES = {
+  "en": "English",
+  "ro": "Română",
+  "de": "Deutsch",
+  "fr": "Français",
+  "hu": "Magyar",
+  "pl": "Polski",
+  "ru": "Русский",
+  "lt": "Lietuvių",
+  "lv": "Latviešu"
+};
+      const I18N = {
+  "en": {
+    "lib_title": "Library",
+    "lib_search": "Search library…",
+    "lib_recent": "Recent",
+    "continue_eyebrow": "Continue reading",
+    "book_title": "On the Habit of Reading",
+    "continue_pos": "Page 3 of 10 · 30%",
+    "continue_btn": "Continue",
+    "all_books": "All books · 6",
+    "btn_add": "Add",
+    "back_lib": "Library",
+    "btn_book": "Book",
+    "mode_orig": "Original",
+    "mode_reflow": "Reflow",
+    "tab_aa": "Aa",
+    "tab_reading": "Reading",
+    "tab_voice": "Voice",
+    "tab_text": "Text",
+    "tab_doc": "Document",
+    "aa_fs": "Text size",
+    "aa_lh": "Line spacing",
+    "aa_ls": "Letter spacing",
+    "aa_orig": "Original letters",
+    "aa_orig_sub": "printed letters cut from page",
+    "aa_turn": "Turn pages",
+    "speed_title": "Scroll speed",
+    "speed_sub": "one screen in ~",
+    "theme_hdr": "THEME",
+    "follow_sys": "Follow phone theme",
+    "follow_sys_sub": "dark at night, light by day",
+    "book_only": "This book only",
+    "book_only_sub": "theme applies only to this book",
+    "orig_colors": "Original colors",
+    "orig_colors_sub": "uncolored original page",
+    "voice_speed": "Voice speed",
+    "voice_speed_natural": "natural",
+    "voice_speed_slower": "slower",
+    "voice_speed_faster": "faster",
+    "voice_name": "Voice: English (Samantha)",
+    "voice_engine": "Engine: Apple system speech",
+    "dyslexia": "Dyslexia font",
+    "dyslexia_sub": "OpenDyslexic, even on scans",
+    "bionic": "Bionic reading",
+    "bionic_sub": "start of each word in bold",
+    "ruler": "Reading ruler",
+    "ruler_sub": "dims the rest of the page",
+    "reset_text": "Reset text settings",
+    "doc_lang": "Language: Auto (English)",
+    "force_ocr": "Force OCR",
+    "force_ocr_sub": "file text layer is damaged",
+    "enhance": "Enhance scans",
+    "enhance_sub": "higher contrast for OCR",
+    "clean_read": "Clean reading",
+    "clean_read_sub": "remove headers and page numbers",
+    "app_title": "Settings",
+    "app_sub": "App only. Book settings are inside the book at “Aa”.",
+    "app_lang_title": "App language",
+    "app_lang_sub": "English (tap to change)",
+    "prem_card_sub": "14-day free trial available — unlock all",
+    "prem_title": "Unlock Rewrap",
+    "prem_reason_default": "All heavy-lifting features with a single purchase.",
+    "prem_included": "One unlock, everything below:",
+    "prem_note": "Free for 14 days with everything open. When the trial ends, basic reading remains free forever; advanced tools require the one-time unlock (£6.99).",
+    "prem_btn": "Start 14-day free trial",
+    "prem_footer": "One-time payment. No subscriptions.",
+    "fig_title": "Figure 1. Reading efficiency across viewport modes",
+    "fig_lbl_speed": "Speed (wpm)",
+    "fig_lbl_comp": "Comprehension",
+    "fig_legend_zoom": "Standard zoom",
+    "fig_legend_reflow": "Rewrap Reflow",
+    "fig_caption": "Fig. 1 — Measured reading speed (words/min) and comprehension retention under adaptive reflow vs. manual viewport zoom.",
+    "page_end": "❖ Page 3 of 10 ❖",
+    "orig_header": "On the Habit of Reading — Academic Edition",
+    "toast_orig": "Original: exact two-column printed page.",
+    "toast_reflow": "Reflow: text reflowed to your screen width.",
+    "toast_ruler_on": "Reading ruler enabled",
+    "toast_ruler_off": "Reading ruler disabled",
+    "toast_bionic_on": "Bionic reading enabled",
+    "toast_bionic_off": "Standard text enabled",
+    "toast_dyslexia_on": "Dyslexia-friendly font enabled",
+    "toast_dyslexia_off": "Standard font enabled",
+    "toast_reset_text": "Text settings have been reset",
+    "toast_trial_started": "14-day free trial started — everything is unlocked!",
+    "books": [
+      {
+        "title": "On the Habit of Reading",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Letters from Transylvania",
+        "meta": "scan · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "The Winter Garden",
+        "meta": "EPUB · completed",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Manual of Photography",
+        "meta": "unread",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Travel Notes",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Atlas of Northern Birds",
+        "meta": "scan · unread",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Anyone reading on a phone knows the problem: the printed page is designed for paper, and the screen is narrow. Classic zoom pushes text off the edge, forcing you to pan back and forth on every line.",
+      "Here, the page stays exactly as wide as your screen. Text is enlarged and re-laid out in place, while everything below is pushed down. The page becomes longer, never wider."
+    ],
+    "paragraphs_p2": [
+      "Images, tables, and figures stay where the author placed them and scale with the font. Your notes and highlights stay anchored to their paragraph, no matter how much you enlarge.",
+      "And when you want to see the page exactly as printed, a single tap takes you back to the original view, on the exact same page.",
+      "Scanned books and photographed pages are recognized directly on your device. Local OCR repairs broken words using context from the document itself, with zero cloud upload.",
+      "Old typefaces, accents, and special characters can be preserved as printed — smoothly redrawn from the original page cuts instead of being swapped for a generic phone font."
+    ]
+  },
+  "ro": {
+    "lib_title": "Biblioteca",
+    "lib_search": "Caută în bibliotecă…",
+    "lib_recent": "Recente",
+    "continue_eyebrow": "Continuă lectura",
+    "book_title": "Despre obiceiul de a citi",
+    "continue_pos": "Pagina 3 din 10 · 30%",
+    "continue_btn": "Continuă",
+    "all_books": "Toate cărțile · 6",
+    "btn_add": "Adaugă",
+    "back_lib": "Bibliotecă",
+    "btn_book": "Cartea",
+    "mode_orig": "Original",
+    "mode_reflow": "Reașază",
+    "tab_aa": "Aa",
+    "tab_reading": "Citire",
+    "tab_voice": "Voce",
+    "tab_text": "Text",
+    "tab_doc": "Document",
+    "aa_fs": "Mărimea textului",
+    "aa_lh": "Spațierea rândurilor",
+    "aa_ls": "Spațierea literelor",
+    "aa_orig": "Literele originale",
+    "aa_orig_sub": "literele din tipar, decupate din pagină",
+    "aa_turn": "Întoarcerea paginilor",
+    "speed_title": "Viteza derulării",
+    "speed_sub": "un ecran în ~",
+    "theme_hdr": "TEMA",
+    "follow_sys": "Tema după telefon",
+    "follow_sys_sub": "întunecată noaptea, luminoasă ziua",
+    "book_only": "Doar cartea asta",
+    "book_only_sub": "tema aleasă se aplică numai acestei cărți",
+    "orig_colors": "Culorile originale",
+    "orig_colors_sub": "pagina originală nerecolorată",
+    "voice_speed": "Viteza vocii",
+    "voice_speed_natural": "natural",
+    "voice_speed_slower": "mai lent",
+    "voice_speed_faster": "mai rapid",
+    "voice_name": "Vocea: Română (Ioana)",
+    "voice_engine": "Motorul: Sinteza Apple pe iPhone",
+    "dyslexia": "Font pentru dislexie",
+    "dyslexia_sub": "OpenDyslexic, și pe cărțile scanate",
+    "bionic": "Îngroșare bionică",
+    "bionic_sub": "începutul fiecărui cuvânt aldin",
+    "ruler": "Riglă de citire",
+    "ruler_sub": "estompează restul paginii",
+    "reset_text": "Resetează setările de text",
+    "doc_lang": "Limba: Auto (Română)",
+    "force_ocr": "OCR forțat",
+    "force_ocr_sub": "stratul de text al fișierului e defect",
+    "enhance": "Îmbunătățirea scanurilor",
+    "enhance_sub": "contrast sporit pentru recunoaștere",
+    "clean_read": "Lectură curată",
+    "clean_read_sub": "fără anteturi și numere de pagină",
+    "app_title": "Setări",
+    "app_sub": "Doar ce ține de aplicație. Setările cărții sunt în carte, la „Aa”.",
+    "app_lang_title": "Limba aplicației",
+    "app_lang_sub": "Română (atinge pentru engleză)",
+    "prem_card_sub": "Probă gratuită de 14 zile disponibilă — deblochează tot",
+    "prem_title": "Deblochează Rewrap",
+    "prem_reason_default": "Toate funcțiile avansate, cu o singură plată.",
+    "prem_included": "O deblocare, tot ce urmează:",
+    "prem_note": "Gratuit 14 zile, cu tot deblocat — nu se plătește nimic. Când proba se încheie, cititul de bază rămâne gratuit; funcțiile cer deblocarea unică (£6,99).",
+    "prem_btn": "Începe proba gratuită de 14 zile",
+    "prem_footer": "O singură plată. Fără abonamente.",
+    "fig_title": "Figura 1. Eficiența lecturii în funcție de mod",
+    "fig_lbl_speed": "Viteză (cpm)",
+    "fig_lbl_comp": "Comprehensiune",
+    "fig_legend_zoom": "Zoom clasic",
+    "fig_legend_reflow": "Reașezare Rewrap",
+    "fig_caption": "Fig. 1 — Viteza de lectură măsurată (cuvinte/minut) și retenția informației sub reașezarea adaptivă (Reflow) comparată cu mărirea clasică prin zoom pe mobil.",
+    "page_end": "❖ Pagina 3 din 10 ❖",
+    "orig_header": "Despre obiceiul de a citi — Exemplar tipărit",
+    "toast_orig": "Original: pagina exact ca în tipar pe două coloane.",
+    "toast_reflow": "Reașază: text adaptat lățimii ecranului.",
+    "toast_ruler_on": "Riglă de citire activată",
+    "toast_ruler_off": "Riglă de citire dezactivată",
+    "toast_bionic_on": "Îngroșare bionică activată",
+    "toast_bionic_off": "Citire standard activată",
+    "toast_dyslexia_on": "Font pentru dislexie activat",
+    "toast_dyslexia_off": "Font standard activat",
+    "toast_reset_text": "Setările de text au fost resetate",
+    "toast_trial_started": "Proba de 14 zile a pornit — totul este deblocat!",
+    "books": [
+      {
+        "title": "Despre obiceiul de a citi",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Scrisori din Ardeal",
+        "meta": "scan · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Grădina de iarnă",
+        "meta": "EPUB · terminată",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Manual de fotografie",
+        "meta": "necitită",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Note de călătorie",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Atlasul păsărilor",
+        "meta": "scan · necitită",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Cine citește pe telefon cunoaște problema: pagina tipărită e gândită pentru hârtie, iar ecranul e îngust. Mărirea clasică împinge textul în lateral și te obligă să muți pagina cu degetul la fiecare rând.",
+      "Aici pagina rămâne lată cât ecranul. Textul se mărește și se reașază pe loc, iar tot ce era dedesubt coboară. Pagina devine mai lungă, niciodată mai lată."
+    ],
+    "paragraphs_p2": [
+      "Imaginile, tabelele și figurile rămân unde le-a pus autorul și cresc odată cu textul. Notițele și evidențierile tale stau legate de paragraf, oricât ai mări.",
+      "Iar când vrei pagina exact cum a fost tipărită, un singur comutator te duce înapoi la original, pe aceeași pagină.",
+      "Cărțile scanate și paginile fotografiate sunt recunoscute direct pe dispozitiv. OCR-ul local repară cuvintele defecte pe baza contextului cărții, fără încărcare în cloud.",
+      "Literele tipărite pot fi păstrate exact din tipar — decupate din pagină și redesenate clar, fără a fi înlocuite cu un font generic de telefon."
+    ]
+  },
+  "de": {
+    "lib_title": "Bibliothek",
+    "lib_search": "In Bibliothek suchen…",
+    "lib_recent": "Zuletzt",
+    "continue_eyebrow": "Weiterlesen",
+    "book_title": "Vom Brauch des Lesens",
+    "continue_pos": "Seite 3 von 10 · 30%",
+    "continue_btn": "Weiterlesen",
+    "all_books": "Alle Bücher · 6",
+    "btn_add": "Hinzufügen",
+    "back_lib": "Bibliothek",
+    "btn_book": "Buch",
+    "mode_orig": "Original",
+    "mode_reflow": "Reflow",
+    "tab_aa": "Aa",
+    "tab_reading": "Lesen",
+    "tab_voice": "Stimme",
+    "tab_text": "Text",
+    "tab_doc": "Dokument",
+    "aa_fs": "Schriftgröße",
+    "aa_lh": "Zeilenabstand",
+    "aa_ls": "Zeichenabstand",
+    "aa_orig": "Gedruckte Buchstaben",
+    "aa_orig_sub": "aus der Seite ausgeschnitten",
+    "aa_turn": "Umblättern",
+    "speed_title": "Scroll-Tempo",
+    "speed_sub": "ein Bildschirm in ~",
+    "theme_hdr": "DESIGN",
+    "follow_sys": "Wie Systemeinstellung",
+    "follow_sys_sub": "nachts dunkel, tagsüber hell",
+    "book_only": "Nur dieses Buch",
+    "book_only_sub": "Design gilt nur hier",
+    "orig_colors": "Originalfarben",
+    "orig_colors_sub": "originale Seite ohne Umfärbung",
+    "voice_speed": "Sprechtempo",
+    "voice_speed_natural": "natürlich",
+    "voice_speed_slower": "langsamer",
+    "voice_speed_faster": "schneller",
+    "voice_name": "Stimme: Deutsch (Anna)",
+    "voice_engine": "Engine: Apple Sprachsynthese",
+    "dyslexia": "Schrift für Legasthenie",
+    "dyslexia_sub": "OpenDyslexic, auch auf Scans",
+    "bionic": "Bionisches Lesen",
+    "bionic_sub": "Wortanfänge fett hervorgehoben",
+    "ruler": "Lese-Lineal",
+    "ruler_sub": "dunkelt den Rest der Seite ab",
+    "reset_text": "Schrift zurücksetzen",
+    "doc_lang": "Sprache: Auto (Deutsch)",
+    "force_ocr": "OCR erzwingen",
+    "force_ocr_sub": "Textebene der Datei beschädigt",
+    "enhance": "Scans verbessern",
+    "enhance_sub": "höherer Kontrast für Erkennung",
+    "clean_read": "Sauberes Lesen",
+    "clean_read_sub": "ohne Kopfzeilen und Seitenzahlen",
+    "app_title": "Einstellungen",
+    "app_sub": "Nur App. Bucheinstellungen befinden sich im Buch unter „Aa“.",
+    "app_lang_title": "App-Sprache",
+    "app_lang_sub": "Deutsch (tippen zum Wechseln)",
+    "prem_card_sub": "14 Tage kostenlos testen — alles freischalten",
+    "prem_title": "Rewrap freischalten",
+    "prem_reason_default": "Alle Profi-Funktionen mit einem einzigen Kauf.",
+    "prem_included": "Einmal freischalten, alles inklusive:",
+    "prem_note": "14 Tage kostenlos mit allen Funktionen. Danach bleibt das normale Lesen dauerhaft kostenlos; Profi-Werkzeuge erfordern die einmalige Freischaltung (7,99 €).",
+    "prem_btn": "14 Tage kostenlos testen",
+    "prem_footer": "Einmalige Zahlung. Kein Abonnement.",
+    "fig_title": "Abbildung 1. Lese-Effizienz nach Anzeigemodus",
+    "fig_lbl_speed": "Tempo (WpM)",
+    "fig_lbl_comp": "Verständnis",
+    "fig_legend_zoom": "Standard-Zoom",
+    "fig_legend_reflow": "Rewrap Reflow",
+    "fig_caption": "Abb. 1 — Gemessene Lesegeschwindigkeit (Wörter/Min) und Textverständnis bei adaptivem Reflow im Vergleich zum manuellen Zoom.",
+    "page_end": "❖ Seite 3 von 10 ❖",
+    "orig_header": "Vom Brauch des Lesens — Wissenschaftliche Ausgabe",
+    "toast_orig": "Original: exakte zweispaltige gedruckte Seite.",
+    "toast_reflow": "Reflow: Text an die Bildschirmbreite angepasst.",
+    "toast_ruler_on": "Lese-Lineal aktiviert",
+    "toast_ruler_off": "Lese-Lineal deaktiviert",
+    "toast_bionic_on": "Bionisches Lesen aktiviert",
+    "toast_bionic_off": "Standardtext aktiviert",
+    "toast_dyslexia_on": "Legasthenie-Schrift aktiviert",
+    "toast_dyslexia_off": "Standardschrift aktiviert",
+    "toast_reset_text": "Texteinstellungen zurückgesetzt",
+    "toast_trial_started": "14-tägige Testphase gestartet — alles freigeschaltet!",
+    "books": [
+      {
+        "title": "Vom Brauch des Lesens",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Briefe aus Siebenbürgen",
+        "meta": "Scan · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Der Wintergarten",
+        "meta": "EPUB · beendet",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Handbuch der Fotografie",
+        "meta": "ungelesen",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Reisenotizen",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Atlas der Vögel",
+        "meta": "Scan · ungelesen",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Wer auf dem Telefon liest, kennt das Problem: Die gedruckte Seite ist für Papier gedacht, und das Display ist schmal. Klassischer Zoom schiebt den Text zur Seite und zwingt dazu, bei jeder Zeile mit dem Finger hin und her zu wischen.",
+      "Hier bleibt die Seite exakt so breit wie der Bildschirm. Der Text wächst und bricht an Ort und Stelle um, während alles darunter nach unten wandert. Die Seite wird länger, niemals breiter."
+    ],
+    "paragraphs_p2": [
+      "Bilder, Tabellen und Abbildungen bleiben dort, wo der Autor sie platziert hat, und wachsen mit der Schriftgröße mit. Deine Notizen und Markierungen bleiben fest an ihren Absatz gebunden.",
+      "Und wenn du die Seite genau wie gedruckt sehen möchtest, bringt ein einziger Schalter sofort die Originalansicht auf derselben Seite zurück.",
+      "Gescannte Bücher und fotografierte Seiten werden direkt auf dem Gerät erkannt. Lokales OCR repariert beschädigte Wörter anhand des Dokumentkontexts — ganz ohne Cloud.",
+      "Alte Schriften, Akzente und Sonderzeichen können genau wie im Druck erhalten bleiben — gestochen scharf aus der Seite geschnitten statt durch eine Handyschrift ersetzt."
+    ]
+  },
+  "fr": {
+    "lib_title": "Bibliothèque",
+    "lib_search": "Rechercher dans la bibliothèque…",
+    "lib_recent": "Récents",
+    "continue_eyebrow": "Reprendre la lecture",
+    "book_title": "De l’habitude de lire",
+    "continue_pos": "Page 3 sur 10 · 30%",
+    "continue_btn": "Reprendre",
+    "all_books": "Tous les livres · 6",
+    "btn_add": "Ajouter",
+    "back_lib": "Bibliothèque",
+    "btn_book": "Livre",
+    "mode_orig": "Original",
+    "mode_reflow": "Réagencer",
+    "tab_aa": "Aa",
+    "tab_reading": "Lecture",
+    "tab_voice": "Voix",
+    "tab_text": "Texte",
+    "tab_doc": "Document",
+    "aa_fs": "Taille du texte",
+    "aa_lh": "Interligne",
+    "aa_ls": "Espacement lettres",
+    "aa_orig": "Lettres imprimées",
+    "aa_orig_sub": "découpées dans la page",
+    "aa_turn": "Tourner les pages",
+    "speed_title": "Vitesse de défilement",
+    "speed_sub": "un écran en ~",
+    "theme_hdr": "THÈME",
+    "follow_sys": "Suivre le système",
+    "follow_sys_sub": "sombre la nuit, clair le jour",
+    "book_only": "Ce livre seulement",
+    "book_only_sub": "s’applique uniquement à ce livre",
+    "orig_colors": "Couleurs d’origine",
+    "orig_colors_sub": "page originale non recolorée",
+    "voice_speed": "Vitesse vocale",
+    "voice_speed_natural": "naturel",
+    "voice_speed_slower": "plus lent",
+    "voice_speed_faster": "plus rapide",
+    "voice_name": "Voix : Français (Thomas)",
+    "voice_engine": "Moteur : Synthèse vocale Apple",
+    "dyslexia": "Police dyslexie",
+    "dyslexia_sub": "OpenDyslexic, même sur scans",
+    "bionic": "Lecture bionique",
+    "bionic_sub": "début de chaque mot en gras",
+    "ruler": "Règle de lecture",
+    "ruler_sub": "estompe le reste de la page",
+    "reset_text": "Réinitialiser le texte",
+    "doc_lang": "Langue : Auto (Français)",
+    "force_ocr": "Forcer l’OCR",
+    "force_ocr_sub": "couche de texte endommagée",
+    "enhance": "Améliorer les scans",
+    "enhance_sub": "contraste accru pour l’OCR",
+    "clean_read": "Lecture propre",
+    "clean_read_sub": "sans en-têtes ni numéros de page",
+    "app_title": "Réglages",
+    "app_sub": "Application uniquement. Les réglages du livre sont dans le livre à « Aa ».",
+    "app_lang_title": "Langue de l’app",
+    "app_lang_sub": "Français (toucher pour changer)",
+    "prem_card_sub": "Essai gratuit de 14 jours disponible — tout débloquer",
+    "prem_title": "Débloquer Rewrap",
+    "prem_reason_default": "Toutes les fonctions avancées en un seul achat.",
+    "prem_included": "Un seul achat, tout ce qui suit :",
+    "prem_note": "Gratuit pendant 14 jours avec tout débloqué. À la fin de l’essai, la lecture de base reste gratuite pour toujours ; les fonctions avancées nécessitent le déblocage unique (7,99 €).",
+    "prem_btn": "Démarrer l’essai gratuit de 14 jours",
+    "prem_footer": "Paiement unique. Aucun abonnement.",
+    "fig_title": "Figure 1. Efficacité de lecture selon le mode d’affichage",
+    "fig_lbl_speed": "Vitesse (mots/min)",
+    "fig_lbl_comp": "Compréhension",
+    "fig_legend_zoom": "Zoom classique",
+    "fig_legend_reflow": "Rewrap Réagencement",
+    "fig_caption": "Fig. 1 — Vitesse de lecture mesurée (mots/min) et rétention de compréhension sous réagencement adaptatif vs zoom classique.",
+    "page_end": "❖ Page 3 sur 10 ❖",
+    "orig_header": "De l’habitude de lire — Édition universitaire",
+    "toast_orig": "Original : page d’origine sur deux colonnes.",
+    "toast_reflow": "Réagencement : texte adapté à la largeur de votre écran.",
+    "toast_ruler_on": "Règle de lecture activée",
+    "toast_ruler_off": "Règle de lecture désactivée",
+    "toast_bionic_on": "Lecture bionique activée",
+    "toast_bionic_off": "Texte standard activé",
+    "toast_dyslexia_on": "Police dyslexie activée",
+    "toast_dyslexia_off": "Police standard activée",
+    "toast_reset_text": "Réglages de texte réinitialisés",
+    "toast_trial_started": "Essai gratuit de 14 jours démarré — tout est débloqué !",
+    "books": [
+      {
+        "title": "De l’habitude de lire",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Lettres de Transylvanie",
+        "meta": "scan · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Le Jardin d’hiver",
+        "meta": "EPUB · terminé",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Manuel de photographie",
+        "meta": "non lu",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Notes de voyage",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Atlas des oiseaux",
+        "meta": "scan · non lu",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Quiconque lit sur un téléphone connaît le problème : la page imprimée est conçue pour le papier, et l’écran est étroit. Le zoom classique pousse le texte sur le côté et vous oblige à faire défiler à chaque ligne.",
+      "Ici, la page reste exactement aussi large que votre écran. Le texte s’agrandit et se remet en page sur place, tandis que tout ce qui était en dessous descend. La page devient plus longue, jamais plus large."
+    ],
+    "paragraphs_p2": [
+      "Les images, tableaux et figures restent là où l’auteur les a placés et grandissent avec la police. Vos notes et surlignages restent ancrés à leur paragraphe, quel que soit l’agrandissement.",
+      "Et quand vous voulez voir la page exactement telle qu’imprimée, un seul bouton vous ramène à la vue d’origine, sur la même page.",
+      "Les livres scannés et les pages photographiées sont reconnus directement sur votre appareil. L’OCR local répare les mots abîmés grâce au contexte du document, sans transfert vers le cloud.",
+      "Les polices anciennes, accents et caractères spéciaux peuvent être préservés comme imprimés — redessinés nets à partir de la page au lieu d’être remplacés par une police de téléphone générique."
+    ]
+  },
+  "hu": {
+    "lib_title": "Könyvtár",
+    "lib_search": "Keresés a könyvtárban…",
+    "lib_recent": "Legutóbbiak",
+    "continue_eyebrow": "Olvasás folytatása",
+    "book_title": "Az olvasás szokásáról",
+    "continue_pos": "3. oldal a 10-ből · 30%",
+    "continue_btn": "Folytatás",
+    "all_books": "Összes könyv · 6",
+    "btn_add": "Hozzáadás",
+    "back_lib": "Könyvtár",
+    "btn_book": "Könyv",
+    "mode_orig": "Eredeti",
+    "mode_reflow": "Újratördelés",
+    "tab_aa": "Aa",
+    "tab_reading": "Olvasás",
+    "tab_voice": "Hang",
+    "tab_text": "Szöveg",
+    "tab_doc": "Dokumentum",
+    "aa_fs": "Betűméret",
+    "aa_lh": "Sorköz",
+    "aa_ls": "Betűköz",
+    "aa_orig": "Eredeti betűk",
+    "aa_orig_sub": "az eredeti lapból kivágva",
+    "aa_turn": "Lapozás",
+    "speed_title": "Görgetési sebesség",
+    "speed_sub": "egy képernyő ~",
+    "theme_hdr": "TÉMA",
+    "follow_sys": "Rendszertéma követése",
+    "follow_sys_sub": "éjjel sötét, nappal világos",
+    "book_only": "Csak ez a könyv",
+    "book_only_sub": "a téma csak erre érvényes",
+    "orig_colors": "Eredeti színek",
+    "orig_colors_sub": "színezetlen eredeti oldal",
+    "voice_speed": "Beszédsebesség",
+    "voice_speed_natural": "természetes",
+    "voice_speed_slower": "lassabb",
+    "voice_speed_faster": "gyorsabb",
+    "voice_name": "Hang: Magyar (Eszter)",
+    "voice_engine": "Motor: Apple beszédszintézis",
+    "dyslexia": "Diszlexiabarát betűk",
+    "dyslexia_sub": "OpenDyslexic, szkenneléseken is",
+    "bionic": "Bionikus olvasás",
+    "bionic_sub": "a szavak eleje félkövér",
+    "ruler": "Olvasóvonalzó",
+    "ruler_sub": "elhalványítja az oldal többi részét",
+    "reset_text": "Szöveg visszaállítása",
+    "doc_lang": "Nyelv: Auto (Magyar)",
+    "force_ocr": "Kényszerített OCR",
+    "force_ocr_sub": "a fájl szövegrétege sérült",
+    "enhance": "Szkennelések javítása",
+    "enhance_sub": "nagyobb kontraszt a felismeréshez",
+    "clean_read": "Tiszta olvasás",
+    "clean_read_sub": "fejlécek és oldalszámok nélkül",
+    "app_title": "Beállítások",
+    "app_sub": "Csak az alkalmazás. A könyv beállításai a könyvben, az „Aa”-nál vannak.",
+    "app_lang_title": "Alkalmazás nyelve",
+    "app_lang_sub": "Magyar (érintsd meg a váltáshoz)",
+    "prem_card_sub": "14 napos ingyenes próba elérhető — minden feloldása",
+    "prem_title": "Rewrap feloldása",
+    "prem_reason_default": "Minden haladó funkció egyetlen vásárlással.",
+    "prem_included": "Egyetlen feloldás, minden alábbi funkció:",
+    "prem_note": "14 napig ingyenes, minden feloldva. A próba lejárta után az alapvető olvasás örökre ingyenes marad; a haladó eszközökhöz egyszeri feloldás szükséges (7,99 €).",
+    "prem_btn": "14 napos ingyenes próba indítása",
+    "prem_footer": "Egyszeri fizetés. Nincs előfizetés.",
+    "fig_title": "1. ábra. Olvasási hatékonyság a nézetmódok szerint",
+    "fig_lbl_speed": "Sebesség (szó/perc)",
+    "fig_lbl_comp": "Szövegértés",
+    "fig_legend_zoom": "Hagyományos zoom",
+    "fig_legend_reflow": "Rewrap Újratördelés",
+    "fig_caption": "1. ábra — Mért olvasási sebesség (szó/perc) és szövegértés az adaptív újratördelés és a hagyományos mobil zoom összehasonlításában.",
+    "page_end": "❖ 3. oldal a 10-ből ❖",
+    "orig_header": "Az olvasás szokásáról — Akadémiai kiadás",
+    "toast_orig": "Eredeti: pontos kétoszlopos nyomtatott oldal.",
+    "toast_reflow": "Újratördelés: a szöveg a kijelző szélességéhez igazítva.",
+    "toast_ruler_on": "Olvasóvonalzó bekapcsolva",
+    "toast_ruler_off": "Olvasóvonalzó kikapcsolva",
+    "toast_bionic_on": "Bionikus olvasás bekapcsolva",
+    "toast_bionic_off": "Normál szöveg bekapcsolva",
+    "toast_dyslexia_on": "Diszlexiabarát betűkészlet bekapcsolva",
+    "toast_dyslexia_off": "Normál betűkészlet bekapcsolva",
+    "toast_reset_text": "A szövegbeállítások visszaállítva",
+    "toast_trial_started": "14 napos próba elindult — minden feloldva!",
+    "books": [
+      {
+        "title": "Az olvasás szokásáról",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Erdélyi levelek",
+        "meta": "szkennelt · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "A téli kert",
+        "meta": "EPUB · befejezve",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "A fotózás kézikönyve",
+        "meta": "olvasatlan",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Utazási jegyzetek",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Északi madarak atlasza",
+        "meta": "szkennelt · olvasatlan",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Aki telefonon olvas, jól ismeri a gondot: a nyomtatott oldal papírra készült, a kijelző pedig keskeny. A hagyományos nagyítás kinyomja a szöveget a képernyőről, és minden sornál ujjunkkal kell ide-oda görgetnünk.",
+      "Itt az oldal pontosan akkora szélességű marad, mint a képernyő. A szöveg megnő és helyben újratördelődik, míg alatta minden lejjebb csúszik. Az oldal hosszabb lesz, soha nem szélesebb."
+    ],
+    "paragraphs_p2": [
+      "A képek, táblázatok és ábrák ott maradnak, ahová a szerző helyezte őket, és arányosan növekednek a szöveggel. A jegyzetek és kiemelések az adott bekezdéshez kötve maradnak.",
+      "Amikor pedig pontosan úgy szeretnéd látni az oldalt, ahogy kinyomtatták, egyetlen érintéssel visszatérhetsz az eredeti nézethez, pontosan ugyanazon az oldalon.",
+      "A szkennelt könyveket és lefotózott oldalakat a telefon közvetlenül felismeri. A helyi OCR kijavítja a hibás szavakat a dokumentum saját szövegösszefüggése alapján, felhő használata nélkül.",
+      "A régi betűtípusok, ékezetek és különleges karakterek pontosan megmaradhatnak — az eredeti oldalról élesen újrarajzolva, nem pedig egy általános telefonos betűkészlettel helyettesítve."
+    ]
+  },
+  "pl": {
+    "lib_title": "Biblioteka",
+    "lib_search": "Szukaj w bibliotece…",
+    "lib_recent": "Ostatnie",
+    "continue_eyebrow": "Kontynuuj czytanie",
+    "book_title": "O nawyku czytania",
+    "continue_pos": "Strona 3 z 10 · 30%",
+    "continue_btn": "Kontynuuj",
+    "all_books": "Wszystkie książki · 6",
+    "btn_add": "Dodaj",
+    "back_lib": "Biblioteka",
+    "btn_book": "Książka",
+    "mode_orig": "Oryginał",
+    "mode_reflow": "Dostosuj",
+    "tab_aa": "Aa",
+    "tab_reading": "Czytanie",
+    "tab_voice": "Głos",
+    "tab_text": "Tekst",
+    "tab_doc": "Dokument",
+    "aa_fs": "Rozmiar tekstu",
+    "aa_lh": "Interlinia",
+    "aa_ls": "Odstęp liter",
+    "aa_orig": "Oryginalne litery",
+    "aa_orig_sub": "wycięte z oryginalnej strony",
+    "aa_turn": "Zmiana stron",
+    "speed_title": "Szybkość przewijania",
+    "speed_sub": "jeden ekran w ~",
+    "theme_hdr": "MOTYW",
+    "follow_sys": "Zgodnie z systemem",
+    "follow_sys_sub": "ciemny w nocy, jasny w dzień",
+    "book_only": "Tylko ta książka",
+    "book_only_sub": "motyw tylko dla tej książki",
+    "orig_colors": "Kolory oryginalne",
+    "orig_colors_sub": "oryginalna strona bez zmian",
+    "voice_speed": "Prędkość głosu",
+    "voice_speed_natural": "naturalna",
+    "voice_speed_slower": "wolniej",
+    "voice_speed_faster": "szybciej",
+    "voice_name": "Głos: Polski (Zofia)",
+    "voice_engine": "Silnik: Synteza mowy Apple",
+    "dyslexia": "Czcionka dla dyslektyków",
+    "dyslexia_sub": "OpenDyslexic, także na skanach",
+    "bionic": "Czytanie bioniczne",
+    "bionic_sub": "początek każdego słowa pogrubiony",
+    "ruler": "Linijka do czytania",
+    "ruler_sub": "przyciemnia resztę strony",
+    "reset_text": "Zresetuj ustawienia tekstu",
+    "doc_lang": "Język: Auto (Polski)",
+    "force_ocr": "Wymuś OCR",
+    "force_ocr_sub": "warstwa tekstu pliku jest uszkodzona",
+    "enhance": "Ulepszanie skanów",
+    "enhance_sub": "wyższy kontrast dla rozpoznawania",
+    "clean_read": "Czyste czytanie",
+    "clean_read_sub": "bez nagłówków i numerów stron",
+    "app_title": "Ustawienia",
+    "app_sub": "Tylko aplikacja. Ustawienia książki znajdują się w książce pod „Aa”.",
+    "app_lang_title": "Język aplikacji",
+    "app_lang_sub": "Polski (dotknij, aby zmienić)",
+    "prem_card_sub": "Darmowy 14-dniowy okres próbny — odblokuj wszystko",
+    "prem_title": "Odblokuj Rewrap",
+    "prem_reason_default": "Wszystkie zaawansowane funkcje za jednym zakupem.",
+    "prem_included": "Jedno odblokowanie, wszystko poniżej:",
+    "prem_note": "Bezpłatnie przez 14 dni ze wszystkimi funkcjami. Po zakończeniu okresu próbnego podstawowe czytanie pozostaje bezpłatne na zawsze; zaawansowane narzędzia wymagają jednorazowego zakupu (39,99 zł).",
+    "prem_btn": "Rozpocznij 14-dniowy okres próbny",
+    "prem_footer": "Płatność jednorazowa. Bez subskrypcji.",
+    "fig_title": "Rysunek 1. Wydajność czytania w zależności od trybu",
+    "fig_lbl_speed": "Prędkość (słowa/min)",
+    "fig_lbl_comp": "Zrozumienie",
+    "fig_legend_zoom": "Zwykły zoom",
+    "fig_legend_reflow": "Rewrap Dostosuj",
+    "fig_caption": "Rys. 1 — Zmierzona prędkość czytania (słowa/min) oraz zrozumienie tekstu w trybie adaptacyjnym w porównaniu ze zwykłym powiększaniem strony na telefonie.",
+    "page_end": "❖ Strona 3 z 10 ❖",
+    "orig_header": "O nawyku czytania — Wydanie naukowe",
+    "toast_orig": "Oryginał: dokładna dwukolumnowa strona drukowana.",
+    "toast_reflow": "Dostosuj: tekst dopasowany do szerokości ekranu.",
+    "toast_ruler_on": "Linijka do czytania włączona",
+    "toast_ruler_off": "Linijka do czytania wyłączona",
+    "toast_bionic_on": "Czytanie bioniczne włączone",
+    "toast_bionic_off": "Standardowy tekst włączony",
+    "toast_dyslexia_on": "Czcionka dla dyslektyków włączona",
+    "toast_dyslexia_off": "Standardowa czcionka włączona",
+    "toast_reset_text": "Ustawienia tekstu zostały zresetowane",
+    "toast_trial_started": "14-dniowy okres próbny rozpoczęty — wszystko odblokowane!",
+    "books": [
+      {
+        "title": "O nawyku czytania",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Listy z Siedmiogrodu",
+        "meta": "skan · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Ogród zimowy",
+        "meta": "EPUB · przeczytane",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Podręcznik fotografii",
+        "meta": "nieprzeczytane",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Notatki z podróży",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Atlas ptaków północy",
+        "meta": "skan · nieprzeczytane",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Każdy, kto czyta na telefonie, zna ten problem: drukowana strona powstała z myślą o papierze, a ekran telefonu jest wąski. Klasyczne powiększanie wypycha tekst poza krawędź i zmusza do przesuwania strony palcem w każdej linijce.",
+      "Tutaj strona zachowuje dokładnie szerokość Twojego ekranu. Tekst powiększa się i układa na nowo w miejscu, a wszystko poniżej przesuwa się w dół. Strona staje się dłuższa, nigdy szersza."
+    ],
+    "paragraphs_p2": [
+      "Ilustracje, tabele i rysunki pozostają dokładnie tam, gdzie umieścił je autor, i skalują się proporcjonalnie do czcionki. Twoje notatki i wyróżnienia pozostają przypisane do danego akapitu.",
+      "A gdy chcesz zobaczyć stronę dokładnie tak, jak została wydrukowana, jedno dotknięcie przełącza widok na oryginał na tej samej stronie.",
+      "Zeskanowane książki i sfotografowane strony są rozpoznawane bezpośrednio na urządzeniu. Lokalny OCR naprawia uszkodzone słowa na podstawie kontekstu z samego dokumentu, bez wysyłania do chmury.",
+      "Dawne kroje pisma, akcenty i znaki specjalne mogą zostać zachowane dokładnie jak w druku — wycięte ze strony i ostro odrysowane, zamiast zastępowane zwykłą czcionką telefonu."
+    ]
+  },
+  "ru": {
+    "lib_title": "Библиотека",
+    "lib_search": "Поиск в библиотеке…",
+    "lib_recent": "Недавние",
+    "continue_eyebrow": "Продолжить чтение",
+    "book_title": "О привычке читать",
+    "continue_pos": "Страница 3 из 10 · 30%",
+    "continue_btn": "Продолжить",
+    "all_books": "Все книги · 6",
+    "btn_add": "Добавить",
+    "back_lib": "Библиотека",
+    "btn_book": "Книга",
+    "mode_orig": "Оригинал",
+    "mode_reflow": "Перевёрстка",
+    "tab_aa": "Aa",
+    "tab_reading": "Чтение",
+    "tab_voice": "Голос",
+    "tab_text": "Текст",
+    "tab_doc": "Документ",
+    "aa_fs": "Размер текста",
+    "aa_lh": "Интервал строк",
+    "aa_ls": "Интервал букв",
+    "aa_orig": "Печатные буквы",
+    "aa_orig_sub": "вырезанные со страницы",
+    "aa_turn": "Перелистывание",
+    "speed_title": "Скорость прокрутки",
+    "speed_sub": "один экран за ~",
+    "theme_hdr": "ТЕМА",
+    "follow_sys": "По теме системы",
+    "follow_sys_sub": "тёмная ночью, светлая днём",
+    "book_only": "Только эта книга",
+    "book_only_sub": "тема только для этой книги",
+    "orig_colors": "Исходные цвета",
+    "orig_colors_sub": "исходная страница без перекрашивания",
+    "voice_speed": "Скорость голоса",
+    "voice_speed_natural": "естественная",
+    "voice_speed_slower": "медленнее",
+    "voice_speed_faster": "быстрее",
+    "voice_name": "Голос: Русский (Милена)",
+    "voice_engine": "Движок: Синтез речи Apple",
+    "dyslexia": "Шрифт для дислексии",
+    "dyslexia_sub": "OpenDyslexic, даже на сканах",
+    "bionic": "Бионическое чтение",
+    "bionic_sub": "начало каждого слова полужирным",
+    "ruler": "Линейка для чтения",
+    "ruler_sub": "затемняет остальную страницу",
+    "reset_text": "Сбросить настройки текста",
+    "doc_lang": "Язык: Авто (Русский)",
+    "force_ocr": "Принудительный OCR",
+    "force_ocr_sub": "текстовый слой файла повреждён",
+    "enhance": "Улучшение сканов",
+    "enhance_sub": "повышенный контраст для распознавания",
+    "clean_read": "Чистое чтение",
+    "clean_read_sub": "без колонтитулов и номеров страниц",
+    "app_title": "Настройки",
+    "app_sub": "Только приложение. Настройки книги находятся внутри книги в «Aa».",
+    "app_lang_title": "Язык приложения",
+    "app_lang_sub": "Русский (коснитесь для смены)",
+    "prem_card_sub": "Доступен 14-дневный пробный период — разблокировать всё",
+    "prem_title": "Разблокировать Rewrap",
+    "prem_reason_default": "Все мощные функции с одной покупкой.",
+    "prem_included": "Одна покупка, всё нижеперечисленное:",
+    "prem_note": "Бесплатно 14 дней со всеми открытыми возможностями. По истечении срока базовое чтение остаётся бесплатным навсегда; расширенные инструменты требуют единоразовой покупки (£6.99).",
+    "prem_btn": "Начать 14 дней бесплатно",
+    "prem_footer": "Единоразовый платёж. Без подписок.",
+    "fig_title": "Рис. 1. Эффективность чтения по режимам отображения",
+    "fig_lbl_speed": "Скорость (слов/мин)",
+    "fig_lbl_comp": "Понимание",
+    "fig_legend_zoom": "Обычный зум",
+    "fig_legend_reflow": "Rewrap Перевёрстка",
+    "fig_caption": "Рис. 1 — Измеренная скорость чтения (слов/мин) и понимание материала при адаптивной перевёрстке в сравнении с ручным зумом на мобильном.",
+    "page_end": "❖ Страница 3 из 10 ❖",
+    "orig_header": "О привычке читать — Научное издание",
+    "toast_orig": "Оригинал: точная двухколоночная печатная страница.",
+    "toast_reflow": "Перевёрстка: текст перестроен под ширину экрана.",
+    "toast_ruler_on": "Линейка для чтения включена",
+    "toast_ruler_off": "Линейка для чтения отключена",
+    "toast_bionic_on": "Бионическое чтение включено",
+    "toast_bionic_off": "Стандартный текст включён",
+    "toast_dyslexia_on": "Шрифт для дислексии включён",
+    "toast_dyslexia_off": "Стандартный шрифт включён",
+    "toast_reset_text": "Настройки текста сброшены",
+    "toast_trial_started": "14-дневный пробный период начался — всё разблокировано!",
+    "books": [
+      {
+        "title": "О привычке читать",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Письма из Трансильвании",
+        "meta": "скан · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Зимний сад",
+        "meta": "EPUB · прочитано",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Руководство по фотографии",
+        "meta": "не прочитано",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Путевые заметки",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Атлас северных птиц",
+        "meta": "скан · не прочитано",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Любой, кто читает с телефона, знает проблему: печатная страница создана для бумаги, а экран смартфона узок. Обычный зум выталкивает текст за край и заставляет двигать страницу пальцем на каждой строчке.",
+      "Здесь страница остаётся ровно по ширине вашего экрана. Текст увеличивается и перестраивается прямо на месте, а всё, что было ниже, опускается. Страница становится длиннее, но никогда шире."
+    ],
+    "paragraphs_p2": [
+      "Иллюстрации, таблицы и схемы остаются там, где их разместил автор, и масштабируются вместе со шрифтом. Ваши заметки и выделения привязаны к своему абзацу, как бы сильно вы ни увеличивали текст.",
+      "А когда нужно увидеть страницу ровно так, как она была напечатана, один переключатель вернёт исходный вид на той же самой странице.",
+      "Отсканированные книги и сфотографированные страницы распознаются прямо на устройстве. Локальный OCR восстанавливает повреждённые слова по контексту документа — без загрузки в облако.",
+      "Старые шрифты, ударения и особые символы сохраняются именно так, как напечатаны — чётко перерисованными из книги, а не заменёнными стандартным шрифтом телефона."
+    ]
+  },
+  "lt": {
+    "lib_title": "Biblioteka",
+    "lib_search": "Ieškoti bibliotekoje…",
+    "lib_recent": "Naujausi",
+    "continue_eyebrow": "Tęsti skaitymą",
+    "book_title": "Apie skaitymo įprotį",
+    "continue_pos": "3 puslapis iš 10 · 30%",
+    "continue_btn": "Tęsti",
+    "all_books": "Visos knygos · 6",
+    "btn_add": "Pridėti",
+    "back_lib": "Biblioteka",
+    "btn_book": "Knyga",
+    "mode_orig": "Originalas",
+    "mode_reflow": "Pertvarkymas",
+    "tab_aa": "Aa",
+    "tab_reading": "Skaitymas",
+    "tab_voice": "Balsas",
+    "tab_text": "Tekstas",
+    "tab_doc": "Dokumentas",
+    "aa_fs": "Teksto dydis",
+    "aa_lh": "Eilučių tarpas",
+    "aa_ls": "Burtų tarpas",
+    "aa_orig": "Spausdintos raidės",
+    "aa_orig_sub": "iškirptos iš puslapio",
+    "aa_turn": "Puslapių vartymas",
+    "speed_title": "Slinkties greitis",
+    "speed_sub": "vienas ekranas per ~",
+    "theme_hdr": "TEMA",
+    "follow_sys": "Pagal telefono temą",
+    "follow_sys_sub": "tamsi naktį, šviesi dieną",
+    "book_only": "Tik šiai knygai",
+    "book_only_sub": "tema galioja tik šiai knygai",
+    "orig_colors": "Originalios spalvos",
+    "orig_colors_sub": "neperspalvintas originalus puslapis",
+    "voice_speed": "Balso greitis",
+    "voice_speed_natural": "natūralus",
+    "voice_speed_slower": "lėčiau",
+    "voice_speed_faster": "greičiau",
+    "voice_name": "Balsas: Lietuvių",
+    "voice_engine": "Variklis: „Apple“ sintezė",
+    "dyslexia": "Šriftas disleksijai",
+    "dyslexia_sub": "OpenDyslexic, net skenuotuose",
+    "bionic": "Bioninis skaitymas",
+    "bionic_sub": "kiekvieno žodžio pradžia paryškinta",
+    "ruler": "Skaitymo liniuotė",
+    "ruler_sub": "pritemdo likusį puslapį",
+    "reset_text": "Atkurti teksto nustatymus",
+    "doc_lang": "Kalba: Auto (Lietuvių)",
+    "force_ocr": "Priverstinis OCR",
+    "force_ocr_sub": "failo teksto sluoksnis pažeistas",
+    "enhance": "Pagerinti skenavimus",
+    "enhance_sub": "didesnis kontrastas atpažinimui",
+    "clean_read": "Švarus skaitymas",
+    "clean_read_sub": "be antraščių ir puslapių numerių",
+    "app_title": "Nustatymai",
+    "app_sub": "Tik programėlė. Knygos nustatymai yra knygoje ties „Aa“.",
+    "app_lang_title": "Programėlės kalba",
+    "app_lang_sub": "Lietuvių (palieskite, kad pakeistumėte)",
+    "prem_card_sub": "Galimas 14 dienų nemokamas bandymas — atrakinti viską",
+    "prem_title": "Atrakinti „Rewrap“",
+    "prem_reason_default": "Visos pažangios funkcijos vienu pirkiniu.",
+    "prem_included": "Vienas atrakinimas, viskas toliau:",
+    "prem_note": "14 dienų nemokamai su visomis atvertomis funkcijomis. Pasibaigus bandymui, pagrindinis skaitymas lieka nemokamas visam laikui; pažangūs įrankiai reikalauja vienkartinio atrakinimo (7,99 €).",
+    "prem_btn": "Pradėti 14 dienų nemokamą bandymą",
+    "prem_footer": "Vienkartinis mokėjimas. Be prenumeratų.",
+    "fig_title": "1 pav. Skaitymo efektyvumas pagal rodymo režimą",
+    "fig_lbl_speed": "Greitis (žodž./min)",
+    "fig_lbl_comp": "Supratimas",
+    "fig_legend_zoom": "Įprastas didinimas",
+    "fig_legend_reflow": "„Rewrap“ pertvarkymas",
+    "fig_caption": "1 pav. — Išmatuotas skaitymo greitis (žodžiai/min) ir teksto supratimas naudojant adaptyvų pertvarkymą, palyginti su įprastu puslapio didinimu telefone.",
+    "page_end": "❖ 3 puslapis iš 10 ❖",
+    "orig_header": "Apie skaitymo įprotį — Akademinis leidimas",
+    "toast_orig": "Originalas: tikslus dviejų stulpelių spausdintas puslapis.",
+    "toast_reflow": "Pertvarkymas: tekstas pritaikytas ekrano pločiui.",
+    "toast_ruler_on": "Skaitymo liniuotė įjungta",
+    "toast_ruler_off": "Skaitymo liniuotė išjungta",
+    "toast_bionic_on": "Bioninis skaitymas įjungtas",
+    "toast_bionic_off": "Standartinis tekstas įjungtas",
+    "toast_dyslexia_on": "Disleksijos šriftas įjungtas",
+    "toast_dyslexia_off": "Standartinis šriftas įjungtas",
+    "toast_reset_text": "Teksto nustatymai atkurti",
+    "toast_trial_started": "14 dienų bandomasis laikotarpis prasidėjo — viskas atrakinta!",
+    "books": [
+      {
+        "title": "Apie skaitymo įprotį",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Laiškai iš Transilvanijos",
+        "meta": "sken. · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Žiemos sodas",
+        "meta": "EPUB · perskaityta",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Fotografijos vadovas",
+        "meta": "neskaityta",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Kelionių užrašai",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Šiaurės paukščių atlasas",
+        "meta": "sken. · neskaityta",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Kiekvienas, skaitantis telefone, žino problemą: spausdintas puslapis sukurtas popieriui, o ekranas yra siauras. Įprastas didinimas išstumia tekstą į šoną ir verčia slinkti pirštu kiekvienoje eilutėje.",
+      "Čia puslapis išlieka tiksliai tokio pločio, kaip jūsų ekranas. Tekstas didėja ir persidėlioja vietoje, o viskas apačioje pasislenka žemyn. Puslapis ilgėja, bet niekada neplatėja."
+    ],
+    "paragraphs_p2": [
+      "Paveikslėliai, lentelės ir schemos lieka ten, kur juos patalpino autorius, ir proporcingai didėja su šriftu. Jūsų pastabos ir paryškinimai lieka susieti su atitinkama pastraipa.",
+      "O kai norite pamatyti puslapį lygiai taip, kaip jis buvo atspausdintas, vienas mygtukas grąžina originalų vaizdą tame pačiame puslapyje.",
+      "Nuskenuotos knygos ir nufotografuoti puslapiai atpažįstami tiesiai jūsų įrenginyje. Vietinis OCR pataiso pažeistus žodžius pagal paties dokumento kontekstą, be siuntimo į debesis.",
+      "Senieji šriftai, diakritiniai ženklai ir ypatingos raidės išsaugomi kaip originale — ryškiai perpiešti iš puslapio, o ne pakeisti paprastu telefono šriftu."
+    ]
+  },
+  "lv": {
+    "lib_title": "Bibliotēka",
+    "lib_search": "Meklēt bibliotēkā…",
+    "lib_recent": "Nesen lasītie",
+    "continue_eyebrow": "Turpināt lasīšanu",
+    "book_title": "Par lasīšanas ieradumu",
+    "continue_pos": "3. lapa no 10 · 30%",
+    "continue_btn": "Turpināt",
+    "all_books": "Visas grāmatas · 6",
+    "btn_add": "Pievienot",
+    "back_lib": "Bibliotēka",
+    "btn_book": "Grāmata",
+    "mode_orig": "Oriģināls",
+    "mode_reflow": "Pārkārtot",
+    "tab_aa": "Aa",
+    "tab_reading": "Lasīšana",
+    "tab_voice": "Balss",
+    "tab_text": "Teksts",
+    "tab_doc": "Dokuments",
+    "aa_fs": "Teksta izmērs",
+    "aa_lh": "Rindstarpa",
+    "aa_ls": "Burtu atstarpe",
+    "aa_orig": "Drukātie burti",
+    "aa_orig_sub": "izgriezti no lappuses",
+    "aa_turn": "Pāršķirt lapas",
+    "speed_title": "Ritināšanas ātrums",
+    "speed_sub": "viens ekrāns ~",
+    "theme_hdr": "TĒMA",
+    "follow_sys": "Sekot tālruņa tēmai",
+    "follow_sys_sub": "tumša naktī, gaiša dienā",
+    "book_only": "Tikai šai grāmatai",
+    "book_only_sub": "tēma attiecas tikai uz šo grāmatu",
+    "orig_colors": "Oriģinālās krāsas",
+    "orig_colors_sub": "nepārkrāsota oriģinālā lapa",
+    "voice_speed": "Balss ātrums",
+    "voice_speed_natural": "dabisks",
+    "voice_speed_slower": "lēnāk",
+    "voice_speed_faster": "ātrāk",
+    "voice_name": "Balss: Latviešu",
+    "voice_engine": "Dzinējs: Apple balss sintēze",
+    "dyslexia": "Fonti disleksijai",
+    "dyslexia_sub": "OpenDyslexic, arī skenējumos",
+    "bionic": "Bioniskā lasīšana",
+    "bionic_sub": "katra vārda sākums treknrakstā",
+    "ruler": "Lasīšanas lineāls",
+    "ruler_sub": "aptumšo pārējo lapu",
+    "reset_text": "Atiestatīt teksta iestatījumus",
+    "doc_lang": "Valoda: Auto (Latviešu)",
+    "force_ocr": "Piespiedu OCR",
+    "force_ocr_sub": "faila teksta slānis bojāts",
+    "enhance": "Uzlabot skenējumus",
+    "enhance_sub": "augstāks kontrasts atpazīšanai",
+    "clean_read": "Tīra lasīšana",
+    "clean_read_sub": "bez galvenēm un lapu numuriem",
+    "app_title": "Iestatījumi",
+    "app_sub": "Tikai lietotne. Grāmatas iestatījumi ir grāmatā pie „Aa”.",
+    "app_lang_title": "Lietotnes valoda",
+    "app_lang_sub": "Latviešu (pieskarieties, lai mainītu)",
+    "prem_card_sub": "Pieejams 14 dienu bezmaksas izmēģinājums — atbloķēt visu",
+    "prem_title": "Atbloķēt Rewrap",
+    "prem_reason_default": "Visas uzlabotās funkcijas ar vienu pirkumu.",
+    "prem_included": "Viens pirkums, viss zemāk:",
+    "prem_note": "14 dienas bez maksas ar visām pieejamajām funkcijām. Kad izmēģinājums beidzas, pamata lasīšana paliek bezmaksas uz visiem laikiem; papildu rīkiem nepieciešams vienreizējs pirkums (7,99 €).",
+    "prem_btn": "Sākt 14 dienu bezmaksas izmēģinājumu",
+    "prem_footer": "Vienreizējs maksājums. Bez abonementiem.",
+    "fig_title": "1. attēls. Lasīšanas efektivitāte atkarībā no režīma",
+    "fig_lbl_speed": "Ātrums (vārdi/min)",
+    "fig_lbl_comp": "Izpratne",
+    "fig_legend_zoom": "Standarta tālummaiņa",
+    "fig_legend_reflow": "Rewrap pārkārtojums",
+    "fig_caption": "1. att. — Izmērītais lasīšanas ātrums (vārdi/min) un izpratnes noturība adaptīvā pārkārtojumā salīdzinājumā ar parasto tālummaiņu mobilajā ierīcē.",
+    "page_end": "❖ 3. lapa no 10 ❖",
+    "orig_header": "Par lasīšanas ieradumu — Akadēmiskais izdevums",
+    "toast_orig": "Oriģināls: precīza divu kolonnu drukātā lapa.",
+    "toast_reflow": "Pārkārtojums: teksts pielāgots ekrāna platumam.",
+    "toast_ruler_on": "Lasīšanas lineāls ieslēgts",
+    "toast_ruler_off": "Lasīšanas lineāls izslēgts",
+    "toast_bionic_on": "Bioniskā lasīšana ieslēgta",
+    "toast_bionic_off": "Standarta teksts ieslēgts",
+    "toast_dyslexia_on": "Disleksijas fonts ieslēgts",
+    "toast_dyslexia_off": "Standarta fonts ieslēgts",
+    "toast_reset_text": "Teksta iestatījumi atiestatīti",
+    "toast_trial_started": "14 dienu izmēģinājums ir sācies — viss ir atbloķēts!",
+    "books": [
+      {
+        "title": "Par lasīšanas ieradumu",
+        "meta": "30%",
+        "color": "#5D7A8C"
+      },
+      {
+        "title": "Vēstules no Transilvānijas",
+        "meta": "sken. · 12%",
+        "color": "#8C5D4A"
+      },
+      {
+        "title": "Ziemas dārzs",
+        "meta": "EPUB · pabeigts",
+        "color": "#5E7F5C"
+      },
+      {
+        "title": "Fotogrāfijas rokasgrāmata",
+        "meta": "nelasīts",
+        "color": "#3F4A63"
+      },
+      {
+        "title": "Ceļojuma piezīmes",
+        "meta": "TXT · 64%",
+        "color": "#9A7B3E"
+      },
+      {
+        "title": "Ziemeļu putnu atlants",
+        "meta": "sken. · nelasīts",
+        "color": "#6E5A7E"
+      }
+    ],
+    "paragraphs_p1": [
+      "Ikviens, kurš lasa tālrunī, zina šo problēmu: drukātā lapa veidota papīram, bet ekrāns ir šaurs. Parastā tālummaiņa izstumj tekstu ārpus ekrāna un liek bīdīt lapu ar pirkstu pie katras rindiņas.",
+      "Šeit lapa paliek tieši tik plata, cik tavs ekrāns. Teksts palielinās un pārkārtojas uz vietas, bet viss zem tā pavirzās uz leju. Lapa kļūst garāka, nekad platāka."
+    ],
+    "paragraphs_p2": [
+      "Attēli, tabulas un zīmējumi paliek tur, kur autors tos novietojis, un proporcionāli maina izmēru līdz ar fontu. Tavas piezīmes un izcēlumi paliek piesaistīti savai rindkopai.",
+      "Un, kad vēlies redzēt lapu tieši tādu, kāda tā tika iespiesta, viena poga aizved atpakaļ uz oriģinālo skatu tajā pašā lappusē.",
+      "Skenētās grāmatas un nofotografētās lapas tiek atpazītas tieši tavā ierīcē. Vietējais OCR labo bojātos vārdus, izmantojot paša dokumenta kontekstu, bez augšupielādes mākonī.",
+      "Senie fonti, akcenti un īpašās rakstzīmes tiek saglabātas kā iespiedumā — asi pārzīmētas no lappuses, nevis aizstātas ar parastu tālruņa fontu."
+    ]
+  }
+};
+
+      const SPACING_NAMES = {
+  "en": [
+    "Compact",
+    "Normal",
+    "Spacious",
+    "Wide"
+  ],
+  "ro": [
+    "Compact",
+    "Normal",
+    "Aerisit",
+    "Larg"
+  ],
+  "de": [
+    "Kompakt",
+    "Normal",
+    "Großzügig",
+    "Weit"
+  ],
+  "fr": [
+    "Compact",
+    "Normal",
+    "Aéré",
+    "Large"
+  ],
+  "hu": [
+    "Tömör",
+    "Normál",
+    "Szellős",
+    "Széles"
+  ],
+  "pl": [
+    "Zwarty",
+    "Normalny",
+    "Przestronny",
+    "Szeroki"
+  ],
+  "ru": [
+    "Компактный",
+    "Обычный",
+    "Просторный",
+    "Широкий"
+  ],
+  "lt": [
+    "Kompaktiškas",
+    "Normalus",
+    "Erdvus",
+    "Platus"
+  ],
+  "lv": [
+    "Kompakts",
+    "Normāls",
+    "Plašs",
+    "Plats"
+  ]
+};
+            const SPACING_VALS = [1.32, 1.50, 1.74, 1.98];
+
+      // Starea curentă (Engleză implicită)
+      const state = {
+        lang: 'en',
+        screen: 'reader',
+        mode: 'reflow',
+        toolsOpen: false,
+        aaOpen: false,
+        bookMenuOpen: false,
+        premiumOpen: false,
+        activeTab: 'rapid',
+        theme: 'sepia',
+        fontSizePct: 140, // 80% .. 260%
+        spacingIdx: 1,    // 0..3
+        letterSpacingIdx: 0, // 0%, +2%, +4%, +6%
+        origLetters: true,
+        turnMode: 'scroll',
+        scrollSpeed: 55,
+        voiceSpeed: 1.0,
+        dyslexia: false,
+        bionic: false,
+        ruler: false,
+        isPremium: false,
+        followSys: false,
+        bookOnly: false,
+        origColors: false,
+        forceOcr: false,
+        cleanRead: false,
+        enhance: true
+      };
+
+      const $ = sel => document.querySelector(sel);
+      const $$ = sel => document.querySelectorAll(sel);
+      const phoneContainer = $('#phone-container');
+
+      function t(key) {
+        const dict = I18N[state.lang] || I18N.en;
+        return dict[key] !== undefined ? dict[key] : (I18N.en[key] || key);
+      }
+
+      // Toast feedback
+      let toastTimer = null;
+      function showToast(msg) {
+        const toast = $('#toast-pill');
+        toast.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
+      }
+
+      // Text Bionic
+      function bionicText(text) {
+        return text.split(' ').map(w => {
+          if (w.length <= 1) return w;
+          const mid = Math.ceil(w.length * 0.45);
+          return '<b>' + w.slice(0, mid) + '</b>' + w.slice(mid);
+        }).join(' ');
+      }
+
+      // Actualizare completă a textelor de interfață în funcție de limba aleasă
+      function applyLanguageStrings() {
+        document.documentElement.lang = state.lang;
+        $('#txt-lib-title').textContent = t('lib_title');
+        $('#txt-lib-search').textContent = t('lib_search');
+        $('#txt-lib-recent').textContent = t('lib_recent');
+        $('#txt-continue-eyebrow').textContent = t('continue_eyebrow');
+        $('#resume-thumb-title').textContent = t('book_title');
+        $('#resume-card-title').textContent = t('book_title');
+        $('#txt-continue-pos').textContent = t('continue_pos');
+        $('#btn-resume-read').textContent = t('continue_btn');
+        $('#txt-all-books').textContent = t('all_books');
+        $('#txt-btn-add').textContent = t('btn_add');
+
+        $('#txt-back-lib').textContent = t('back_lib');
+        $('#txt-btn-book').textContent = t('btn_book');
+        $('#btn-mode-orig').textContent = t('mode_orig');
+        $('#btn-mode-reflow').textContent = t('mode_reflow');
+
+        $('#tab-btn-aa').textContent = t('tab_aa');
+        $('#tab-btn-reading').textContent = t('tab_reading');
+        $('#tab-btn-voice').textContent = t('tab_voice');
+        $('#tab-btn-text').textContent = t('tab_text');
+        $('#tab-btn-doc').textContent = t('tab_doc');
+
+        $('#txt-aa-fs').textContent = t('aa_fs');
+        $('#txt-aa-lh').textContent = t('aa_lh');
+        $('#txt-aa-ls').textContent = t('aa_ls');
+        $('#txt-aa-orig').textContent = t('aa_orig');
+        $('#txt-aa-orig-sub').textContent = t('aa_orig_sub');
+        $('#txt-aa-turn').textContent = t('aa_turn');
+
+        $('#txt-speed-title').textContent = t('speed_title');
+        $('#txt-theme-hdr').textContent = t('theme_hdr');
+        $('#txt-follow-sys').textContent = t('follow_sys');
+        $('#txt-follow-sys-sub').textContent = t('follow_sys_sub');
+        $('#txt-book-only').textContent = t('book_only');
+        $('#txt-book-only-sub').textContent = t('book_only_sub');
+        $('#txt-orig-colors').textContent = t('orig_colors');
+        $('#txt-orig-colors-sub').textContent = t('orig_colors_sub');
+
+        $('#txt-voice-speed').textContent = t('voice_speed');
+        $('#txt-voice-name').textContent = t('voice_name');
+        $('#txt-voice-engine').textContent = t('voice_engine');
+
+        $('#txt-dyslexia').textContent = t('dyslexia');
+        $('#txt-dyslexia-sub').textContent = t('dyslexia_sub');
+        $('#txt-bionic').textContent = t('bionic');
+        $('#txt-bionic-sub').textContent = t('bionic_sub');
+        $('#txt-ruler').textContent = t('ruler');
+        $('#txt-ruler-sub').textContent = t('ruler_sub');
+        $('#btn-reset-text').textContent = t('reset_text');
+
+        $('#txt-doc-lang').textContent = t('doc_lang');
+        $('#txt-force-ocr').textContent = t('force_ocr');
+        $('#txt-force-ocr-sub').textContent = t('force_ocr_sub');
+        $('#txt-enhance').textContent = t('enhance');
+        $('#txt-enhance-sub').textContent = t('enhance_sub');
+        $('#txt-clean-read').textContent = t('clean_read');
+        $('#txt-clean-read-sub').textContent = t('clean_read_sub');
+
+        $('#txt-app-title').textContent = t('app_title');
+        $('#txt-app-sub').textContent = t('app_sub');
+        $('#txt-card-lang-title').textContent = t('app_lang_title');
+        $('#txt-card-lang-sub').textContent = (LANG_NAMES[state.lang] || state.lang) + ' ›';
+        const langSheetTitles = {
+          ro: 'Alege limba', en: 'Select Language', de: 'Sprache wählen',
+          fr: 'Choisir la langue', hu: 'Nyelv kiválasztása', pl: 'Wybierz język',
+          ru: 'Выберите язык', lt: 'Pasirinkite kalbą', lv: 'Izvēlieties valodu'
+        };
+        const titleEl = $('#txt-lang-sheet-title');
+        if (titleEl) titleEl.textContent = langSheetTitles[state.lang] || 'Select Language';
+        $('#txt-card-premium-sub').textContent = t('prem_card_sub');
+
+        $('#txt-prem-title').textContent = t('prem_title');
+        $('#premium-reason-text').textContent = t('prem_reason_default');
+        $('#txt-prem-included').textContent = t('prem_included');
+        $('#txt-prem-note').textContent = t('prem_note');
+        $('#btn-start-trial').textContent = t('prem_btn');
+        $('#txt-prem-sub').textContent = t('prem_footer');
+
+        // Figura 1 texte
+        $('#fig-title-text').textContent = t('fig_title');
+        $('#fig-lbl-speed').textContent = t('fig_lbl_speed');
+        $('#fig-lbl-comp').textContent = t('fig_lbl_comp');
+        $('#fig-legend-zoom').textContent = t('fig_legend_zoom');
+        $('#fig-legend-reflow').textContent = t('fig_legend_reflow');
+        $('#fig-caption-text').textContent = t('fig_caption');
+        $('#page-end-indicator').textContent = t('page_end');
+        $('#orig-heading').textContent = t('orig_header');
+
+        $('#reflow-heading').textContent = t('book_title');
+        $('#info-bubble-title').textContent = t('book_title');
+        $('#info-bubble-pos').textContent = '· ' + t('continue_pos');
+
+        renderLibraryBooks();
+        renderReaderText();
+      }
+
+      // Randare text pe ecranul cititorului (Reflow și Original)
+      function renderReaderText() {
+        const reflowBox1 = $('#reflow-paragraphs-p1');
+        const reflowBox2 = $('#reflow-paragraphs-p2');
+        const origBox = $('#orig-paragraphs');
+
+        const basePx = Math.round(14 * (state.fontSizePct / 100));
+        const lh = SPACING_VALS[state.spacingIdx];
+        const lsVals = ['0em', '0.02em', '0.04em', '0.06em'];
+        const ls = state.dyslexia ? '0.04em' : lsVals[state.letterSpacingIdx];
+        const fontFam = state.dyslexia
+          ? "'Comic Sans MS', 'Trebuchet MS', system-ui, sans-serif"
+          : (state.origLetters ? 'var(--font-serif)' : 'var(--font-sans)');
+
+        // Stiluri Reflow
+        const vp = $('#view-reflow-content');
+        vp.style.fontFamily = fontFam;
+        vp.style.fontSize = basePx + 'px';
+        vp.style.lineHeight = lh;
+        vp.style.letterSpacing = ls;
+
+        $('#reflow-heading').style.fontSize = (basePx + 8) + 'px';
+        $('#reflow-heading').style.fontFamily = fontFam;
+
+        const dict = I18N[state.lang] || I18N.en;
+        const p1 = dict.paragraphs_p1 || I18N.en.paragraphs_p1;
+        const p2 = dict.paragraphs_p2 || I18N.en.paragraphs_p2;
+
+        reflowBox1.innerHTML = p1.map(p => {
+          const content = state.bionic ? bionicText(p) : p;
+          return `<p style="margin-bottom: 14px;">${content}</p>`;
+        }).join('');
+
+        reflowBox2.innerHTML = p2.map(p => {
+          const content = state.bionic ? bionicText(p) : p;
+          return `<p style="margin-bottom: 14px;">${content}</p>`;
+        }).join('');
+
+        // Original 2 coloane cu diagrama intercalată între coloane
+        const figureSvg = `
+          <div class="doc-figure-card orig-figure-card" style="column-span: all; margin: 10px 0 12px 0; padding: 10px; border-radius: 8px;">
+            <span class="fig-title" style="font-size: 11px; font-weight: 700; color: var(--fg);">${dict.fig_title}</span>
+            <svg viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; margin: 4px 0;">
+              <line x1="45" y1="20" x2="305" y2="20" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+              <line x1="45" y1="55" x2="305" y2="55" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+              <line x1="45" y1="90" x2="305" y2="90" stroke="var(--line)" stroke-dasharray="3 3" opacity="0.6"/>
+              <line x1="45" y1="125" x2="305" y2="125" stroke="var(--line)" stroke-width="1.2"/>
+
+              <text x="38" y="24" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">100%</text>
+              <text x="38" y="59" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">66%</text>
+              <text x="38" y="94" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">33%</text>
+              <text x="38" y="128" fill="var(--sub)" font-size="9" text-anchor="end" font-family="sans-serif">0</text>
+
+              <rect x="75" y="68" width="32" height="57" rx="3" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+              <text x="91" y="63" fill="var(--fg)" font-size="9.5" font-weight="600" text-anchor="middle" font-family="sans-serif">142</text>
+              <rect x="113" y="32" width="32" height="93" rx="3" fill="var(--accent)"/>
+              <text x="129" y="27" fill="var(--accent)" font-size="9.5" font-weight="700" text-anchor="middle" font-family="sans-serif">238</text>
+              <text x="110" y="140" fill="var(--fg)" font-size="10" font-weight="600" text-anchor="middle" font-family="sans-serif">${dict.fig_lbl_speed}</text>
+
+              <rect x="205" y="53" width="32" height="72" rx="3" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+              <text x="221" y="48" fill="var(--fg)" font-size="9.5" font-weight="600" text-anchor="middle" font-family="sans-serif">68%</text>
+              <rect x="243" y="28" width="32" height="97" rx="3" fill="var(--accent)"/>
+              <text x="259" y="23" fill="var(--accent)" font-size="9.5" font-weight="700" text-anchor="middle" font-family="sans-serif">89%</text>
+              <text x="240" y="140" fill="var(--fg)" font-size="10" font-weight="600" text-anchor="middle" font-family="sans-serif">${dict.fig_lbl_comp}</text>
+
+              <circle cx="165" cy="8" r="3.5" fill="var(--line)" stroke="var(--sub)" stroke-width="0.5"/>
+              <text x="173" y="11" fill="var(--sub)" font-size="8.5" font-family="sans-serif">${dict.fig_legend_zoom}</text>
+              <circle cx="242" cy="8" r="3.5" fill="var(--accent)"/>
+              <text x="250" y="11" fill="var(--fg)" font-size="8.5" font-weight="600" font-family="sans-serif">${dict.fig_legend_reflow}</text>
+            </svg>
+            <div class="fig-caption" style="font-size: 10px; font-style: italic; color: var(--sub);">${dict.fig_caption}</div>
+          </div>
+        `;
+
+        const origHtml = [
+          ...p1.map(p => `<p>${p}</p>`),
+          figureSvg,
+          ...p2.map(p => `<p>${p}</p>`),
+          `<div class="page-end-mark" style="column-span: all; margin: 16px 0; text-align: center; color: var(--sub); font-size: 11px;">${dict.page_end}</div>`
+        ].join('');
+        origBox.innerHTML = origHtml;
+
+        // Actualizare etichete în sertarul Aa
+        $('#lbl-fs').textContent = state.fontSizePct + '%';
+        const spNames = SPACING_NAMES[state.lang] || SPACING_NAMES.en;
+        $('#lbl-lh').textContent = spNames[state.spacingIdx];
+        $('#lbl-ls').textContent = '+' + (state.letterSpacingIdx * 2) + '%';
+      }
+
+      function renderLibraryBooks() {
+        const dict = I18N[state.lang] || I18N.en;
+        const books = dict.books || I18N.en.books;
+        const grid = $('#books-grid-container');
+        grid.innerHTML = books.map((b, idx) => `
+          <button class="book-item" data-book-idx="${idx}">
+            <div class="book-cover" style="background: ${b.color};">
+              <span>${b.title}</span>
+            </div>
+            <span class="book-title">${b.title}</span>
+            <span class="book-meta">${b.meta}</span>
+          </button>
+        `).join('');
+
+        $$('.book-item').forEach(btn => {
+          btn.addEventListener('click', () => showScreen('reader'));
+        });
+      }
+
+      function showScreen(name) {
+        state.screen = name;
+        $$('.screen').forEach(s => s.classList.remove('active'));
+        $(`#screen-${name}`).classList.add('active');
+        if (name !== 'reader') closeDrawers();
+      }
+
+      function applyTheme(themeName) {
+        state.theme = themeName;
+        phoneContainer.className = 'phone theme-' + themeName;
+        $$('.theme-dot-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.theme === themeName);
+        });
+      }
+
+      function closeDrawers() {
+        state.aaOpen = false;
+        state.bookMenuOpen = false;
+        state.premiumOpen = false;
+        $('#aa-drawer').classList.remove('active');
+        $('#book-menu').classList.remove('active');
+        $('#premium-sheet').classList.remove('active');
+        closeLangSheet();
+        $('#dismiss-scrim').classList.remove('active');
+      }
+
+      const LANG_FLAGS = {
+        en: '🇬🇧', ro: '🇷🇴', de: '🇩🇪', fr: '🇫🇷', hu: '🇭🇺',
+        pl: '🇵🇱', ru: '🇷🇺', lt: '🇱🇹', lv: '🇱🇻'
+      };
+
+      function renderLangOptions() {
+        const container = $('#lang-options-container');
+        if (!container) return;
+        container.innerHTML = ALL_LANGS.map(code => {
+          const isActive = code === state.lang;
+          const name = LANG_NAMES[code] || code;
+          const flag = LANG_FLAGS[code] || '🌐';
+          return `
+            <button class="lang-option-btn ${isActive ? 'active' : ''}" data-code="${code}">
+              <div class="opt-left">
+                <span class="opt-flag">${flag}</span>
+                <span>${name}</span>
+              </div>
+              <span class="opt-check">✓</span>
+            </button>
+          `;
+        }).join('');
+
+        container.querySelectorAll('.lang-option-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const code = btn.dataset.code;
+            if (code && ALL_LANGS.includes(code)) {
+              state.lang = code;
+              applyLanguageStrings();
+              closeLangSheet();
+              showToast('✓ ' + (LANG_NAMES[code] || code));
+              try {
+                window.parent.postMessage({ type: 'set_lang', lang: code }, '*');
+              } catch (e) {}
+            }
+          });
+        });
+      }
+
+      function openLangSheet() {
+        renderLangOptions();
+        $('#lang-sheet').classList.add('active');
+        $('#dismiss-scrim').classList.add('active');
+      }
+
+      function closeLangSheet() {
+        $('#lang-sheet').classList.remove('active');
+        if (!state.menuOpen && !state.drawerOpen && !state.premiumOpen) {
+          $('#dismiss-scrim').classList.remove('active');
+        }
+      }
+
+      function setToolsVisibility(open) {
+        state.toolsOpen = open;
+        const arrow = $('#btn-toggle-tools');
+        const progressRow = $('#progress-track-row');
+        const toolsGroup = $('#tools-pill-group');
+        const topBar = $('#reader-top-bar');
+        const modePill = $('#mode-switch-pill');
+        const viewport = $('#reader-viewport');
+
+        if (open) {
+          arrow.classList.add('open');
+          progressRow.style.display = 'none';
+          toolsGroup.classList.add('active');
+          topBar.classList.add('active');
+          modePill.classList.add('tools-open');
+          viewport.classList.add('tools-open');
+        } else {
+          arrow.classList.remove('open');
+          toolsGroup.classList.remove('active');
+          progressRow.style.display = 'flex';
+          topBar.classList.remove('active');
+          modePill.classList.remove('tools-open');
+          viewport.classList.remove('tools-open');
+          closeDrawers();
+        }
+      }
+
+      function setupEvents() {
+        $('#btn-resume-read').addEventListener('click', () => showScreen('reader'));
+        $('#btn-fab-add').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Deschide selectorul: PDF, EPUB, TXT' : 'Open document picker: PDF, EPUB, TXT'));
+        $('#btn-open-app-settings').addEventListener('click', () => showScreen('app'));
+        $('#btn-close-app-settings').addEventListener('click', () => showScreen('library'));
+        $('#btn-back-library').addEventListener('click', () => showScreen('library'));
+
+        $('#btn-lib-toggle-view').addEventListener('click', () => {
+          showToast(state.lang === 'ro' ? 'Comutare listă / grilaj' : 'Toggle grid / list');
+        });
+
+        // Selector limbă prin modal cu toate cele 9 limbi!
+        $('#btn-app-toggle-lang').addEventListener('click', openLangSheet);
+        $('#btn-close-lang-sheet').addEventListener('click', closeLangSheet);
+
+        // 1. Buton săgeată ▲ / ▼
+        $('#btn-toggle-tools').addEventListener('click', () => {
+          setToolsVisibility(!state.toolsOpen);
+        });
+
+        // 2. Tap pe linia de progres: comută titlul și pagina în loc
+        let bubbleTimer = null;
+        $('#progress-track-row').addEventListener('click', () => {
+          const bubble = $('#progress-info-bubble');
+          const isAct = bubble.classList.toggle('active');
+          clearTimeout(bubbleTimer);
+          if (isAct) {
+            bubbleTimer = setTimeout(() => bubble.classList.remove('active'), 4500);
+          }
+        });
+
+        // Comutator Original | Reflow
+        $('#btn-mode-orig').addEventListener('click', () => {
+          state.mode = 'original';
+          $('#btn-mode-orig').classList.add('active');
+          $('#btn-mode-reflow').classList.remove('active');
+          $('#view-reflow-content').style.display = 'none';
+          $('#view-original-content').style.display = 'flex';
+          $('#reading-ruler').classList.remove('active');
+          $('#reader-viewport').scrollTop = 0;
+          showToast(t('toast_orig'));
+        });
+        $('#btn-mode-reflow').addEventListener('click', () => {
+          state.mode = 'reflow';
+          $('#btn-mode-reflow').classList.add('active');
+          $('#btn-mode-orig').classList.remove('active');
+          $('#view-reflow-content').style.display = 'flex';
+          $('#view-original-content').style.display = 'none';
+          if (state.ruler) $('#reading-ruler').classList.add('active');
+          $('#reader-viewport').scrollTop = 0;
+          showToast(t('toast_reflow'));
+        });
+
+        // Monitorizare derulare (scroll) pe pagina cititorului -> actualizează linia de progres
+        const viewportEl = $('#reader-viewport');
+        viewportEl.addEventListener('scroll', () => {
+          const max = viewportEl.scrollHeight - viewportEl.clientHeight;
+          if (max > 0) {
+            const pct = Math.min(100, Math.max(30, Math.round(30 + (viewportEl.scrollTop / max) * 70)));
+            const label = document.querySelector('.progress-label-pct');
+            if (label) label.textContent = pct + '%';
+            const fill = document.querySelector('.progress-line-fill');
+            if (fill) fill.style.width = pct + '%';
+          }
+        }, { passive: true });
+
+        // Instrumente pill
+        $('#btn-tool-search').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Căutare în carte…' : 'Search in book…'));
+        $('#btn-tool-page').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Mergi la pagina… (în demo: pag. 3)' : 'Go to page… (demo: page 3)'));
+        $('#btn-tool-voice').addEventListener('click', () => {
+          if (state.isPremium) showToast(state.lang === 'ro' ? 'Citirea cu voce tare a pornit de la pagina 3.' : 'Read aloud started from page 3.');
+          else openPremium(state.lang === 'ro' ? 'Citirea cu voce tare cere deblocarea.' : 'Read aloud requires unlock.');
+        });
+        $('#btn-tool-highlight').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Text evidențiat.' : 'Text highlighted.'));
+        $('#btn-tool-note').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Notiță adăugată.' : 'Note added.'));
+        $('#btn-tool-bookmark').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Semn de carte adăugat.' : 'Bookmark saved.'));
+        $('#btn-tool-correct').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Corectură A✓ activată.' : 'Correction A✓ activated.'));
+
+        // 3. Deschidere sertar „Aa”
+        $('#btn-open-aa').addEventListener('click', (e) => {
+          e.stopPropagation();
+          state.aaOpen = !state.aaOpen;
+          $('#aa-drawer').classList.toggle('active', state.aaOpen);
+          $('#dismiss-scrim').classList.toggle('active', state.aaOpen);
+          if (state.aaOpen) $('#book-menu').classList.remove('active');
+        });
+
+        $('#dismiss-scrim').addEventListener('click', closeDrawers);
+
+        // Meniul Cartea
+        $('#btn-open-book-menu').addEventListener('click', (e) => {
+          e.stopPropagation();
+          state.bookMenuOpen = !state.bookMenuOpen;
+          $('#book-menu').classList.toggle('active', state.bookMenuOpen);
+          $('#dismiss-scrim').classList.toggle('active', state.bookMenuOpen);
+          if (state.bookMenuOpen) $('#aa-drawer').classList.remove('active');
+        });
+
+        $$('#book-menu .menu-item').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const label = btn.querySelector('.label').textContent;
+            showToast(label + ' — ' + (state.lang === 'ro' ? 'selectat' : 'selected'));
+            closeDrawers();
+          });
+        });
+
+        // Filele sertarului Aa
+        $$('.seg-tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tabName = btn.dataset.tab;
+            state.activeTab = tabName;
+            $$('.seg-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+            $$('.drawer-tab-view').forEach(p => p.classList.toggle('active', p.id === `tab-v-${tabName}`));
+          });
+        });
+
+        // Controale Fila Aa
+        $('#btn-dec-fs').addEventListener('click', () => {
+          state.fontSizePct = Math.max(80, state.fontSizePct - 10);
+          renderReaderText();
+        });
+        $('#btn-inc-fs').addEventListener('click', () => {
+          state.fontSizePct = Math.min(260, state.fontSizePct + 10);
+          renderReaderText();
+        });
+
+        $('#btn-dec-lh').addEventListener('click', () => {
+          state.spacingIdx = Math.max(0, state.spacingIdx - 1);
+          renderReaderText();
+        });
+        $('#btn-inc-lh').addEventListener('click', () => {
+          state.spacingIdx = Math.min(3, state.spacingIdx + 1);
+          renderReaderText();
+        });
+
+        $('#btn-dec-ls').addEventListener('click', () => {
+          state.letterSpacingIdx = Math.max(0, state.letterSpacingIdx - 1);
+          renderReaderText();
+        });
+        $('#btn-inc-ls').addEventListener('click', () => {
+          state.letterSpacingIdx = Math.min(3, state.letterSpacingIdx + 1);
+          renderReaderText();
+        });
+
+        $('#sw-orig-letters').addEventListener('click', () => {
+          state.origLetters = !state.origLetters;
+          $('#sw-orig-letters').classList.toggle('on', state.origLetters);
+          renderReaderText();
+          showToast(state.origLetters ? (state.lang === 'ro' ? 'Litere din tipar activate' : 'Original printed letters active') : (state.lang === 'ro' ? 'Font de sistem' : 'System font active'));
+        });
+
+        $('#btn-turn-scroll').addEventListener('click', () => {
+          state.turnMode = 'scroll';
+          $('#btn-turn-scroll').classList.add('active');
+          $('#btn-turn-pages').classList.remove('active');
+          showToast(state.lang === 'ro' ? 'Derulare continuă verticală' : 'Continuous vertical scrolling');
+        });
+        $('#btn-turn-pages').addEventListener('click', () => {
+          state.turnMode = 'pages';
+          $('#btn-turn-pages').classList.add('active');
+          $('#btn-turn-scroll').classList.remove('active');
+          showToast(state.lang === 'ro' ? 'Întoarcere pagină cu pagină' : 'Page-by-page turning');
+        });
+
+        // Teme
+        $$('.theme-dot-btn').forEach(btn => {
+          btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+        });
+
+        // Fila Citire
+        $('#btn-dec-speed').addEventListener('click', () => {
+          state.scrollSpeed = Math.max(20, state.scrollSpeed - 5);
+          $('#lbl-speed').textContent = state.scrollSpeed + ' px/s';
+          $('#lbl-speed-sub').textContent = t('speed_sub') + Math.round(844 / state.scrollSpeed) + ' s';
+        });
+        $('#btn-inc-speed').addEventListener('click', () => {
+          state.scrollSpeed = Math.min(200, state.scrollSpeed + 5);
+          $('#lbl-speed').textContent = state.scrollSpeed + ' px/s';
+          $('#lbl-speed-sub').textContent = t('speed_sub') + Math.round(844 / state.scrollSpeed) + ' s';
+        });
+
+        const toggleSw = (id, key, label) => {
+          $(id).addEventListener('click', () => {
+            state[key] = !state[key];
+            $(id).classList.toggle('on', state[key]);
+            showToast(label + (state[key] ? ' ON' : ' OFF'));
+          });
+        };
+        toggleSw('#sw-follow-sys', 'followSys', 'System theme');
+        toggleSw('#sw-book-only', 'bookOnly', 'This book only');
+        toggleSw('#sw-orig-colors', 'origColors', 'Original colors');
+
+        // Fila Voce
+        $('#btn-dec-voice').addEventListener('click', () => {
+          state.voiceSpeed = Math.max(0.5, Math.round((state.voiceSpeed - 0.05) * 100) / 100);
+          $('#lbl-voice').textContent = '×' + state.voiceSpeed.toFixed(2);
+          $('#lbl-voice-sub').textContent = state.voiceSpeed < 0.9 ? t('voice_speed_slower') : (state.voiceSpeed > 1.1 ? t('voice_speed_faster') : t('voice_speed_natural'));
+        });
+        $('#btn-inc-voice').addEventListener('click', () => {
+          state.voiceSpeed = Math.min(2.0, Math.round((state.voiceSpeed + 0.05) * 100) / 100);
+          $('#lbl-voice').textContent = '×' + state.voiceSpeed.toFixed(2);
+          $('#lbl-voice-sub').textContent = state.voiceSpeed < 0.9 ? t('voice_speed_slower') : (state.voiceSpeed > 1.1 ? t('voice_speed_faster') : t('voice_speed_natural'));
+        });
+        $('#btn-pick-voice').addEventListener('click', () => showToast(t('voice_name')));
+
+        // Fila Text
+        $('#sw-dyslexia').addEventListener('click', () => {
+          state.dyslexia = !state.dyslexia;
+          $('#sw-dyslexia').classList.toggle('on', state.dyslexia);
+          renderReaderText();
+          showToast(state.dyslexia ? t('toast_dyslexia_on') : t('toast_dyslexia_off'));
+        });
+        $('#sw-bionic').addEventListener('click', () => {
+          state.bionic = !state.bionic;
+          $('#sw-bionic').classList.toggle('on', state.bionic);
+          renderReaderText();
+          showToast(state.bionic ? t('toast_bionic_on') : t('toast_bionic_off'));
+        });
+        $('#sw-ruler').addEventListener('click', () => {
+          state.ruler = !state.ruler;
+          $('#sw-ruler').classList.toggle('on', state.ruler);
+          if (state.mode === 'reflow') {
+            $('#reading-ruler').classList.toggle('active', state.ruler);
+          }
+          showToast(state.ruler ? t('toast_ruler_on') : t('toast_ruler_off'));
+        });
+        $('#btn-reset-text').addEventListener('click', () => {
+          state.fontSizePct = 140;
+          state.spacingIdx = 1;
+          state.letterSpacingIdx = 0;
+          state.origLetters = true;
+          state.dyslexia = false;
+          state.bionic = false;
+          state.ruler = false;
+          $('#sw-orig-letters').classList.add('on');
+          $('#sw-dyslexia').classList.remove('on');
+          $('#sw-bionic').classList.remove('on');
+          $('#sw-ruler').classList.remove('on');
+          $('#reading-ruler').classList.remove('active');
+          renderReaderText();
+          showToast(t('toast_reset_text'));
+        });
+
+        // Fila Document
+        $('#btn-pick-doc-lang').addEventListener('click', openLangSheet);
+        toggleSw('#sw-force-ocr', 'forceOcr', 'Force OCR');
+        toggleSw('#sw-enhance', 'enhance', 'Enhance scans');
+        $('#sw-clean-read').addEventListener('click', () => {
+          if (!state.isPremium) {
+            openPremium(state.lang === 'ro' ? 'Lectura curată cere deblocarea.' : 'Clean reading requires unlock.');
+          } else {
+            state.cleanRead = !state.cleanRead;
+            $('#sw-clean-read').classList.toggle('on', state.cleanRead);
+            showToast('Clean reading: ' + (state.cleanRead ? 'ON' : 'OFF'));
+          }
+        });
+
+        // Modal Premium
+        $('#btn-open-premium-card').addEventListener('click', () => openPremium(t('prem_reason_default')));
+        $('#btn-close-premium').addEventListener('click', closeDrawers);
+        $('#btn-start-trial').addEventListener('click', () => {
+          state.isPremium = true;
+          closeDrawers();
+          showToast(t('toast_trial_started'));
+          $('#txt-card-premium-sub').textContent = state.lang === 'ro' ? 'Probă gratuită: 14 din 14 zile rămase — totul e deblocat' : 'Free trial: 14 of 14 days remaining — all unlocked';
+        });
+
+        function openPremium(reason) {
+          state.premiumOpen = true;
+          $('#premium-reason-text').textContent = reason || t('prem_reason_default');
+          $('#premium-sheet').classList.add('active');
+        }
+      }
+
+      function fitDevice() {
+        const vp = $('#device-viewport');
+        if (!vp) return;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const scale = Math.min(w / 390, h / 844);
+        vp.style.transform = `scale(${scale})`;
+        vp.style.left = `${(w - 390 * scale) / 2}px`;
+        vp.style.top = `${(h - 844 * scale) / 2}px`;
+      }
+
+      // Suport pentru parametri din URL și mesaje de sincronizare de la site
+      function initSync() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang && ALL_LANGS.includes(urlLang)) {
+          state.lang = urlLang;
+        }
+        const theme = urlParams.get('theme');
+        if (theme && ['alb', 'sepia', 'noapte', 'amoled'].includes(theme)) {
+          applyTheme(theme);
+        }
+        const mode = urlParams.get('mode');
+        if (mode === 'original') {
+          setTimeout(() => $('#btn-mode-orig')?.click(), 50);
+        }
+        const tools = urlParams.get('tools');
+        if (tools) {
+          setTimeout(() => setToolsVisibility(true), 50);
+        }
+        const aa = urlParams.get('aa');
+        if (aa) {
+          setTimeout(() => {
+            setToolsVisibility(true);
+            $('#btn-open-aa')?.click();
+          }, 80);
+        }
+        const scroll = urlParams.get('scroll');
+        if (scroll) {
+          setTimeout(() => {
+            const vp = $('#reader-viewport');
+            if (vp) vp.scrollTop = parseInt(scroll, 10);
+          }, 80);
+        }
+
+        window.addEventListener('message', (ev) => {
+          if (!ev.data) return;
+          if (ev.data.type === 'sync_state') {
+            if (ev.data.theme) {
+              const map = { light: 'alb', sepia: 'sepia', dark: 'noapte' };
+              applyTheme(map[ev.data.theme] || ev.data.theme);
+            }
+            if (ev.data.lang) {
+              const l = ev.data.lang;
+            if (l && ALL_LANGS.includes(l) && state.lang !== l) {
+                state.lang = l;
+                applyLanguageStrings();
+              }
+            }
+          } else if (ev.data.type === 'set_theme' && ev.data.theme) {
+            const map = { light: 'alb', sepia: 'sepia', dark: 'noapte' };
+            applyTheme(map[ev.data.theme] || ev.data.theme);
+          } else if (ev.data.type === 'set_lang' && ev.data.lang) {
+            const l = ev.data.lang;
+            if (l && ALL_LANGS.includes(l) && state.lang !== l) {
+              state.lang = l;
+              applyLanguageStrings();
+            }
+          }
+        });
+      }
+
+      window.addEventListener('resize', fitDevice);
+      initSync();
+      applyLanguageStrings();
+      setupEvents();
+      fitDevice();
+    })();
+  </script>
+</body>
+</html>

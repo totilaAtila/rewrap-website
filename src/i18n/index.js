@@ -4,7 +4,6 @@
 //   why[], cards[]  -> [iconName, title, text]
 //   groups[]        -> [groupTitle, [[iconName, title, text], ...]]
 //   plans[]         -> [iconName, title, tagline, [item, ...]]
-//   shots[]         -> [title, description]   (order matches GALLERY_SRCS in app.js)
 //   faqs[]          -> [question, answer]
 // Icon names are structural, not copy — they are identical in every language.
 // Only en.js carries pp_sections (the full policy): other languages translate the

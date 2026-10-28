@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — lisez vos PDF comme les petits écrans le méritent',
     meta_desc: 'Rewrap est un lecteur de PDF pour Android et iPhone, conçu pour les petits écrans. Le texte est agrandi et remis en page sur place, jamais sur le côté. 100 % sur votre téléphone : pas de cloud, pas de compte, pas d’IA générative. La lecture fonctionne hors ligne.',
 
-    nav_features: 'Fonctions', nav_gallery: 'Écrans', nav_pricing: 'Tarif', nav_privacy: 'Confidentialité', nav_faq: 'Questions',
+    nav_features: 'Fonctions', nav_gallery: 'Démo', nav_pricing: 'Tarif', nav_privacy: 'Confidentialité', nav_faq: 'Questions',
     nav_home: 'Accueil', nav_policy: 'Politique', nav_contact: 'Contact',
     theme_dark: 'Nuit', theme_sepia: 'Sépia', theme_light: 'Clair',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'À gauche, la page d’origine sur deux colonnes. À droite, la même page remise en page : texte plus grand, figure restée à sa place.',
     cmp_alt: 'Rewrap affichant deux fois le même PDF universitaire sur un iPhone : la page d’origine sur deux colonnes, et la page remise en page avec un texte plus grand et la figure à sa place.',
 
-    gallery_eyebrow: 'Écrans', gallery_title: 'Voyez-le sur un vrai livre.', gallery_sub: 'Captures de l’application, sur un vrai téléphone.',
+    gallery_eyebrow: 'Démo en direct', gallery_title: 'Essayez-le directement ici.', gallery_sub: 'Démo interactive : basculez entre Original et Réagencement, ouvrez les réglages « Aa » et changez de thème.',
     themes_eyebrow: 'Thèmes', themes_title: 'Clair, Sépia, Nuit — et noir pur.', themes_sub: 'Les thèmes recolorent aussi la vraie page, tandis que les photos gardent leurs couleurs. Créez le vôtre si vous voulez.',
     gallery_prev: 'Précédent', gallery_next: 'Suivant',
     shots: [

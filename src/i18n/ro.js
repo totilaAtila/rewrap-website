@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — citește PDF-uri așa cum merită ecranele mici',
     meta_desc: 'Rewrap este un cititor de PDF pentru Android și iPhone, făcut pentru ecrane mici. Textul este mărit și reașezat pe loc, niciodată în lateral. 100% pe telefonul tău: fără cloud, fără cont, fără IA generativă. Citirea merge offline.',
 
-    nav_features: 'Funcții', nav_gallery: 'Ecrane', nav_pricing: 'Preț', nav_privacy: 'Confidențialitate', nav_faq: 'Întrebări',
+    nav_features: 'Funcții', nav_gallery: 'Demo', nav_pricing: 'Preț', nav_privacy: 'Confidențialitate', nav_faq: 'Întrebări',
     nav_home: 'Acasă', nav_policy: 'Politica', nav_contact: 'Contact',
     theme_dark: 'Noapte', theme_sepia: 'Sepia', theme_light: 'Luminos',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'În stânga, pagina originală pe două coloane. În dreapta, aceeași pagină reașezată: text mai mare, figura rămasă la locul ei.',
     cmp_alt: 'Rewrap arătând același PDF academic de două ori pe un iPhone: pagina originală pe două coloane și pagina reașezată, cu text mai mare și figura la locul ei.',
 
-    gallery_eyebrow: 'Ecrane', gallery_title: 'Vezi-l pe o carte adevărată.', gallery_sub: 'Capturi din aplicație, pe un telefon real.',
+    gallery_eyebrow: 'Probează aplicația', gallery_title: 'Încearcă-l direct aici.', gallery_sub: 'Machetă interactivă: comută între Original și Reașază, deschide setările „Aa”, schimbă tema și explorează biblioteca.',
     themes_eyebrow: 'Teme', themes_title: 'Luminos, Sepia, Noapte — și negru pur.', themes_sub: 'Temele recolorează și pagina reală, iar fotografiile își păstrează culorile. Poți să-ți faci propria temă.',
     gallery_prev: 'Înapoi', gallery_next: 'Înainte',
     shots: [

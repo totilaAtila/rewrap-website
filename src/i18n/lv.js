@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — lasi PDF tā, kā to pelnījuši mazie ekrāni',
     meta_desc: 'Rewrap ir PDF lasītājs Android un iPhone ierīcēm, radīts maziem ekrāniem. Teksts tiek palielināts un pārkārtots uz vietas, nekad uz sāniem. 100% tavā tālrunī: bez mākoņa, bez konta, bez ģeneratīvā MI. Lasīšana darbojas bezsaistē.',
 
-    nav_features: 'Funkcijas', nav_gallery: 'Ekrāni', nav_pricing: 'Cena', nav_privacy: 'Privātums', nav_faq: 'Jautājumi',
+    nav_features: 'Funkcijas', nav_gallery: 'Demo', nav_pricing: 'Cena', nav_privacy: 'Privātums', nav_faq: 'Jautājumi',
     nav_home: 'Sākums', nav_policy: 'Politika', nav_contact: 'Kontakti',
     theme_dark: 'Nakts', theme_sepia: 'Sēpija', theme_light: 'Gaišā',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'Pa kreisi — oriģinālā lappuse divās kolonnās. Pa labi — tā pati lappuse pēc reflow: lielāks teksts, zīmējums palicis savā vietā.',
     cmp_alt: 'Rewrap divreiz rāda vienu un to pašu akadēmisko PDF iPhone ierīcē: oriģinālo lappusi divās kolonnās un pārkārtoto lappusi ar lielāku tekstu un zīmējumu savā vietā.',
 
-    gallery_eyebrow: 'Ekrāni', gallery_title: 'Skaties uz īstas grāmatas.', gallery_sub: 'Ekrānuzņēmumi no lietotnes, īstā tālrunī.',
+    gallery_eyebrow: 'Tiešsaistes demo', gallery_title: 'Izmēģiniet to šeit.', gallery_sub: 'Interaktīvs demo: pārslēdzieties starp Oriģinālu un Pārkārtojumu, atveriet „Aa” iestatījumus un mainiet motīvu.',
     themes_eyebrow: 'Tēmas', themes_title: 'Gaišā, Sēpija, Nakts — un tīri melna.', themes_sub: 'Tēmas pārkrāso arī īsto lappusi, bet foto saglabā savas krāsas. Vari izveidot savu.',
     gallery_prev: 'Iepriekšējais', gallery_next: 'Nākamais',
     shots: [

@@ -11,18 +11,6 @@ const CONFIG = {
   updated: '2026-10-23',
 };
 
-const GALLERY_SRCS = [
-  '/assets/screenshots/original.webp', '/assets/screenshots/reflow.webp',
-  '/assets/screenshots/library.webp', '/assets/screenshots/scan.webp',
-  '/assets/screenshots/sepia.webp',
-  '/assets/screenshots/night.webp',
-];
-// [image, i18n key of the theme's name]
-const THEME_SHOTS = [
-  ['/assets/screenshots/reflow.webp', 'theme_light'],
-  ['/assets/screenshots/sepia.webp', 'theme_sepia'],
-  ['/assets/screenshots/night.webp', 'theme_dark'],
-];
 const THEMES = ['dark', 'sepia', 'light'];
 
 /* ---------- Icons ---------- */
@@ -95,7 +83,6 @@ const state = {
   lang: detectLang(),
   theme: initialTheme(),
   page: routeFromPath(),
-  gallery: 0,
   faqOpen: { 0: true },
   groupsOpen: { 0: true }, // narrow screens only: which feature groups are expanded
   activeNav: null,
@@ -122,11 +109,9 @@ function navModel() {
         { label: t.nav_contact, target: '#pp-contact', covers: ['pp-contact'] },
       ]
     : [
-        { label: t.why_eyebrow, target: '#overview', covers: ['overview', 'compare'] },
-        { label: t.nav_gallery, target: '#gallery', covers: ['themes', 'gallery'] },
+        { label: t.nav_gallery, target: '#gallery', covers: ['gallery'] },
         { label: t.nav_features, target: '#features', covers: ['features'] },
         { label: t.nav_pricing, target: '#pricing', covers: ['pricing'] },
-        { label: t.nav_privacy, target: '#privacy', covers: ['privacy'] },
         { label: t.nav_faq, target: '#faq', covers: ['faq'] },
       ];
 }
@@ -153,7 +138,10 @@ function renderNav() {
   const html = navModel().map((n) =>
     `<button class="nav-btn" data-target="${n.target}">${n.label}</button>`).join('');
   $('#desktop-nav').innerHTML = html;
-  $('#mobile-menu').innerHTML = html +
+  $('#mobile-menu').innerHTML =
+    `<button class="nav-btn" data-target="#top">${t.nav_home || 'Home'}</button>` +
+    html +
+    `<button class="nav-btn" data-nav="privacy">${t.nav_privacy || 'Privacy'}</button>` +
     `<a href="mailto:${CONFIG.email}">${t.nav_contact}</a>`;
   updateActiveNav();
 }
@@ -199,10 +187,14 @@ function updateProgress() {
 const THEME_ICON = { dark: 'moon', sepia: 'bookOpen', light: 'sun' };
 
 function renderHeader() {
-  $('#lang-btn').innerHTML = `${state.lang.toUpperCase()} ${icon('chevronDown', 16)}`;
-  $('#lang-btn').setAttribute('aria-label', LANGS.find((l) => l.code === state.lang).label);
+  const currentLang = LANGS.find((l) => l.code === state.lang) || LANGS[0];
+  $('#lang-btn').innerHTML = `<span class="flag" aria-hidden="true">${currentLang.flag}</span> <span class="lang-code">${state.lang.toUpperCase()}</span> ${icon('chevronDown', 14)}`;
+  $('#lang-btn').setAttribute('aria-label', currentLang.label);
   $('#lang-menu').innerHTML = LANGS.map((l) =>
-    `<button data-lang="${l.code}" class="${l.code === state.lang ? 'active' : ''}" lang="${l.code}"><span class="flag" aria-hidden="true">${l.flag}</span>${l.label}</button>`).join('');
+    `<button data-lang="${l.code}" class="${l.code === state.lang ? 'active' : ''}" lang="${l.code}">
+      <span class="lang-left"><span class="flag" aria-hidden="true">${l.flag}</span><span class="lang-name">${l.label}</span></span>
+      <span class="check" aria-hidden="true">${icon('check', 16)}</span>
+    </button>`).join('');
   $$('.seg-btn').forEach((b) => {
     const name = b.dataset.themeSet;
     b.classList.toggle('active', name === state.theme);
@@ -238,9 +230,6 @@ function renderLists() {
   $('#why-grid').innerHTML = (t.why || []).map((w) => cardHTML(w[0], w[1], w[2])).join('');
   $('#privacy-grid').innerHTML = (t.cards || []).map((c) => cardHTML(c[0], c[1], c[2])).join('');
 
-  $('#themes-row').innerHTML = THEME_SHOTS.map(([src, key]) =>
-    `<div class="theme-item"><div class="phone phone--theme"><img src="${src}" width="640" height="1286" loading="lazy" alt="${t[key]}" /></div><span class="theme-label">${t[key]}</span></div>`).join('');
-
   const compact = narrow.matches;
   $('#feature-groups').innerHTML = (t.groups || []).map((g, gi) => {
     const open = !compact || !!state.groupsOpen[gi];
@@ -267,21 +256,6 @@ function renderLists() {
   renderPolicy();
 }
 
-function renderGallery() {
-  const shots = t.shots || [];
-  const i = Math.min(state.gallery, Math.max(0, shots.length - 1));
-  $('#gal-img').src = GALLERY_SRCS[i];
-  $('#gal-img').alt = shots[i] ? shots[i][0] : '';
-  $('#gal-title').textContent = shots[i] ? shots[i][0] : '';
-  $('#gal-desc').textContent = shots[i] ? shots[i][1] : '';
-  $('#gal-prev').innerHTML = icon('chevronLeft');
-  $('#gal-next').innerHTML = icon('chevronRight');
-  $('#gal-prev').setAttribute('aria-label', t.gallery_prev);
-  $('#gal-next').setAttribute('aria-label', t.gallery_next);
-  $('#gal-dots').innerHTML = shots.map((_, k) =>
-    `<button class="dot ${k === i ? 'active' : ''}" data-dot="${k}" aria-label="${shots[k][0]}"></button>`).join('');
-}
-
 function renderStaticRefs() {
   const mail = 'mailto:' + CONFIG.email;
   $('#cta-play').href = CONFIG.play;
@@ -305,10 +279,19 @@ function renderAll() {
   renderNav();
   renderQuickPoints();
   renderLists();
-  renderGallery();
   renderStaticRefs();
   const meta = $('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', { dark: '#0b1118', sepia: '#f4ecd8', light: '#eef2f6' }[state.theme]);
+  const demoIframe = $('#app-demo-iframe');
+  if (demoIframe && demoIframe.contentWindow) {
+    try {
+      demoIframe.contentWindow.postMessage({
+        type: 'sync_state',
+        theme: state.theme,
+        lang: state.lang
+      }, '*');
+    } catch (e) {}
+  }
 }
 
 /* ---------- Navigation ---------- */
@@ -349,7 +332,7 @@ function closeMenus() { $('#lang-menu').hidden = true; $('#lang-btn').setAttribu
 
 /* ---------- Events (delegated) ---------- */
 document.addEventListener('click', (e) => {
-  const el = e.target.closest('[data-nav],[data-target],[data-scroll],[data-theme-set],[data-lang],[data-dot],[data-group],[data-faq] .faq-btn');
+  const el = e.target.closest('[data-nav],[data-target],[data-scroll],[data-theme-set],[data-lang],[data-group],[data-faq] .faq-btn');
   if (!el) {
     if (!e.target.closest('.lang')) { $('#lang-menu').hidden = true; $('#lang-btn').setAttribute('aria-expanded', 'false'); }
     return;
@@ -359,7 +342,6 @@ document.addEventListener('click', (e) => {
   else if (el.dataset.scroll) navTarget('#' + el.dataset.scroll);
   else if (el.dataset.themeSet) { state.theme = el.dataset.themeSet; try { localStorage.setItem('rewrap-theme', state.theme); } catch (x) {} renderAll(); }
   else if (el.dataset.lang) { state.lang = el.dataset.lang; storeLang(state.lang); closeMenus(); renderAll(); }
-  else if (el.dataset.dot) { state.gallery = +el.dataset.dot; renderGallery(); }
   else if (el.dataset.group !== undefined) {
     const i = +el.dataset.group;
     state.groupsOpen[i] = !state.groupsOpen[i];
@@ -375,8 +357,6 @@ document.addEventListener('click', (e) => {
 
 $('#lang-btn').addEventListener('click', (e) => { e.stopPropagation(); const m = $('#lang-menu'); m.hidden = !m.hidden; $('#lang-btn').setAttribute('aria-expanded', String(!m.hidden)); });
 $('#menu-btn').addEventListener('click', (e) => { e.stopPropagation(); const m = $('#mobile-menu'); m.hidden = !m.hidden; $('#menu-btn').setAttribute('aria-expanded', String(!m.hidden)); });
-$('#gal-prev').addEventListener('click', () => { const n = (t.shots || []).length; state.gallery = (state.gallery - 1 + n) % n; renderGallery(); });
-$('#gal-next').addEventListener('click', () => { const n = (t.shots || []).length; state.gallery = (state.gallery + 1) % n; renderGallery(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenus(); });
 $('#back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -399,6 +379,19 @@ window.addEventListener('resize', onScroll);
 const onBreakpoint = () => { renderLists(); onScroll(); };
 if (narrow.addEventListener) narrow.addEventListener('change', onBreakpoint);
 else narrow.addListener(onBreakpoint); // Safari < 14
+
+const demoFrame = $('#app-demo-iframe');
+if (demoFrame) {
+  demoFrame.addEventListener('load', () => {
+    try {
+      demoFrame.contentWindow.postMessage({
+        type: 'sync_state',
+        theme: state.theme,
+        lang: state.lang
+      }, '*');
+    } catch (e) {}
+  });
+}
 
 renderAll();
 $('#page-home').hidden = state.page !== 'home';

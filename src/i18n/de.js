@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — PDFs lesen, wie kleine Bildschirme es verdienen',
     meta_desc: 'Rewrap ist ein PDF-Reader für Android und iPhone, gemacht für kleine Bildschirme. Der Text wird vergrößert und an Ort und Stelle neu umbrochen, nie seitwärts. 100 % auf deinem Telefon: keine Cloud, kein Konto, keine generative KI. Lesen funktioniert offline.',
 
-    nav_features: 'Funktionen', nav_gallery: 'Ansichten', nav_pricing: 'Preis', nav_privacy: 'Datenschutz', nav_faq: 'Fragen',
+    nav_features: 'Funktionen', nav_gallery: 'Demo', nav_pricing: 'Preis', nav_privacy: 'Datenschutz', nav_faq: 'Fragen',
     nav_home: 'Start', nav_policy: 'Erklärung', nav_contact: 'Kontakt',
     theme_dark: 'Nacht', theme_sepia: 'Sepia', theme_light: 'Hell',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'Links die originale zweispaltige Seite. Rechts dieselbe Seite nach dem Reflow: größerer Text, die Abbildung bleibt an ihrem Platz.',
     cmp_alt: 'Rewrap zeigt dasselbe wissenschaftliche PDF zweimal auf einem iPhone: die originale zweispaltige Seite und die neu umbrochene Seite mit größerem Text und der Abbildung an ihrem Platz.',
 
-    gallery_eyebrow: 'Ansichten', gallery_title: 'An einem echten Buch.', gallery_sub: 'Screenshots aus der App, auf einem echten Telefon.',
+    gallery_eyebrow: 'Live-Demo', gallery_title: 'Direkt hier ausprobieren.', gallery_sub: 'Interaktive Demo: Wechseln Sie zwischen Original und Reflow, öffnen Sie die Aa-Einstellungen und wählen Sie Ihr Design.',
     themes_eyebrow: 'Designs', themes_title: 'Hell, Sepia, Nacht — und reines Schwarz.', themes_sub: 'Die Designs färben auch die echte Seite um, während Fotos ihre Farben behalten. Du kannst auch eigene bauen.',
     gallery_prev: 'Zurück', gallery_next: 'Weiter',
     shots: [

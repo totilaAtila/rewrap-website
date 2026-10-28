@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — read PDFs the way small screens deserve',
     meta_desc: 'Rewrap is a PDF reader for Android and iPhone, made for small screens. Text is enlarged and re-laid out in place, never sideways. 100% on your phone: no cloud, no account, no generative AI. Reading works offline.',
 
-    nav_features: 'Features', nav_gallery: 'Screens', nav_pricing: 'Pricing', nav_privacy: 'Privacy', nav_faq: 'Questions',
+    nav_features: 'Features', nav_gallery: 'Demo', nav_pricing: 'Pricing', nav_privacy: 'Privacy', nav_faq: 'Questions',
     nav_home: 'Home', nav_policy: 'Policy', nav_contact: 'Contact',
     theme_dark: 'Night', theme_sepia: 'Sepia', theme_light: 'Light',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'On the left, the original two-column page. On the right, the same page reflowed: larger text, the figure kept in place.',
     cmp_alt: 'Rewrap showing the same academic PDF twice on an iPhone: the original two-column page, and the reflowed page with larger text, the figure kept in place.',
 
-    gallery_eyebrow: 'Screens', gallery_title: 'See it on a real book.', gallery_sub: 'Screenshots from the app, on a real phone.',
+    gallery_eyebrow: 'Live demo', gallery_title: 'Try it right here.', gallery_sub: 'Interactive demo: switch between Original and Reflow, open "Aa" settings, change themes, and explore the library.',
     themes_eyebrow: 'Themes', themes_title: 'Light, Sepia, Night — and pure black.', themes_sub: 'The themes recolour the real page too, while photos keep their colours. Build your own if you like.',
     gallery_prev: 'Previous', gallery_next: 'Next',
     shots: [

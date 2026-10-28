@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — skaitykite PDF taip, kaip nusipelnė maži ekranai',
     meta_desc: 'Rewrap yra PDF skaitytuvas „Android“ ir „iPhone“, sukurtas mažiems ekranams. Tekstas didinamas ir perdėliojamas vietoje, niekada į šoną. 100 % jūsų telefone: be debesies, be paskyros, be generatyvinio DI. Skaitymas veikia neprisijungus.',
 
-    nav_features: 'Funkcijos', nav_gallery: 'Ekranai', nav_pricing: 'Kaina', nav_privacy: 'Privatumas', nav_faq: 'Klausimai',
+    nav_features: 'Funkcijos', nav_gallery: 'Demonstracija', nav_pricing: 'Kaina', nav_privacy: 'Privatumas', nav_faq: 'Klausimai',
     nav_home: 'Pradžia', nav_policy: 'Politika', nav_contact: 'Kontaktai',
     theme_dark: 'Naktis', theme_sepia: 'Sepija', theme_light: 'Šviesi',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'Kairėje — originalus puslapis dviem stulpeliais. Dešinėje — tas pats puslapis po reflow: didesnis tekstas, iliustracija liko savo vietoje.',
     cmp_alt: 'Rewrap du kartus rodo tą patį akademinį PDF „iPhone“: originalų puslapį dviem stulpeliais ir perdėliotą puslapį su didesniu tekstu ir iliustracija savo vietoje.',
 
-    gallery_eyebrow: 'Ekranai', gallery_title: 'Pažiūrėkite į tikrą knygą.', gallery_sub: 'Programėlės ekrano nuotraukos tikrame telefone.',
+    gallery_eyebrow: 'Gyva demonstracija', gallery_title: 'Išbandykite tiesiog čia.', gallery_sub: 'Interaktyvi demonstracija: perjunkite tarp Originalo ir Pertvarkymo, atidarykite „Aa“ nustatymus ir keiskite temą.',
     themes_eyebrow: 'Temos', themes_title: 'Šviesi, Sepija, Naktis — ir grynai juoda.', themes_sub: 'Temos perspalvina ir tikrąjį puslapį, o nuotraukos išlaiko savo spalvas. Jei norite, susikurkite savo.',
     gallery_prev: 'Atgal', gallery_next: 'Pirmyn',
     shots: [

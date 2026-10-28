@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — olvass PDF-eket úgy, ahogy a kis képernyők megérdemlik',
     meta_desc: 'A Rewrap PDF-olvasó Androidra és iPhone-ra, kis képernyőkre tervezve. A szöveg nagyítva, a helyén tördelődik újra, soha nem oldalra. 100%-ban a telefonodon: felhő, fiók és generatív MI nélkül. Az olvasás offline is működik.',
 
-    nav_features: 'Funkciók', nav_gallery: 'Képernyők', nav_pricing: 'Ár', nav_privacy: 'Adatvédelem', nav_faq: 'Kérdések',
+    nav_features: 'Funkciók', nav_gallery: 'Demó', nav_pricing: 'Ár', nav_privacy: 'Adatvédelem', nav_faq: 'Kérdések',
     nav_home: 'Kezdőlap', nav_policy: 'Tájékoztató', nav_contact: 'Kapcsolat',
     theme_dark: 'Éjszaka', theme_sepia: 'Szépia', theme_light: 'Világos',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'Balra az eredeti kétoszlopos oldal. Jobbra ugyanaz az oldal reflow után: nagyobb szöveg, az ábra a helyén marad.',
     cmp_alt: 'A Rewrap kétszer mutatja ugyanazt a tudományos PDF-et egy iPhone-on: az eredeti kétoszlopos oldalt, és az újratördelt oldalt nagyobb szöveggel, az ábrával a helyén.',
 
-    gallery_eyebrow: 'Képernyők', gallery_title: 'Lásd egy igazi könyvön.', gallery_sub: 'Képernyőképek az alkalmazásból, igazi telefonon.',
+    gallery_eyebrow: 'Élő demó', gallery_title: 'Próbáld ki közvetlenül itt.', gallery_sub: 'Interaktív demó: válts az Eredeti és Újratördelés között, nyisd meg az „Aa” beállításokat és válts témát.',
     themes_eyebrow: 'Témák', themes_title: 'Világos, Szépia, Éjszaka — és tiszta fekete.', themes_sub: 'A témák az igazi oldalt is átszínezik, a fotók pedig megtartják a színüket. Készíthetsz sajátot is.',
     gallery_prev: 'Előző', gallery_next: 'Következő',
     shots: [

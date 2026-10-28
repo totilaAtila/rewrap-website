@@ -4,7 +4,7 @@ export default {
     meta_title: 'Rewrap — czytaj PDF-y tak, jak zasługują na to małe ekrany',
     meta_desc: 'Rewrap to czytnik PDF na Androida i iPhone’a, stworzony dla małych ekranów. Tekst jest powiększany i układany na nowo w miejscu, nigdy w bok. W 100% na Twoim telefonie: bez chmury, bez konta, bez generatywnej AI. Czytanie działa offline.',
 
-    nav_features: 'Funkcje', nav_gallery: 'Ekrany', nav_pricing: 'Cena', nav_privacy: 'Prywatność', nav_faq: 'Pytania',
+    nav_features: 'Funkcje', nav_gallery: 'Demo', nav_pricing: 'Cena', nav_privacy: 'Prywatność', nav_faq: 'Pytania',
     nav_home: 'Start', nav_policy: 'Polityka', nav_contact: 'Kontakt',
     theme_dark: 'Noc', theme_sepia: 'Sepia', theme_light: 'Jasny',
 
@@ -27,7 +27,7 @@ export default {
     cmp_sub: 'Po lewej oryginalna strona w dwóch kolumnach. Po prawej ta sama strona po reflow: większy tekst, rysunek na swoim miejscu.',
     cmp_alt: 'Rewrap pokazujący ten sam akademicki PDF dwa razy na iPhonie: oryginalną stronę w dwóch kolumnach i stronę po reflow z większym tekstem i rysunkiem na swoim miejscu.',
 
-    gallery_eyebrow: 'Ekrany', gallery_title: 'Zobacz na prawdziwej książce.', gallery_sub: 'Zrzuty ekranu z aplikacji, na prawdziwym telefonie.',
+    gallery_eyebrow: 'Wersja demo', gallery_title: 'Wypróbuj bezpośrednio tutaj.', gallery_sub: 'Interaktywne demo: przełączaj między trybem Oryginalnym i Zreorganizowanym, otwieraj ustawienia „Aa” i zmieniaj motywy.',
     themes_eyebrow: 'Motywy', themes_title: 'Jasny, Sepia, Noc — i czysta czerń.', themes_sub: 'Motywy przebarwiają także prawdziwą stronę, a zdjęcia zachowują swoje kolory. Możesz stworzyć własny.',
     gallery_prev: 'Poprzedni', gallery_next: 'Następny',
     shots: [

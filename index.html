@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/src/styles.css" />
+<link rel="stylesheet" href="/src/styles.css?v=8" />
 <title>Rewrap — read PDFs the way small screens deserve</title>
 <script>
 // Set the theme before first paint so the page never flashes the wrong one.
@@ -60,7 +60,7 @@
 
 <!-- ============ HOME ============ -->
 <main id="page-home">
-<section class="hero" id="top">
+<section class="hero hero--showcase" id="top">
 <div class="hero-text">
 <span class="pill"><span class="i" data-icon="bookOpen"></span> <span data-i18n="hero_pill">PDF reader for Android and iPhone</span></span>
 <h1 class="serif"><span data-i18n="hero_title_a">Read PDFs the way </span><span class="accent" data-i18n="hero_title_b">small screens deserve.</span></h1>
@@ -72,11 +72,11 @@
 <p class="note" data-i18n="hero_note"></p>
 <div class="qp" id="quick-points"></div>
 </div>
-<div class="hero-device">
-<div class="wrap">
-<div class="glow" aria-hidden="true"></div>
-<div class="phone phone--hero"><img src="/assets/screenshots/library.webp" width="640" height="1286" alt="Rewrap — Library" /></div>
-</div>
+
+<div class="hero-banner-wrap">
+<figure class="compare hero-compare">
+<picture><source srcset="/hero.webp" type="image/webp" /><img id="cmp-img" src="/hero.jpg" width="1600" height="686" loading="eager" alt="" /></picture>
+</figure>
 </div>
 </section>
 
@@ -89,38 +89,22 @@
 <div class="grid3 grid4" id="why-grid"></div>
 </section>
 
-<section class="section section--tight" id="compare">
-<div class="heading">
-<p class="eyebrow" data-i18n="cmp_eyebrow"></p>
-<h2 class="serif h2" data-i18n="cmp_title"></h2>
-<p class="lead" data-i18n="cmp_sub"></p>
-</div>
-<figure class="compare">
-<picture><source srcset="/hero.webp" type="image/webp" /><img id="cmp-img" src="/hero.jpg" width="1600" height="686" loading="lazy" alt="" /></picture>
-</figure>
-</section>
-
-<section class="section section--tight" id="themes">
-<div class="heading">
-<p class="eyebrow" data-i18n="themes_eyebrow"></p>
-<h2 class="serif h2" data-i18n="themes_title"></h2>
-<p class="lead" data-i18n="themes_sub"></p>
-</div>
-<div class="themes-row" id="themes-row"></div>
-</section>
-
 <section class="section" id="gallery">
 <div class="heading">
 <p class="eyebrow" data-i18n="gallery_eyebrow"></p>
 <h2 class="serif h2" data-i18n="gallery_title"></h2>
 <p class="lead" data-i18n="gallery_sub"></p>
 </div>
-<div class="gallery-wrap">
-<button class="gal-btn left" id="gal-prev" aria-label="Previous"></button>
-<div class="phone phone--gallery"><img id="gal-img" src="" alt="" /></div>
-<button class="gal-btn right" id="gal-next" aria-label="Next"></button>
-<div class="gal-caption"><h3 class="serif" id="gal-title"></h3><p id="gal-desc"></p></div>
-<div class="dots" id="gal-dots"></div>
+<div class="demo-wrap">
+<div class="phone-frame">
+<iframe
+  id="app-demo-iframe"
+  class="app-demo"
+  src="demo/index.html?v=5&lang=en"
+  title="Rewrap interactive app demo"
+  loading="lazy"
+></iframe>
+</div>
 </div>
 </section>
 
@@ -220,6 +204,6 @@
 <p class="footer-marks" data-i18n="footer_marks"></p>
 </footer>
 <button class="back-to-top" id="back-to-top" aria-label="Back to top"><span data-icon="chevronUp"></span></button>
-<script type="module" src="/src/app.js"></script>
+<script type="module" src="/src/app.js?v=8"></script>
 </body>
 </html>
