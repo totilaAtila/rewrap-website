@@ -1306,6 +1306,26 @@
     .card-menu button { display: flex; justify-content: flex-start; width: 100%; text-align: left; border: 0; background: none; padding: 11px 12px; font: 14px system-ui, sans-serif; color: var(--ink); border-radius: 12px; cursor: pointer; }
     .card-menu button:hover { background: var(--sheet); }
     .card-menu button.danger { color: #d33; }
+
+    /* ===== Albastrul sistemului, ca in aplicatia de pe iPhone (cererea utilizatorului 2026-11-10):
+       comutatorul activ, Aa, iconitele uneltelor, pastilele de sus, stepper-ele, bulina temei,
+       sortarea. Biblioteca (Continua, Adauga) ramane pe culoarea cartii, ca in aplicatie. ===== */
+    :root { --ios-blue: #007AFF; --ios-green: #34C759; }
+    .theme-noapte, .theme-amoled, [class*="theme-noapte"], [class*="theme-amoled"] { --ios-blue: #0A84FF; --ios-green: #30D158; }
+    .mode-btn.active { background: var(--ios-blue) !important; color: #fff !important; }
+    .btn-aa { background: var(--ios-blue) !important; color: #fff !important; }
+    .tool-btn { color: var(--ios-blue) !important; }
+    .nav-pill-btn { color: var(--ios-blue) !important; }
+    .stepper-btn { color: var(--ios-blue) !important; background: transparent !important; box-shadow: none !important; font-size: 20px !important; }
+    .stepper-val-label { color: var(--ios-blue); }
+    .theme-dot-btn.active { box-shadow: 0 0 0 3px var(--ios-blue) !important; }
+    .ios-switch.on { background: var(--ios-green) !important; }
+    .sort-pill.on { background: var(--ios-blue) !important; border-color: var(--ios-blue) !important; color: #fff !important; }
+    .sort-var .mini.on { background: var(--ios-blue) !important; }
+    .sort-var.on .tg { background: var(--ios-blue) !important; }
+    .work-label .ok { color: var(--ios-blue) !important; }
+    .center-play { color: var(--ink); }
+    .stepper-controls { background: transparent !important; box-shadow: none !important; border: 0 !important; }
   </style>
 </head>
 <body class="theme-sepia">
