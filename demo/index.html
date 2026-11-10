@@ -1243,6 +1243,69 @@
       --menu: rgba(26,26,28,0.95);
       --menu-gap: rgba(0,0,0,0.45);
     }
+
+    /* ===== UI 49+ (macheta 2026-11-10): fara sageata si linia de progres; pilula de pagina,
+       play in centru, comutatorul apare doar cu instrumentele ===== */
+    .btn-toggle-arrow, .progress-track-row { display: none !important; }
+    .mode-switch-wrap { transition: opacity .2s ease; }
+    .mode-switch-wrap:not(.tools-open) { opacity: 0; pointer-events: none; }
+    .page-pill { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 121;
+      padding: 5px 12px; border-radius: 999px; background: var(--chrome); border: 1px solid var(--line);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font: 600 12px/1 system-ui, sans-serif;
+      color: var(--sub); transition: opacity .2s ease; }
+    .page-pill.hidden { opacity: 0; pointer-events: none; }
+    .work-label { position: absolute; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 122;
+      padding: 6px 12px; border-radius: 999px; background: var(--chrome); border: 1px solid var(--line);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font: 500 12px/1 system-ui, sans-serif;
+      color: var(--ink); white-space: nowrap; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+    .work-label.show { opacity: 1; }
+    .work-label .ok { color: var(--accent); font-weight: 700; margin-right: 4px; }
+    .center-play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px;
+      border-radius: 50%; border: 1px solid var(--line); background: var(--chrome); color: var(--ink);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 119; display: flex;
+      align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.12);
+      opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+    .center-play.show { opacity: 1; pointer-events: auto; }
+    .reader-bottom-chrome { left: 50%; right: auto; transform: translateX(-50%); width: calc(100% - 28px); justify-content: center; }
+    .books-section-title { display: flex; justify-content: space-between; align-items: baseline; }
+    .books-section-title .count-r { color: var(--sub); font-weight: 400; }
+    .lib-search .chip { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+    .book-item { position: relative; }
+    .book-more { position: absolute; right: 0; bottom: 14px; width: 22px; height: 28px; border: 0; background: none;
+      color: var(--sub); font-size: 18px; line-height: 1; cursor: pointer; }
+    .sort-sheet { position: absolute; left: 12px; right: 12px; top: 330px; z-index: 300; display: none;
+      flex-direction: column; gap: 10px; }
+    .sort-sheet.active { display: flex; }
+    .sort-row { display: flex; gap: 10px; align-items: center; }
+    .sort-pill { width: 96px; height: 34px; border-radius: 999px; border: 1px solid var(--line); background: var(--chrome);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font: 600 13px system-ui, sans-serif; color: var(--ink);
+      box-shadow: 0 3px 12px rgba(0,0,0,.1); flex-shrink: 0; cursor: pointer; }
+    .sort-pill.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .sort-var { flex: 1; height: 34px; border-radius: 999px; border: 1px solid var(--line); background: var(--chrome);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center;
+      justify-content: space-between; padding: 0 6px 0 14px; font: 500 12.5px system-ui, sans-serif; color: var(--sub);
+      box-shadow: 0 3px 12px rgba(0,0,0,.08); cursor: pointer; }
+    .sort-var.chips { justify-content: space-around; padding: 0 6px; }
+    .sort-var .mini { padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+    .sort-var .mini.on { background: var(--accent); color: #fff; }
+    .sort-var.on { color: var(--ink); }
+    .sort-var .tg { width: 40px; height: 24px; border-radius: 999px; background: var(--line); position: relative; transition: background .15s; }
+    .sort-var .tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: left .15s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+    .sort-var.on .tg { background: var(--accent); }
+    .sort-var.on .tg::after { left: 18px; }
+    .sort-scrim, .card-scrim { position: absolute; inset: 0; z-index: 290; display: none; background: rgba(0,0,0,.18); }
+    .sort-scrim.active, .card-scrim.active { display: block; }
+    .card-menu { position: absolute; left: 14px; right: 14px; bottom: 28px; z-index: 300; display: none; flex-direction: column;
+      border-radius: 22px; background: var(--chrome); border: 1px solid var(--line); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px); box-shadow: 0 12px 40px rgba(0,0,0,.2); padding: 14px 8px 8px; }
+    .card-menu.active { display: flex; }
+    .card-menu .cm-head { display: flex; gap: 10px; align-items: center; padding: 0 10px 12px; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+    .card-menu .cm-cover { width: 30px; height: 42px; border-radius: 3px; flex-shrink: 0; }
+    .card-menu .cm-t { font: 600 13.5px system-ui, sans-serif; color: var(--ink); }
+    .card-menu .cm-m { font: 12px system-ui, sans-serif; color: var(--sub); }
+    .card-menu button { display: flex; justify-content: flex-start; width: 100%; text-align: left; border: 0; background: none; padding: 11px 12px; font: 14px system-ui, sans-serif; color: var(--ink); border-radius: 12px; cursor: pointer; }
+    .card-menu button:hover { background: var(--sheet); }
+    .card-menu button.danger { color: #d33; }
   </style>
 </head>
 <body class="theme-sepia">
@@ -1288,7 +1351,7 @@
         <div class="lib-search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <span id="txt-lib-search">Search library…</span>
-          <span class="chip" id="txt-lib-recent">Recent</span>
+          <span class="chip" id="txt-lib-recent"><span id="txt-lib-recent-l">Recent</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
         </div>
 
         <!-- Continuă lectura -->
@@ -1298,15 +1361,33 @@
             <span class="resume-eyebrow" id="txt-continue-eyebrow">Continue reading</span>
             <span class="resume-title" id="resume-card-title">On the Habit of Reading</span>
             <span class="resume-sub" id="txt-continue-pos">Page 3 of 10 · 30%</span>
-            <button class="resume-btn" id="btn-resume-read">Continue</button>
+            <button class="resume-btn" id="btn-resume-read">▶ <span id="txt-resume-l">Continue</span></button>
           </div>
         </div>
 
         <div class="books-section-title">
-          <span id="txt-all-books">All books · 6</span>
+          <span id="txt-all-books">All books</span><span class="count-r" id="txt-all-books-n">6 books</span>
         </div>
 
         <div class="books-grid" id="books-grid-container"></div>
+
+        <div class="sort-scrim" id="sort-scrim"></div>
+        <div class="sort-sheet" id="sort-sheet">
+          <div class="sort-row"><button class="sort-pill on" data-sort="recent" id="sp-recent">Recent</button></div>
+          <div class="sort-row"><button class="sort-pill" data-sort="title" id="sp-title">Title</button><div class="sort-var" data-for="title"><span id="sv-az">A–Z</span><span class="tg"></span></div></div>
+          <div class="sort-row"><button class="sort-pill" data-sort="progress" id="sp-progress">Progress</button><div class="sort-var" data-for="progress"><span id="sv-most">Most read</span><span class="tg"></span></div></div>
+          <div class="sort-row"><button class="sort-pill" data-sort="type" id="sp-type">Type</button><div class="sort-var chips" data-for="type"><span class="mini on">PDF</span><span class="mini">EPUB</span><span class="mini">TXT</span></div></div>
+          <div class="sort-row"><button class="sort-pill" data-sort="added" id="sp-added">Added</button><div class="sort-var" data-for="added"><span id="sv-old">Oldest</span><span class="tg"></span></div></div>
+        </div>
+
+        <div class="card-scrim" id="card-scrim"></div>
+        <div class="card-menu" id="card-menu">
+          <div class="cm-head"><div class="cm-cover" id="cm-cover"></div><div><div class="cm-t" id="cm-t"></div><div class="cm-m" id="cm-m"></div></div></div>
+          <button data-cm="open" id="cm-open">Open</button>
+          <button data-cm="share" id="cm-share">Send the file</button>
+          <button data-cm="info" id="cm-info">Information</button>
+          <button data-cm="remove" class="danger" id="cm-remove">Remove from library</button>
+        </div>
 
         <button class="fab-add" id="btn-fab-add">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -1412,6 +1493,11 @@
         <!-- =========================================================
              CHROME DE JOS (FACELIFT v4)
              ========================================================= -->
+        <div class="page-pill" id="page-pill">3/10</div>
+        <div class="work-label" id="work-label"><span class="ok">✓</span><span id="txt-work-label"></span></div>
+        <button class="center-play" id="center-play" aria-label="Play">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
         <div class="reader-bottom-chrome">
           <!-- Butonul săgeată ▲ / ▼ (în stânga, 44px, fără suprapunere) -->
           <button class="btn-toggle-arrow" id="btn-toggle-tools" aria-label="Tools">
@@ -1527,6 +1613,23 @@
                 <button class="theme-dot-btn" data-theme="noapte" style="background: #121212;" aria-label="Night"></button>
                 <button class="theme-dot-btn" data-theme="amoled" style="background: #000000;" aria-label="AMOLED"></button>
               </div>
+
+              <div class="drawer-sep"></div>
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-force-ocr">Force OCR</span>
+                  <span class="sw-sub" id="txt-force-ocr-sub">file text layer is damaged</span>
+                </div>
+                <div class="ios-switch" id="sw-force-ocr"><div class="knob"></div></div>
+              </div>
+
+              <div class="drawer-switch-row">
+                <div class="sw-label-group">
+                  <span class="sw-title" id="txt-clean-read">Clean reading</span>
+                  <span class="sw-sub" id="txt-clean-read-sub">remove headers and page numbers</span>
+                </div>
+                <div class="ios-switch" id="sw-clean-read"><div class="knob"></div></div>
+              </div>
             </div>
 
             <!-- 2. FILA Citire -->
@@ -1630,13 +1733,7 @@
                 <span style="color: var(--sub);">›</span>
               </button>
 
-              <div class="drawer-switch-row">
-                <div class="sw-label-group">
-                  <span class="sw-title" id="txt-force-ocr">Force OCR</span>
-                  <span class="sw-sub" id="txt-force-ocr-sub">file text layer is damaged</span>
-                </div>
-                <div class="ios-switch" id="sw-force-ocr"><div class="knob"></div></div>
-              </div>
+              
 
               <div class="drawer-switch-row">
                 <div class="sw-label-group">
@@ -1646,13 +1743,7 @@
                 <div class="ios-switch on" id="sw-enhance"><div class="knob"></div></div>
               </div>
 
-              <div class="drawer-switch-row">
-                <div class="sw-label-group">
-                  <span class="sw-title" id="txt-clean-read">Clean reading</span>
-                  <span class="sw-sub" id="txt-clean-read-sub">remove headers and page numbers</span>
-                </div>
-                <div class="ios-switch" id="sw-clean-read"><div class="knob"></div></div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -1716,6 +1807,10 @@
         <button class="menu-item" data-action="guide">
           <span class="label" id="bm-gd">Quick guide</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 0-4 4zM4 4v16a4 4 0 0 1 4-4h12"/></svg>
+        </button>
+        <button class="menu-item" data-action="about">
+          <span class="label" id="bm-ab">About the app</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
         </button>
       </div>
 
@@ -1824,6 +1919,7 @@
   <script>
     (function() {
       // Dictionar bilingv complet (Engleză implicită + Română)
+      const APP_STR = {"en": {"sort_recent": "Recent", "sort_title": "Title", "sort_progress": "Progress", "sort_type": "Type", "sort_added": "Added", "sort_az": "A–Z", "sort_most_read": "Most read", "sort_least_read": "Least read", "sort_oldest": "Oldest", "text_complete": "The text is complete", "work_reading": "Reading text", "table_of_contents": "Table of contents", "bookmarks": "Bookmarks", "highlights_title": "Highlights", "export_as": "Export as", "about_title": "About the app", "share_document": "Share the document", "report_issue": "Report an issue", "notes_title": "Notes", "drawer_forced_ocr": "Forced OCR", "drawer_declutter": "Clean reading", "original_page_keep": "Show this page as the original", "corrections_label": "My corrections", "guide_title": "Quick guide", "library_continue": "Continue", "library_all_books": "All books", "library_menu_open": "Open", "library_menu_share": "Send the file", "library_menu_info": "Information", "library_menu_remove": "Remove from library", "font_size_label": "Text size", "line_spacing_label": "Line spacing", "letter_spacing_label": "Letter spacing", "turn_pages_label": "Turn pages", "library_book_count": "%1$d books"}, "ro": {"sort_recent": "Recente", "sort_title": "Titlu", "sort_progress": "Progres", "sort_type": "Tip", "sort_added": "Adăugate", "sort_az": "A–Z", "sort_most_read": "Cele mai citite", "sort_least_read": "Cele mai puțin citite", "sort_oldest": "Cele mai vechi", "text_complete": "Textul e complet", "work_reading": "Se citește textul", "table_of_contents": "Cuprins", "bookmarks": "Semne de carte", "highlights_title": "Pasaje evidențiate", "export_as": "Exportă ca", "about_title": "Despre aplicație", "share_document": "Trimite documentul", "report_issue": "Raportează o problemă", "notes_title": "Notițe", "drawer_forced_ocr": "OCR forțat", "drawer_declutter": "Lectură curată", "original_page_keep": "Arată pagina asta ca în original", "corrections_label": "Corecturile mele", "guide_title": "Ghid rapid", "library_continue": "Continuă", "library_all_books": "Toate cărțile", "library_menu_open": "Deschide", "library_menu_share": "Trimite fișierul", "library_menu_info": "Informații", "library_menu_remove": "Scoate din bibliotecă", "font_size_label": "Mărimea textului", "line_spacing_label": "Spațierea rândurilor", "letter_spacing_label": "Spațierea literelor", "turn_pages_label": "Întoarcerea paginilor", "library_book_count": "%1$d cărți"}, "de": {"sort_recent": "Zuletzt geöffnet", "sort_title": "Titel", "sort_progress": "Fortschritt", "sort_type": "Typ", "sort_added": "Hinzugefügt", "sort_az": "A–Z", "sort_most_read": "Meistgelesen", "sort_least_read": "Wenig gelesen", "sort_oldest": "Älteste", "text_complete": "Der Text ist vollständig", "work_reading": "Text wird gelesen", "table_of_contents": "Inhaltsverzeichnis", "bookmarks": "Lesezeichen", "highlights_title": "Markierungen", "export_as": "Exportieren als", "about_title": "Über die App", "share_document": "Dokument teilen", "report_issue": "Problem melden", "notes_title": "Notizen", "drawer_forced_ocr": "OCR erzwingen", "drawer_declutter": "Aufgeräumtes Lesen", "original_page_keep": "Diese Seite im Original anzeigen", "corrections_label": "Meine Korrekturen", "guide_title": "Kurzanleitung", "library_continue": "Weiter", "library_all_books": "Alle Bücher", "library_menu_open": "Öffnen", "library_menu_share": "Datei senden", "library_menu_info": "Informationen", "library_menu_remove": "Aus der Bibliothek entfernen", "font_size_label": "Textgröße", "line_spacing_label": "Zeilenabstand", "letter_spacing_label": "Zeichenabstand", "turn_pages_label": "Blättern", "library_book_count": "%1$d Bücher"}, "fr": {"sort_recent": "Récents", "sort_title": "Titre", "sort_progress": "Progression", "sort_type": "Type", "sort_added": "Ajout", "sort_az": "A–Z", "sort_most_read": "Plus lus", "sort_least_read": "Moins lus", "sort_oldest": "Plus anciens", "text_complete": "Le texte est complet", "work_reading": "Lecture du texte", "table_of_contents": "Table des matières", "bookmarks": "Signets", "highlights_title": "Passages surlignés", "export_as": "Exporter au format", "about_title": "À propos de l’application", "share_document": "Partager le document", "report_issue": "Signaler un problème", "notes_title": "Notes", "drawer_forced_ocr": "OCR forcé", "drawer_declutter": "Lecture épurée", "original_page_keep": "Afficher la version originale de cette page", "corrections_label": "Mes corrections", "guide_title": "Guide rapide", "library_continue": "Continuer", "library_all_books": "Tous les livres", "library_menu_open": "Ouvrir", "library_menu_share": "Envoyer le fichier", "library_menu_info": "Informations", "library_menu_remove": "Retirer de la bibliothèque", "font_size_label": "Taille du texte", "line_spacing_label": "Espacement des lignes", "letter_spacing_label": "Espacement des lettres", "turn_pages_label": "Tourner les pages", "library_book_count": "%1$d livres"}, "hu": {"sort_recent": "Legutóbbiak", "sort_title": "Cím", "sort_progress": "Haladás", "sort_type": "Típus", "sort_added": "Hozzáadva", "sort_az": "A–Z", "sort_most_read": "Legtöbbet olvasott", "sort_least_read": "Legkevésbé olvasott", "sort_oldest": "Legrégebbi", "text_complete": "A szöveg elkészült", "work_reading": "A szöveg kiolvasása", "table_of_contents": "Tartalomjegyzék", "bookmarks": "Könyvjelzők", "highlights_title": "Kiemelések", "export_as": "Exportálás másként", "about_title": "Az alkalmazásról", "share_document": "A dokumentum megosztása", "report_issue": "Hiba jelentése", "notes_title": "Jegyzetek", "drawer_forced_ocr": "Kényszerített OCR", "drawer_declutter": "Tiszta olvasás", "original_page_keep": "Ez az oldal eredetiben", "corrections_label": "Saját javításaim", "guide_title": "Gyors útmutató", "library_continue": "Folytatás", "library_all_books": "Minden könyv", "library_menu_open": "Megnyitás", "library_menu_share": "A fájl küldése", "library_menu_info": "Információk", "library_menu_remove": "Eltávolítás a könyvtárból", "font_size_label": "Szövegméret", "line_spacing_label": "Sorköz", "letter_spacing_label": "Betűköz", "turn_pages_label": "Lapozás", "library_book_count": "%1$d könyv"}, "pl": {"sort_recent": "Ostatnie", "sort_title": "Tytuł", "sort_progress": "Postęp", "sort_type": "Typ", "sort_added": "Dodane", "sort_az": "A–Z", "sort_most_read": "Największy postęp", "sort_least_read": "Najmniejszy postęp", "sort_oldest": "Najstarsze", "text_complete": "Tekst jest kompletny", "work_reading": "Odczytuję tekst", "table_of_contents": "Spis treści", "bookmarks": "Zakładki", "highlights_title": "Zakreślenia", "export_as": "Eksportuj jako", "about_title": "O aplikacji", "share_document": "Udostępnij dokument", "report_issue": "Zgłoś problem", "notes_title": "Notatki", "drawer_forced_ocr": "Wymuszony OCR", "drawer_declutter": "Czyste czytanie", "original_page_keep": "Pokaż tę stronę jak w oryginale", "corrections_label": "Moje poprawki", "guide_title": "Krótki przewodnik", "library_continue": "Kontynuuj", "library_all_books": "Wszystkie książki", "library_menu_open": "Otwórz", "library_menu_share": "Wyślij plik", "library_menu_info": "Informacje", "library_menu_remove": "Usuń z biblioteki", "font_size_label": "Wielkość tekstu", "line_spacing_label": "Odstęp między wierszami", "letter_spacing_label": "Odstęp między literami", "turn_pages_label": "Przewracanie stron", "library_book_count": "Książki: %1$d"}, "ru": {"sort_recent": "Недавние", "sort_title": "Название", "sort_progress": "Прогресс", "sort_type": "Тип", "sort_added": "Добавленные", "sort_az": "А–Я", "sort_most_read": "Больше прочитано", "sort_least_read": "Меньше прочитано", "sort_oldest": "Сначала старые", "text_complete": "Текст готов", "work_reading": "Читаем текст", "table_of_contents": "Оглавление", "bookmarks": "Закладки", "highlights_title": "Выделения", "export_as": "Экспортировать как", "about_title": "О приложении", "share_document": "Отправить документ", "report_issue": "Сообщить о проблеме", "notes_title": "Заметки", "drawer_forced_ocr": "Принудительный OCR", "drawer_declutter": "Чистое чтение", "original_page_keep": "Показать эту страницу как в оригинале", "corrections_label": "Мои исправления", "guide_title": "Краткое руководство", "library_continue": "Продолжить", "library_all_books": "Все книги", "library_menu_open": "Открыть", "library_menu_share": "Отправить файл", "library_menu_info": "Сведения", "library_menu_remove": "Убрать из библиотеки", "font_size_label": "Размер текста", "line_spacing_label": "Межстрочный интервал", "letter_spacing_label": "Межбуквенный интервал", "turn_pages_label": "Перелистывание", "library_book_count": "Книг: %1$d"}, "lt": {"sort_recent": "Naujausi", "sort_title": "Pavadinimas", "sort_progress": "Pažanga", "sort_type": "Tipas", "sort_added": "Pridėta", "sort_az": "A–Z", "sort_most_read": "Daugiausia perskaityta", "sort_least_read": "Mažiausiai perskaityta", "sort_oldest": "Seniausi", "text_complete": "Tekstas paruoštas", "work_reading": "Skaitomas tekstas", "table_of_contents": "Turinys", "bookmarks": "Žymelės", "highlights_title": "Paryškinimai", "export_as": "Eksportuoti kaip", "about_title": "Apie programėlę", "share_document": "Siųsti dokumentą", "report_issue": "Pranešti apie problemą", "notes_title": "Užrašai", "drawer_forced_ocr": "Priverstinis OCR", "drawer_declutter": "Švarus skaitymas", "original_page_keep": "Rodyti originalią šio puslapio versiją", "corrections_label": "Mano pataisymai", "guide_title": "Trumpas gidas", "library_continue": "Tęsti", "library_all_books": "Visos knygos", "library_menu_open": "Atverti", "library_menu_share": "Siųsti failą", "library_menu_info": "Informacija", "library_menu_remove": "Pašalinti iš bibliotekos", "font_size_label": "Teksto dydis", "line_spacing_label": "Eilučių tarpai", "letter_spacing_label": "Raidžių tarpai", "turn_pages_label": "Puslapių vartymas", "library_book_count": "Knygų: %1$d"}, "lv": {"sort_recent": "Nesenie", "sort_title": "Nosaukums", "sort_progress": "Progress", "sort_type": "Veids", "sort_added": "Pievienotās", "sort_az": "A–Z", "sort_most_read": "Visvairāk lasītās", "sort_least_read": "Vismazāk lasītās", "sort_oldest": "Vecākās", "text_complete": "Teksts ir pilnībā sagatavots", "work_reading": "Teksta lasīšana", "table_of_contents": "Satura rādītājs", "bookmarks": "Grāmatzīmes", "highlights_title": "Izcēlumi", "export_as": "Eksportēt kā", "about_title": "Par lietotni", "share_document": "Kopīgot dokumentu", "report_issue": "Ziņot par problēmu", "notes_title": "Piezīmes", "drawer_forced_ocr": "Piespiedu OCR", "drawer_declutter": "Tīra lasīšana", "original_page_keep": "Rādīt šīs lappuses oriģinālu", "corrections_label": "Mani labojumi", "guide_title": "Īss ceļvedis", "library_continue": "Turpināt", "library_all_books": "Visas grāmatas", "library_menu_open": "Atvērt", "library_menu_share": "Sūtīt failu", "library_menu_info": "Informācija", "library_menu_remove": "Noņemt no bibliotēkas", "font_size_label": "Teksta lielums", "line_spacing_label": "Rindstarpa", "letter_spacing_label": "Burtu atstarpe", "turn_pages_label": "Lappušu šķiršana", "library_book_count": "Grāmatas: %1$d"}};
       const ALL_LANGS = ["en","ro","de","fr","hu","pl","ru","lt","lv"];
       const LANG_NAMES = {
   "en": "English",
@@ -3094,12 +3190,12 @@
         document.documentElement.lang = state.lang;
         $('#txt-lib-title').textContent = t('lib_title');
         $('#txt-lib-search').textContent = t('lib_search');
-        $('#txt-lib-recent').textContent = t('lib_recent');
+        // eticheta sortarii: vezi APP_STR (txt-lib-recent-l)
         $('#txt-continue-eyebrow').textContent = t('continue_eyebrow');
         $('#resume-thumb-title').textContent = t('book_title');
         $('#resume-card-title').textContent = t('book_title');
         $('#txt-continue-pos').textContent = t('continue_pos');
-        $('#btn-resume-read').textContent = t('continue_btn');
+        // Continua: vezi APP_STR (txt-resume-l)
         $('#txt-all-books').textContent = t('all_books');
         $('#txt-btn-add').textContent = t('btn_add');
 
@@ -3217,6 +3313,24 @@
         if ($('#bm-sh')) $('#bm-sh').textContent = bms.sh;
         if ($('#bm-rp')) $('#bm-rp').textContent = bms.rp;
         if ($('#bm-gd')) $('#bm-gd').textContent = bms.gd;
+        // Etichetele aplicatiei (values*/strings.xml), aceleasi cuvinte ca pe telefon
+        const A = APP_STR[state.lang] || APP_STR.en;
+        const setT = (sel, v) => { const e = $(sel); if (e && v) e.textContent = v; };
+        setT('#bm-toc', A.table_of_contents); setT('#bm-orig-page', A.original_page_keep);
+        setT('#bm-bm', A.bookmarks); setT('#bm-hl', A.highlights_title); setT('#bm-nt', A.notes_title);
+        setT('#bm-cr', A.corrections_label); setT('#bm-ex', A.export_as); setT('#bm-sh', A.share_document);
+        setT('#bm-rp', A.report_issue); setT('#bm-gd', A.guide_title); setT('#bm-ab', A.about_title);
+        setT('#txt-aa-fs', A.font_size_label); setT('#txt-aa-lh', A.line_spacing_label);
+        setT('#txt-aa-ls', A.letter_spacing_label); setT('#txt-aa-turn', A.turn_pages_label);
+        setT('#txt-force-ocr', A.drawer_forced_ocr); setT('#txt-clean-read', A.drawer_declutter);
+        setT('#txt-lib-recent-l', A.sort_recent); setT('#txt-all-books', A.library_all_books);
+        setT('#txt-all-books-n', (A.library_book_count || '%1$d books').replace('%1$d', '6'));
+        setT('#txt-resume-l', A.library_continue); setT('#txt-work-label', A.text_complete);
+        setT('#sp-recent', A.sort_recent); setT('#sp-title', A.sort_title); setT('#sp-progress', A.sort_progress);
+        setT('#sp-type', A.sort_type); setT('#sp-added', A.sort_added); setT('#sv-az', A.sort_az);
+        setT('#sv-most', A.sort_most_read); setT('#sv-old', A.sort_oldest);
+        setT('#cm-open', A.library_menu_open); setT('#cm-share', A.library_menu_share);
+        setT('#cm-info', A.library_menu_info); setT('#cm-remove', A.library_menu_remove);
 
         $('#reflow-heading').textContent = t('book_title');
         $('#info-bubble-title').textContent = t('book_title');
@@ -3309,9 +3423,8 @@
         origBox.innerHTML = origHtml;
 
         // Actualizare etichete în sertarul Aa
-        $('#lbl-fs').textContent = state.fontSizePct + '%';
-        const spNames = SPACING_NAMES[state.lang] || SPACING_NAMES.en;
-        $('#lbl-lh').textContent = spNames[state.spacingIdx];
+        $('#lbl-fs').textContent = '×' + (state.fontSizePct / 100).toFixed(2);
+        $('#lbl-lh').textContent = '×' + [0.95, 1.05, 1.20, 1.40][state.spacingIdx].toFixed(2);
         $('#lbl-ls').textContent = '+' + (state.letterSpacingIdx * 2) + '%';
       }
 
@@ -3326,13 +3439,25 @@
             </div>
             <span class="book-title">${b.title}</span>
             <span class="book-meta">${b.meta}</span>
+            <span class="book-more" data-more="${idx}" role="button" aria-label="More">⋮</span>
           </button>
         `).join('');
 
         $$('.book-item').forEach(btn => {
-          btn.addEventListener('click', () => showScreen('reader'));
+          btn.addEventListener('click', (e) => {
+            const more = e.target.closest('.book-more');
+            if (more) { e.stopPropagation(); openCardMenu(books[+more.dataset.more]); return; }
+            showScreen('reader');
+          });
         });
       }
+
+      function openCardMenu(b) {
+        $('#cm-cover').style.background = b.color;
+        $('#cm-t').textContent = b.title; $('#cm-m').textContent = b.meta;
+        $('#card-menu').classList.add('active'); $('#card-scrim').classList.add('active');
+      }
+      function closeCardMenu() { $('#card-menu').classList.remove('active'); $('#card-scrim').classList.remove('active'); }
 
       function showScreen(name) {
         state.screen = name;
@@ -3414,6 +3539,10 @@
 
       function setToolsVisibility(open) {
         state.toolsOpen = open;
+        const pp = $('#page-pill'); if (pp) pp.classList.toggle('hidden', open);
+        const cp = $('#center-play');
+        if (cp) { clearTimeout(window.__playT); cp.classList.toggle('show', open);
+          if (open) window.__playT = setTimeout(() => cp.classList.remove('show'), 2600); }
         const arrow = $('#btn-toggle-tools');
         const progressRow = $('#progress-track-row');
         const toolsGroup = $('#tools-pill-group');
@@ -3440,6 +3569,49 @@
       }
 
       function setupEvents() {
+        // ---- UI 49+: atingerea paginii aduce/ascunde meniurile; derularea le ascunde ----
+        (function () {
+          const vp = $('#reader-viewport');
+          let lastY = vp.scrollTop;
+          vp.addEventListener('click', (e) => {
+            if (e.target.closest('button, a, .doc-figure-card')) return;
+            setToolsVisibility(!state.toolsOpen);
+          });
+          vp.addEventListener('scroll', () => {
+            const y = vp.scrollTop;
+            if (state.toolsOpen && Math.abs(y - lastY) > 24 && !state.aaOpen && !state.bookMenuOpen) setToolsVisibility(false);
+            lastY = y;
+            const max = vp.scrollHeight - vp.clientHeight;
+            const pg = max > 0 ? Math.min(10, 3 + Math.floor((y / max) * 7.99)) : 3;
+            $('#page-pill').textContent = pg + '/10';
+          }, { passive: true });
+          $('#center-play').addEventListener('click', (e) => {
+            e.stopPropagation();
+            setToolsVisibility(false);
+            showToast(state.lang === 'ro' ? 'Derularea automată a pornit.' : 'Auto-scroll started.');
+          });
+          // eticheta de lucru: „Textul e complet", cateva secunde dupa deschidere
+          setTimeout(() => { const w = $('#work-label'); w.classList.add('show'); setTimeout(() => w.classList.remove('show'), 3200); }, 900);
+          // sortarea bibliotecii: pastilele pe doua coloane
+          const openSort = (on) => { $('#sort-sheet').classList.toggle('active', on); $('#sort-scrim').classList.toggle('active', on); };
+          $('#txt-lib-recent').addEventListener('click', (e) => { e.stopPropagation(); openSort(true); });
+          $('#sort-scrim').addEventListener('click', () => openSort(false));
+          $$('.sort-pill').forEach(p => p.addEventListener('click', () => {
+            $$('.sort-pill').forEach(x => x.classList.toggle('on', x === p));
+            $('#txt-lib-recent-l').textContent = p.textContent;
+            setTimeout(() => openSort(false), 250);
+          }));
+          $$('.sort-var').forEach(v => v.addEventListener('click', (e) => {
+            const mini = e.target.closest('.mini');
+            if (mini) { v.querySelectorAll('.mini').forEach(m => m.classList.toggle('on', m === mini)); }
+            else v.classList.toggle('on');
+            const pill = $('#sp-' + v.dataset.for); if (pill) pill.click();
+          }));
+          $('#card-scrim').addEventListener('click', closeCardMenu);
+          $$('#card-menu button').forEach(b => b.addEventListener('click', () => {
+            closeCardMenu(); if (b.dataset.cm === 'open') showScreen('reader');
+          }));
+        })();
         $('#btn-resume-read').addEventListener('click', () => showScreen('reader'));
         $('#btn-fab-add').addEventListener('click', () => showToast(state.lang === 'ro' ? 'Deschide selectorul: PDF, EPUB, TXT' : 'Open document picker: PDF, EPUB, TXT'));
         $('#btn-open-app-settings').addEventListener('click', () => showScreen('app'));
